@@ -1,0 +1,17 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-stable bar-shadow fix-buttons">
+        <!--<button class="button-icon icon-btn-close" ng-click="offConfirm()"></button>-->
+        <button class="button top-btn" ng-click="hideModal()"><img src="img/icon-close.png"></button>
+        <ion-title class="font-mid">Search Address</ion-title>
+    </ion-header-bar>
+    <ion-content class="order-view-cont color-bg view-map" scroll="false" style="margin-right: 2px;">
+        <div class="gp-container map-input" style="width:100%;position: absolute;z-index: 9999;border-radius:0;" ng-class="{'arabic_rtl': arabic_rtl}">
+            <input style="z-index: 99;" placeholder="{{ MLanguages.MOBILE_FRONT_VISUALS_ADDRESS_OR_ZIPCODE }}" ng-class="{cssArabic: $root.arabic_rtl, noncssArabic: !$root.arabic_rtl}" ng-model="myOrder.curAddress" class="font-mid" id="dirMap" googleplace ng-click="onAutoCompleteAddress()" ng-focus="onFocusDir()" ng-blur="onBlurDir()"/>
+            <i class="icon ion-close-circled icon-clear" ng-if="myOrder.curAddress && myOrder.curAddress != ''" ng-click="cleanAddress($event)"></i>
+        </div>
+        <div id="map" style="width: 100%;"></div>
+    </ion-content>
+    <ion-footer-bar class="color-main-bg footer-style">
+        <div class="button find-btn font-large btn-bar-bottom color-font-white button-positive" ng-click="findRest()" >{{ MLanguages.MOBILE_ACCEPT }}</div>
+    </ion-footer-bar>
+</ion-modal-view>

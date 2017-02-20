@@ -1,0 +1,39 @@
+{
+  "name": "angular-focusmanager",
+  "version": "0.3.12",
+  "homepage": "https://github.com/obogo/angular-focusmanager",
+  "authors": [
+    "Rob Taylor <roboncode@gmail.com>"
+  ],
+  "main": [
+    "build/angular-focusmanager.js"
+  ],
+  "description": "Manages the activeElement using focus groups and elements",
+  "keywords": [
+    "obogo",
+    "angular",
+    "focus",
+    "focusmanager"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.16"
+  },
+  "_release": "0.3.12",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.3.12",
+    "commit": "1d33524fe8b1b2d2498ffba9b987e0ad5351e7da"
+  },
+  "_source": "https://github.com/obogo/angular-focus-manager.git",
+  "_target": "^0.3.12",
+  "_originalSource": "angular-focusmanager",
+  "_direct": true
+}

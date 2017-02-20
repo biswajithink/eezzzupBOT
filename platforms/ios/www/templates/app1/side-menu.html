@@ -1,0 +1,60 @@
+<ion-side-menus enable-menu-with-back-views="false">
+    <ion-side-menu-content>
+        <ion-nav-view name="mainContainer"></ion-nav-view>
+    </ion-side-menu-content>
+    <!-- Left menu -->
+    <ion-side-menu side="left">
+        <ion-content>
+            <ul class="list">
+                <!-- Note each link has the 'menu-close' attribute so the menu auto closes when clicking on one of these links -->
+                <a class="item" menu-close ng-href="#/side-menu/home-screen" ng-class="{arabic_rtl: arabic_rtl}">
+                    <div class="icon-text">
+                        <span class="icon ion-ios-home icon-primary"></span>
+                        <span>{{ MLanguages.MOBILE_FRONT_START_ORDER }}</span>
+                    </div>
+                </a>
+               <!-- <a class="item" menu-close>
+                    <div class="icon-text icon-list">
+                        <span>Browse Restaurant</span>
+                    </div>
+                </a>-->
+                <a class="item" menu-close ng-click="onGoMyProfile()" ng-class="{arabic_rtl: arabic_rtl}">
+                    <div class="icon-text">
+                        <span class="icon ion-person icon-primary"></span>
+                        <span>{{ MLanguages.MYACCOUNT_MYPROFILE }}</span>
+                    </div>
+                </a>
+                <a class="item" menu-close ng-click="onGoMyOrder()" ng-class="{arabic_rtl: arabic_rtl}">
+                    <div class="icon-text">
+                        <span class="icon ion-android-restaurant icon-primary"></span>
+                        <span>{{ MLanguages.MOBILE_FRONT_MY_ORDERS }}</span>
+                    </div>
+                </a>
+                 <a class="item" menu-close ng-click="onGoMyCard()" ng-if="stripepermissions && ADDONS.stripe_payment" ng-class="{arabic_rtl: arabic_rtl}">
+                    <div class="icon-text">
+                        <span class="icon ion-card icon-primary"></span>
+                        <span>{{ MLanguages.MOBILE_ADD_CARD }}</span>
+                    </div>
+                </a>
+                <!--<a class="item" menu-close ng-click="">
+                    <div class="icon-text icon-address">
+                        <span>Address Book</span>
+                    </div>
+                </a>-->
+                <a class="item" menu-close ng-href="#/side-menu/setting" ng-class="{arabic_rtl: arabic_rtl}">
+                    <div class="icon-text">
+                        <span class="icon ion-gear-b icon-primary"></span>
+                        <span>{{ MLanguages.MOBILE_FRONT_SETTINGS }}</span>
+                    </div>
+                </a>
+                <a class="item" ng-if="getLogState() == true" ng-href="#/side-menu/home-screen" ng-click="onSignOut()"  ng-class="{arabic_rtl: arabic_rtl}">
+                    <div class="icon-text">
+                        <span class="icon ion-log-out icon-primary"></span>
+                        <span>{{ MLanguages.MOBILE_FRONT_LOGOUT }}</span>
+                    </div>
+                </a>
+            </ul>
+        </ion-content>
+    </ion-side-menu>
+
+</ion-side-menus>

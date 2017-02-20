@@ -1,0 +1,201 @@
+<ion-view>
+    <ion-nav-bar class="bar-stable bar-shadow fix-buttons">
+        <ion-nav-buttons side="left">
+            <button class="button top-btn" ng-click="onClickDetail()"><img src="img/icon-close.png"></button>
+        </ion-nav-buttons>
+        <ion-nav-title>{{ MLanguages.MOBILE_FRONT_CHECKOUT }}</ion-nav-title>
+        <ion-nav-buttons side="right">
+            <button class="button top-btn" ng-click="onClickDetail()"></button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-content class="color-bg">
+        <ion-item class="item-divider" ng-class="{cssArabicRight: $root.arabic_rtl}">
+            <span class="divider-padding no-padding-h">{{ MLanguages.DELIVERYA_V21 }}</span>
+        </ion-item>
+        <div>
+            <div id="map2" data-tap-disabled="true" class="map-view"></div>
+        </div>
+        <ion-item class="item-divider" ng-class="{'arabic_rtl': arabic_rtl}">
+            <span class="divider-padding no-padding-h positive">{{ MLanguages.MOBILE_FRONT_PLEASE_INPUT_CORRECT_INFORMATION }}(*)</span>
+        </ion-item>
+        <ion-item class="no-border text-center" ng-class="{'arabic_rtl': arabic_rtl}" ng-if="infoFields['Name'].status">
+            <input type="text" class="w-100 in-box-style-base" placeholder="{{ MLanguages.MOBILE_CHECKOUT_NAME }}" ng-model="order_buyer.name">
+        </ion-item>
+        <ion-item class="no-border text-center pd-none-t" ng-class="{'arabic_rtl': arabic_rtl}" ng-if="infoFields['Last Name'].status">
+            <input type="text" class="w-100 in-box-style-base" placeholder="{{ MLanguages.MOBILE_CHECKOUT_LASTNAME }}" ng-model="order_buyer.lastname2">
+        </ion-item>
+        <ion-item class="no-border text-center pd-none-t" ng-class="{'arabic_rtl': arabic_rtl}" ng-if="infoFields['Email'].status">
+            <input type="text" class="w-100 in-box-style-base" placeholder="{{ MLanguages.MOBILE_CHECKOUT__EMAIL }}" ng-model="order_buyer.email">
+        </ion-item>
+        <ion-item class="no-border text-center pd-none-t" ng-class="{'arabic_rtl': arabic_rtl}" ng-if="infoFields['City'].status">
+            <input type="text" class="w-100 in-box-style-base" placeholder="{{ MLanguages.CITY }} *" ng-model="order_buyer.city">
+        </ion-item>
+        <ion-item class="no-border text-center pd-none-t" ng-class="{'arabic_rtl': arabic_rtl}" ng-if="infoFields['Area / Neighborhood'].status">
+            <input type="text" class="w-100 in-box-style-base" placeholder="{{ MLanguages.MOBILE_CHECKOUT_NEIGHBOURHOOD }}" ng-model="order_buyer.neighbour">
+        </ion-item>
+        <ion-item class="no-border text-center pd-none-t" ng-class="{'arabic_rtl': arabic_rtl}" ng-if="infoFields['Full Address'].status">
+            <input type="text" class="w-100 in-box-style-base" placeholder="{{ MLanguages.MOBILE_CHECKOUT_FULL_ADDRESS }}" ng-model="order_buyer.address" googleplace ng-click="onAutoCompleteAddress()">
+        </ion-item>
+        <ion-item class="no-border text-center pd-none-t" ng-class="{'arabic_rtl': arabic_rtl}" ng-if="infoFields['Zipcode'].status">
+            <input type="text" class="w-100 in-box-style-base" placeholder="{{ MLanguages.MOBILE_ZIP_POSTAL_CODE }}" ng-model="order_buyer.zip">
+        </ion-item>
+        <ion-item class="no-border text-center pd-none-t" ng-class="{'arabic_rtl': arabic_rtl}" ng-if="infoFields['Phone'].status">
+            <input type="number" class="w-100 in-box-style-base" placeholder="{{ MLanguages.MOBILE_FRONT_PHONE_NUMBER }}" ng-model="order_buyer.tel">
+        </ion-item>
+    <!--    <ion-item class="no-border text-center pd-none-t" ng-class="{'arabic_rtl': arabic_rtl}" ng-if="infoFields['Receive SMS'].status">
+            <input type="text" class="w-100 in-box-style-base" placeholder="Receive SMS" ng-model="order_buyer.receive_sms">
+        </ion-item>-->
+        <!--<ion-item class="no-border text-center pd-none-t" ng-class="{'arabic_rtl': arabic_rtl}" ng-if="infoFields['Takeout Date'].status">
+            <input type="text" class="w-100 in-box-style-base" placeholder="Takeout Date" ng-model="order_buyer.takeout_date">
+        </ion-item>-->
+        <ion-item class="no-border text-center pd-none-t" ng-class="{'arabic_rtl': arabic_rtl}" ng-if="infoFields['APT/Suit'].status">
+            <textarea class="special-inbox" rows="2" placeholder="{{ MLanguages.MOBILE_FRONT_ORDER_COMMENT_HINT }}" ng-model="finalCheckout.specialcomment"></textarea>
+        </ion-item>
+      <!--  <ion-item class="no-border text-center pd-none-t" ng-class="{'arabic_rtl': arabic_rtl}" ng-if="infoFields['Where did you find about us'].status">
+            <textarea class="special-inbox" rows="2" placeholder="Where did you find about us" ng-model="finalCheckout.where_find_us"></textarea>
+        </ion-item>-->
+        <ion-item class="no-border text-center pd-none-t" ng-class="{'arabic_rtl': arabic_rtl}" ng-if="curBusiness.discountoffer!=true && ADDONS.discount_code && infoFields['Discount Coupon'].status">
+            <input type="text" class="w-100 in-box-style-base" placeholder="{{ MLanguages.MOBILE_CHECKOUT_DISCOUNT_COUPON }}" ng-model="order_buyer.coupon" ng-change="discountcodeCheck()" ng-readonly="order_buyer.couponstatus">
+        </ion-item>
+
+        <ion-item class="item-divider" ng-class="{'arabic_rtl': arabic_rtl}">
+            <span class="divider-padding no-padding-h">{{ MLanguages.MOBILE_CHECKOUT_ORDER_DETAILS }}</span>
+        </ion-item>
+        <ion-item class="detail-item" ng-click="" ng-if="!arabic_rtl">
+            <span class="float-left mg-top-sm">{{ MLanguages.MENU_LIST_DELIVERY_TIME }}</span>
+            <div class="float-right mg-top-sm"></div>
+            <span class="color-font-placeholder float-right mg-top-sm pd-right-1">{{ MLanguages.MOBILE_CHECKOUT_ASAP }}</span>
+            <div class="bottom-line-grey"></div>
+        </ion-item>
+        <ion-item class="detail-item" ng-click="" ng-if="arabic_rtl">
+            <span class="float-right mg-top-sm">{{ MLanguages.MENU_LIST_DELIVERY_TIME }}</span>
+            <div class="float-left mg-top-sm"></div>
+            <span class="color-font-placeholder float-left mg-top-sm pd-right-1">{{ MLanguages.MOBILE_CHECKOUT_ASAP }}</span>
+            <div class="bottom-line-grey"></div>
+        </ion-item>
+        <ion-item class="detail-item" ng-click="onPaymentPopup()" ng-if="!arabic_rtl">
+            <span class="float-left mg-top-sm">{{ MLanguages.MOBILE_FRONT_PAYMENT_METHOD }}</span>
+            <div class="float-right icon-more-next-p mg-top-sm"></div>
+            <span class="color-font-placeholder-p float-right mg-top-sm pd-right-1">{{ paymentModel.model }}</span>
+            <div class="bottom-line-grey"></div>
+        </ion-item>
+        <ion-item class="detail-item" ng-click="onPaymentPopup()" ng-if="arabic_rtl">
+            <span class="float-right mg-top-sm">{{ MLanguages.MOBILE_FRONT_PAYMENT_METHOD }}</span>
+            <div class="float-left icon-more-next-p mg-top-sm"></div>
+            <span class="color-font-placeholder-p float-left mg-top-sm pd-right-1">{{ paymentModel.model }}</span>
+            <div class="bottom-line-grey"></div>
+        </ion-item>
+        <ion-item class="border-none-b" ng-if="getdeliveryType == 'delivery' && DRIVER_TIP && infoFields['Tip For The Driver'].status">
+            <div class="diver-type">
+                <div class="border-b padding-4"><span class="color-font-placeholder">{{ MLanguages.MOBILE_FRONT_DRIVER_TIP }} : </span> {{ c_unit }} {{data.driveTips}}</div>
+                <div class="row font-mid perc-style">
+                    <div class="col-20">{{driverTipsList[0].text}}</div>
+                    <div class="col-20">{{driverTipsList[1].text}}</div>
+                    <div class="col-20">{{driverTipsList[2].text}}</div>
+                    <div class="col-20">{{driverTipsList[3].text}}</div>
+                    <div class="col-20">{{driverTipsList[4].text}}</div>
+                </div>
+                <div class="button-bar border-none-b" >
+                    <ion-radio ng-repeat="item in driverTipsList"
+                               ng-value="item.value"
+                               ng-model="data.driveTips" ng-click="changedRadioValue()" class="h-radio-bar">
+                               <span class="float-left dynamic-radio"></span>
+                    </ion-radio>
+                </div>
+
+                <div class="color-font-placeholder pd-top-4">{{ MLanguages.MOBILE_FRONT_GOES_TO_YOUR_DRIVER }}</div>
+            </div>
+        </ion-item>
+        <ion-item class="item-divider">
+            <span class="divider-padding no-padding-h">{{ MLanguages.MOBILE_FRONT_ORDER_SUMMERY }}</span>
+        </ion-item>
+        <ion-item class="pd-top-4 no-border pd-none-b"
+                  ng-repeat="dish in curMyDishes">
+            <div class="food-cont color-font-dark">
+                <div class="float-left badge-cont">{{dish.quantity}}</div>
+                <span class="float-left">{{dish.name}}</span>
+                <p class="color-main font-small float-right">{{ c_unit }} {{(dish.total).toFixed(2)}}</p>
+            </div>
+            <p class="color-font-gray food-tail" ng-init="dishOptionsView = parseOptions(dish.options)">
+                <span ng-repeat="(name, options) in dishOptionsView">
+                    <strong>{{name}}</strong><br>
+                    <span ng-bind-html="parseSuboptions(options)"></span>
+                </span>
+            </p>
+            <p class="color-font-gray food-tail pd-top-4 multiline"><span>{{dish.comments}}</span></p>
+            <div style="clear:both;"></div>
+            <div class="h-line-grey"></div>
+        </ion-item>
+        <ion-item class="pd-top-4 no-border pd-none-b">
+            <div class="calc-item" ng-if="!arabic_rtl">
+                <p class="color-font-gray float-left">{{ MLanguages.MOBILE_FRONT_SUB_TOTAL }}</p>
+                <p class="color-main font-small float-right">{{ c_unit }} {{ subTotalPrice.toFixed(2) }}</p>
+            </div>
+            <div class="calc-item" ng-if="arabic_rtl">
+                <p class="color-font-gray float-right">{{ MLanguages.MOBILE_FRONT_SUB_TOTAL }}</p>
+                <p class="color-main font-small float-left">{{ c_unit }} {{ subTotalPrice.toFixed(2) }}</p>
+            </div>
+            <div class="calc-item" ng-if="curBusiness.discountcode==true && !arabic_rtl">
+                <p class="color-font-gray float-left">{{ MLanguages.APP_DISCOUNT }} (<span ng-if="curBusiness.discounttype == 2">{{c_unit}}</span>{{curBusiness.discountrate}} <span ng-if="curBusiness.discounttype == 1">%</span>) </p>
+                <p class="color-main font-small float-right"> -{{ c_unit }} {{curBusiness.discountprice}}</p>
+            </div>
+            <div class="calc-item" ng-if="curBusiness.discountcode==true && arabic_rtl">
+                <p class="color-font-gray float-right">{{ MLanguages.APP_DISCOUNT }} (<span ng-if="curBusiness.discounttype == 2">{{c_unit}}</span>{{curBusiness.discountrate}} <span ng-if="curBusiness.discounttype == 1">%</span>) </p>
+                <p class="color-main font-small float-left"> -{{ c_unit }} {{curBusiness.discountprice}}</p>
+            </div>
+
+            <div class="calc-item" ng-if="curBusiness.discountoffer==true && ADDONS.discount_offer && !arabic_rtl">
+                <p class="color-font-gray float-left">{{ MLanguages.APP_DISCOUNT }} (<span ng-if="curBusiness.discounttype == 2">{{c_unit}}</span>{{curBusiness.discountrate}} <span ng-if="curBusiness.discounttype == 1">%</span>) </p>
+                <p class="color-main font-small float-right"> -{{ c_unit }} {{curBusiness.discountprice}}</p>
+            </div>
+            <div class="calc-item" ng-if="curBusiness.discountoffer==true && ADDONS.discount_offer && arabic_rtl">
+                <p class="color-font-gray float-right">{{ MLanguages.APP_DISCOUNT }} (<span ng-if="curBusiness.discounttype == 2">{{c_unit}}</span>{{curBusiness.discountrate}} <span ng-if="curBusiness.discounttype == 1">%</span>) </p>
+                <p class="color-main font-small float-left"> -{{ c_unit }} {{curBusiness.discountprice}}</p>
+            </div>
+            <div class="calc-item" ng-if="!arabic_rtl">
+                <p class="color-font-gray float-left">{{ MLanguages.Tax_V2 }}</p>
+                <p class="color-main font-small float-right">{{ c_unit }} {{ curBusiness.tax }}</p>
+            </div>
+            <div class="calc-item" ng-if="arabic_rtl">
+                <p class="color-font-gray float-right">{{ MLanguages.Tax_V2 }}</p>
+                <p class="color-main font-small float-left">{{ c_unit }} {{ curBusiness.tax }}</p>
+            </div>
+            <div class="calc-item" ng-if="!arabic_rtl">
+                <p class="color-font-gray float-left">{{ MLanguages.MOBILE_CHECKOUT_DELIVERY_FEE }}</p>
+                <p class="color-main font-small float-right">{{ c_unit }} {{ deliveryFee | number:2}}</p>
+            </div>
+            <div class="calc-item" ng-if="arabic_rtl">
+                <p class="color-font-gray float-right">{{ MLanguages.MOBILE_CHECKOUT_DELIVERY_FEE }}</p>
+                <p class="color-main font-small float-left">{{ c_unit }} {{ deliveryFee | number:2}}</p>
+            </div>
+            <div class="calc-item" ng-if="!arabic_rtl && DRIVER_TIP">
+                <p class="color-font-gray float-left">{{ MLanguages.MOBILE_FRONT_DRIVER_TIP }}</p>
+                <p class="color-main font-small float-right"> {{ c_unit }} {{data.driveTips}}</p>
+            </div>
+            <div class="calc-item" ng-if="arabic_rtl">
+                <p class="color-font-gray float-right">{{ MLanguages.MOBILE_FRONT_DRIVER_TIP }}</p>
+                <p class="color-main font-small float-left"> {{ c_unit }} {{data.driveTips}}</p>
+            </div>
+            <div class="calc-item" ng-if="!arabic_rtl">
+                <p class="color-font-gray float-left">{{ MLanguages.SERVICE_FEE_V2 }} ({{ curBusiness.servicefee }}%)</p>
+                <p class="color-main font-small float-right"> {{ c_unit }} {{curBusiness.servicefeeTotal}}</p>
+            </div>
+            <div class="calc-item" ng-if="arabic_rtl">
+                <p class="color-font-gray float-right">{{ MLanguages.SERVICE_FEE_V2 }} ({{ curBusiness.servicefee }}%)</p>
+                <p class="color-main font-small float-left"> {{ c_unit }} {{curBusiness.servicefeeTotal}}</p>
+            </div>
+            <div class="h-line-grey mg-none-b"></div>
+        </ion-item>
+        <ion-item class="pd-top-4 no-border pd-none-b total-item" ng-if="!arabic_rtl">
+            <p class="font-large color-font-dark float-left">{{ MLanguages.MOBILE_CHECKOUT_TOTAL }}</p>
+            <p class="font-small color-main float-right"> {{ c_unit }} {{orderTotal.toFixed(2)}}</p>
+        </ion-item>
+        <ion-item class="pd-top-4 no-border pd-none-b total-item" ng-if="arabic_rtl">
+            <p class="font-large color-font-dark float-right">{{ MLanguages.MOBILE_CHECKOUT_TOTAL }}</p>
+            <p class="font-small color-main float-left"> {{ c_unit }} {{orderTotal.toFixed(2)}}</p>
+        </ion-item>
+    </ion-content>
+    <ion-footer-bar class="color-main-bg footer-style">
+        <div class="button find-btn font-large btn-bar-bottom color-font-white button-positive" ng-click="placeOrderNow()">{{ MLanguages.MOBILE_BUSINESS_LIST_PLACE_ORDER }}</div>
+    </ion-footer-bar>
+</ion-view>

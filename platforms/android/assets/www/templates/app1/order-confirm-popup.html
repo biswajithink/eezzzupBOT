@@ -1,0 +1,130 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-stable bar-shadow fix-buttons">
+        <!--<button class="button-icon icon-btn-close" ng-click="offConfirm()"></button>-->
+        <button class="button top-btn" ng-click="offConfirm()"><img src="img/icon-close.png"></button>
+        <ion-title>{{ MLanguages.BACK_BUTTON_CONFIRMATION }}</ion-title>
+    </ion-header-bar>
+    <!-- Nuevo -->
+    <ion-content class="order-view-cont color-bg" ng-class="{'arabic_rtl': arabic_rtl}">
+        <div ng-if="ADDONS.checkout_enhacements">
+        <ion-item class="pd-top-4 no-border pd-none-b item-image-checkout">
+            <!--<img src="img/background-checkout-page.jpg">-->
+            <div class="message">
+                {{ MLanguages.ORDER_THANKS }}<br>
+                <p class="help">
+                    {{ MLanguages.Order_number_V2 }} #{{placedOrderId}}
+                </p>
+            </div>
+        </ion-item>
+        <ion-item class="item-divider">
+            <span class="divider-padding no-padding-h">{{ MLanguages.MOBILE_CHECKOUT_ORDER_DETAILS }}</span>
+        </ion-item>
+        <ion-item class="pd-top-4 no-border pd-none-b"
+                  ng-repeat="dish in curMyDishes track by $index">
+            <div class="food-cont color-font-dark">
+                <div class="float-left-dir badge-cont">{{dish.quantity}}</div>
+                <span class="float-left-dir">{{dish.name}}</span>
+                <p class="color-main font-small float-right-dir">{{ c_unit }} {{(dish.total).toFixed(2)}}</p>
+            </div>
+            <p class="color-font-gray food-tail" ng-init="dishOptionsView = parseOptions(dish.options)">
+                <span ng-repeat="(name, options) in dishOptionsView">
+                    <strong>{{name}}</strong><br>
+                    <span ng-bind-html="parseSuboptions(options)"></span>
+                </span>
+            </p>
+            <p class="color-font-gray food-tail pd-top-4 multiline"><span>{{dish.comments}}</span></p>
+            <div class="h-line-grey"></div>
+        </ion-item>
+        <ion-item class="pd-top-4 no-border pd-none-b">
+            <div class="calc-item">
+                <p class="color-font-gray float-left-dir">{{ MLanguages.MOBILE_FRONT_SUB_TOTAL }}</p>
+                <p class="color-main font-small float-right-dir">{{ c_unit }} {{ subTotalPrice.toFixed(2) }}</p>
+            </div>
+            <div class="calc-item" ng-if="curBusiness.discountcode==true">
+                <p class="color-font-gray float-left-dir">{{ MLanguages.APP_DISCOUNT }} </p>
+                <p class="color-main font-small float-right-dir"> -{{ c_unit }} {{curBusiness.discountprice}}</p>
+            </div>
+
+            <div class="calc-item" ng-if="curBusiness.discountoffer==true && ADDONS.discount_offer">
+                <p class="color-font-gray float-left-dir">{{ MLanguages.APP_DISCOUNT }} </p>
+                <p class="color-main font-small float-right-dir"> -{{ c_unit }} {{curBusiness.discountprice}}</p>
+            </div>
+            <div class="calc-item">
+                <p class="color-font-gray float-left-dir">{{ MLanguages.Tax_V2 }}</p>
+                <p class="color-main font-small float-right-dir">{{ c_unit }} {{ curBusiness.tax }}</p>
+            </div>
+            <div class="calc-item">
+                <p class="color-font-gray float-left-dir">{{ MLanguages.MOBILE_CHECKOUT_DELIVERY_FEE }}</p>
+                <p class="color-main font-small float-right-dir">{{ c_unit }} {{ deliveryFee | number:2}}</p>
+            </div>
+            <div class="calc-item">
+                <p class="color-font-gray float-left-dir">{{ MLanguages.MOBILE_FRONT_DRIVER_TIP }}</p>
+                <p class="color-main font-small float-right-dir"> {{ c_unit }} {{data.driveTips}}</p>
+            </div>
+            <div class="calc-item">
+                <p class="color-font-gray float-left-dir">{{ MLanguages.SERVICE_FEE_V2 }} ({{ curBusiness.servicefee }}%)</p>
+                <p class="color-main font-small float-right-dir"> {{ c_unit }} {{curBusiness.servicefeeTotal}}</p>
+            </div>
+            <div class="h-line-grey mg-none-b"></div>
+        </ion-item>
+        <ion-item class="pd-top-4 no-border pd-none-b total-item">
+            <p class="font-large color-font-dark float-left-dir">{{ MLanguages.MOBILE_CHECKOUT_TOTAL }}</p>
+            <p class="font-small color-main float-right-dir"> {{ c_unit }} {{orderTotal.toFixed(2)}}</p>
+        </ion-item>
+        <ion-item class="item-divider">
+            <span class="divider-padding no-padding-h">{{ MLanguages.DELIVERYA_V21 }}</span>
+        </ion-item>
+        <ion-item class="pd-top-4 no-border pd-none-b total-item">
+            <p class="multiline">
+                {{order_buyer.name}}<br>
+                {{order_buyer.email}}<br>
+                {{order_buyer.address}}<br>
+                {{order_buyer.tel}}<br>
+                {{finalCheckout.specialcomment}}
+            </p>
+        </ion-item>
+        <ion-item class="text-center share-cont" ng-show=ADDONS.share_order>
+            <button class="button button-calm ion-social-facebook share-btn fb" ng-click="onSocialShare(1)"></button>
+            <button class="button button-calm ion-social-twitter share-btn tw" ng-click="onSocialShare(2)"></button>
+            <button class="button button-calm ion-android-share-alt share-btn sh" ng-click="onSocialShare(3)"></button>
+        </ion-item>
+        </div>
+        <div ng-if="!ADDONS.checkout_enhacements" class="pd-top-10">
+        <ion-item class="font-center no-bg no-border">
+            <img src="img/logo.png">
+        </ion-item>
+        <ion-item class="no-border pd-left-2 pd-right-2 no-bg">
+            <div class="confirm-dlg">
+                <p class="font-large-x color-main">{{ MLanguages.MOBILE_FRONT_UPDATE_ON_YOUR_ORDER }} #{{placedOrderId}}</p>
+                <p class="font-mid">{{ MLanguages.MOBILE_FRONT_YOUR_ORDER }} #{{placedOrderId}} {{ MLanguages.MOBILE_FRONT_STATUS_PLACED }}<br> {{ MLanguages.MOBILE_FRONT_TURN_PUSH }} <br> {{ MLanguages.MOBILE_FRONT_STATUS_CHANGES }}</p>
+                <button class="button assertive" ng-click="offConfirm()">{{ MLanguages.MOBILE_FRONT_OK_GO_BACK_TO_HOMEPAGE }}</button>
+            </div>
+        </ion-item>
+        <ion-item class="text-center share-cont" ng-show=ADDONS.share_order>
+            <button class="button button-calm ion-social-facebook share-btn fb" ng-click="onSocialShare(1)"></button>
+            <button class="button button-calm ion-social-twitter share-btn tw" ng-click="onSocialShare(2)"></button>
+            <button class="button button-calm ion-android-share-alt share-btn sh" ng-click="onSocialShare(3)"></button>
+        </ion-item>
+        </div>
+    </ion-content>
+    <!-- Fin Nuevo -->
+    <!--<ion-content class="order-view-cont color-bg pd-top-10">
+        <div ng-if="!ADDONS.checkout_enhacements">
+        <ion-item class="font-center no-bg no-border">
+            <img src="img/logo.png">
+        </ion-item>
+        <ion-item class="no-border pd-left-2 pd-right-2 no-bg">
+            <div class="confirm-dlg">
+                <p class="font-large-x color-main">{{ MLanguages.MOBILE_FRONT_UPDATE_ON_YOUR_ORDER }} #{{placedOrderId}}</p>
+                <p class="font-mid">{{ MLanguages.MOBILE_FRONT_YOUR_ORDER }} #{{placedOrderId}} {{ MLanguages.MOBILE_FRONT_STATUS_PLACED }}<br> {{ MLanguages.MOBILE_FRONT_TURN_PUSH }} <br> {{ MLanguages.MOBILE_FRONT_STATUS_CHANGES }}</p>
+                <button class="button assertive" ng-click="offConfirm()">{{ MLanguages.MOBILE_FRONT_OK_GO_BACK_TO_HOMEPAGE }}</button>
+            </div>
+        </ion-item>
+        <ion-item class="text-center share-cont" ng-show=ADDONS.share_order>
+            <button class="button button-calm ion-social-facebook share-btn fb" ng-click="onSocialShare(1)"></button>
+            <button class="button button-calm ion-social-twitter share-btn tw" ng-click="onSocialShare(2)"></button>
+            <button class="button button-calm ion-android-share-alt share-btn sh" ng-click="onSocialShare(3)"></button>
+        </ion-item>
+        </div>
+    </ion-content>-->
+</ion-modal-view>

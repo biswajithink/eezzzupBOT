@@ -1,0 +1,193 @@
+
+<ion-view>
+    <ion-nav-bar class="bar-stable bar-shadow">
+        <ion-nav-buttons side="left">
+            <button class="button top-btn" ng-click="gotoHome()"><img src="img/icon-back.png"></button>
+        </ion-nav-buttons>
+        <ion-nav-title>
+            {{ MLanguages.MOBILE_FRONT_VISUALS_RESTAURANTS }} {{ MLanguages.MOBILE_FRONT_VISUALS_SEARCH }}
+        </ion-nav-title>
+        <ion-nav-buttons side="right">
+            <button class="button top-btn mg-top-btn-right" ng-click="showFilterBar()"><img src="img/icon-search.png"></button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-content class="color-bg">
+        <!-- Note each link has the 'menu-close' attribute so the menu auto closes when clicking on one of these links -->
+        <ion-item  class="location-cont-item color-font-gray font-mid" ng-class="{'arabic_rtl': arabic_rtl}"><span>{{nearCount}} {{ MLanguages.MOBILE_FRONT_VISUALS_RESTAURANTS }} {{ MLanguages.MOBILE_FRONT_NEAR }} {{nearAddress}}</span></ion-item>
+        <!--<ion-item class="search-item" ng-repeat="item in resturantlist | filter : item.distance track by $id(item)">-->
+
+        <div class="list-business" ng-class="{'arabic_rtl': arabic_rtl}">
+            <div class="business" ng-repeat="item in resturantlist | filter : item.info.name | orderBy:'-distance':true track by $index" ng-if="getOpenClose(item.now, item.openTime) == true"  ng-click="onRestaurantItem(item)">
+                <div class="header" style="background-image: url({{item.headerUrl}});">
+                    <div class="data">
+                        <table>
+                            <tr>
+                                <td>
+                                    <div class="time-bg float-right">
+                                        {{ getFormattedTime(item.openTime.opens) }}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="logo">
+                                        <img ng-cache ng-src="{{item.logo}}" err-src="{{dummyLogo}}" class="mg-bottom-none" ng-if="item.isImg == 1">
+                                        <img ng-src="{{dummyLogo}}" class="mg-bottom-none" ng-if="item.isImg == 0">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="time-bg float-left">
+                                        {{ getFormattedTime(item.openTime.closes) }}
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <h4 class="rating font-large-x color-font-black pd-left-5 business-title" ng-class="{cssArabic: $root.arabic_rtl, noncssArabic: !$root.arabic_rtl}">{{item.info.name}}</h4>
+                <table>
+                    <tr>
+                        <td>{{ MLanguages.DELIVERY_V2 }} {{ item.deliveryCost*orderType | number:2 }}</td>
+                        <td>
+                            <div star-rating rating-value="item.reviews" max="5" class="rating-style">({{item.reviews | number:2}}{{MLanguages.MOBILE_MENU_LIST_RATINGS}})</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>{{ MLanguages.MOBILE_BUSINESS_LIST_PROMOTION }}: {{item.promoDescr}}</td>
+                        <td>{{ MLanguages.MINIMUM_ORDER }}: {{ item.minimum  | number:2}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ MLanguages.DISTANCE }}: {{ getFormattedDistance(item.distance) }}</td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="list-business">
+            <div class="business close" ng-repeat="item in resturantlist | filter : item.info.name | orderBy:'-distance':true track by $index" ng-if="getOpenClose(item.now, item.openTime) == false" ng-click="onRestaurantItem(item)">
+                <div class="header" style="background-image: url({{item.headerUrl}});">
+                    <div class="data">
+                        <table>
+                            <tr>
+                                <td>
+                                    <div class="time-bg float-right">
+                                        {{ getFormattedTime(item.openTime.opens) }}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="logo">
+                                        <img ng-cache ng-src="{{item.logo}}" err-src="{{dummyLogo}}" class="mg-bottom-none" ng-if="item.isImg == 1">
+                                        <img ng-src="{{dummyLogo}}" class="mg-bottom-none" ng-if="item.isImg == 0">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="time-bg float-left">
+                                        {{ getFormattedTime(item.openTime.closes) }}
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <h4 class="rating font-large-x color-font-black pd-left-5 business-title" ng-class="{cssArabic: $root.arabic_rtl, noncssArabic: !$root.arabic_rtl}">{{item.info.name}}</h4>
+                <table>
+                    <tr>
+                        <td>{{ MLanguages.DELIVERY_V2 }} {{ item.deliveryCost*orderType | number:2 }}</td>
+                        <td>
+                            <div star-rating rating-value="item.reviews" max="5" class="rating-style">({{item.reviews | number:2}}{{MLanguages.MOBILE_MENU_LIST_RATINGS}})</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>{{ MLanguages.MOBILE_BUSINESS_LIST_PROMOTION }}: {{item.promoDescr}}</td>
+                        <td>{{ MLanguages.MINIMUM_ORDER }}: {{ item.minimum  | number:2}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ MLanguages.DISTANCE }}: {{ getFormattedDistance(item.distance) }}</td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Display Opened Restaurant -->
+        <ion-list focus-group="" focus-group-head="loop" focus-group-tail="loop">
+                <!--<button class="search-item itemForFoucs" ng-repeat="item in resturantlist | filter : item.info.name | orderBy:'-distance':true track by $index" ng-if="getOpenClose(item.now, item.openTime) == true"  ng-click="onRestaurantItem(item)" style="width:100%;">
+                    <div class="rest-item font-small">
+                        <div style="min-height: 20vw;">
+                            <div class="row logo-cont-focus">
+                                <div class="col col-40">
+                                    <div class="time-bg float-right">{{ getFormattedTime(item.openTime.opens) }}</div>
+                                </div>
+                                <div class="col col-20">
+                                    <div class="logo-cont-sub" style="min-height: 17vw;">
+                                        <img ng-cache ng-src="{{item.logo}}" err-src="{{dummyLogo}}" class="mg-bottom-none" ng-if="item.isImg == 1">
+                                        <img ng-src="{{dummyLogo}}" class="mg-bottom-none" ng-if="item.isImg == 0">
+                                    </div>
+                                </div>
+                                <div class="col col-40">
+                                    <div class="time-bg float-left">{{ getFormattedTime(item.openTime.closes) }}</div>
+                                </div>
+                            </div>
+                            <img ng-cache ng-src="{{item.headerUrl}}" err-src="{{dummyHeader}}" ng-if="item.isImgH == 1">
+                            <img ng-src="{{dummyHeader}}" ng-if="item.isImgH == 0">
+                            <div style="clear:both;"></div>
+                        </div>
+
+                        <h4 class="rating font-large-x color-font-black pd-left-5 business-title" ng-class="{cssArabic: $root.arabic_rtl, noncssArabic: !$root.arabic_rtl}">{{item.info.name}}</h4>
+                        <ul class="color-font-gray">
+                            <li>
+                                <span class="rating float-left">{{ MLanguages.DELIVERY_V2 }} {{ item.deliveryCost*orderType | number:2 }}</span>
+                                <div class="rating float-right"></div>
+                            </li>
+                            <li>
+                                <span class="rating float-left">{{ MLanguages.MOBILE_BUSINESS_LIST_PROMOTION }}: {{item.promoDescr}} </span>
+                                <span class="rating float-right">{{ MLanguages.MINIMUM_ORDER }}: {{ item.minimum  | number:2}}</span>
+                            </li>
+                            <li>
+                                <span class="rating float-right">{{ MLanguages.DISTANCE }}: {{ getFormattedDistance(item.distance) }} </span>
+                            </li>
+                        </ul>
+                    </div>
+                </button>
+                <button class="search-item close-mask" ng-repeat="item in resturantlist | filter : item.info.name | orderBy:'-distance':true track by $index" ng-if="getOpenClose(item.now, item.openTime) == false" style="width:100%;">
+                    <div class="rest-item font-small itemForFoucs" ng-click="onRestaurantItem(item)">
+                        <div style="min-height: 20vw;">
+                            <div class="row logo-cont-focus close-mask">
+                                <div class="col col-40">
+                                    <div class="time-bg float-right">{{ getFormattedTime(item.openTime.opens) }}</div>
+                                </div>
+                                <div class="col col-20">
+                                    <div class="logo-cont-sub" style="min-height: 17vw;">
+                                        <img ng-cache ng-src="{{item.logo}}" err-src="{{dummyLogo}}" class="mg-bottom-none" ng-if="item.isImg == 1">
+                                        <img ng-src="{{dummyLogo}}" class="mg-bottom-none" ng-if="item.isImg == 0">
+                                    </div>
+                                </div>
+                                <div class="col col-40">
+                                    <div class="time-bg float-left">{{ getFormattedTime(item.openTime.closes) }}</div>
+                                </div>
+                            </div>
+                            <img ng-cache ng-src="{{item.headerUrl}}" err-src="{{dummyHeader}}" ng-if="item.isImgH == 1">
+                            <img ng-src="{{dummyHeader}}" ng-if="item.isImgH == 0">
+                            <div style="clear:both;"></div>
+                        </div>
+
+                        <h4 class="rating font-large-x color-font-black pd-left-5 business-title">{{item.info.name}}</h4>
+                        <ul class="color-font-gray">
+                            <li>
+                                <span class="rating float-left">{{ MLanguages.DELIVERY_V2 }} {{ item.deliveryCost | number:2 }}</span>
+                                <div class="rating float-right"></div>
+                            </li>
+                            <li>
+                                <span class="rating float-left">{{ MLanguages.MOBILE_BUSINESS_LIST_PROMOTION }}: {{item.promoDescr}} </span>
+                                <span class="rating float-right">{{ MLanguages.MINIMUM_ORDER }}: {{ item.minimum | number:2 }}</span>
+                            </li>
+                            <li>
+                                <span class="rating float-right">{{ MLanguages.DISTANCE }}: {{ getFormattedDistance(item.distance) }} </span>
+                            </li>
+                        </ul>
+                    </div>
+                </button>-->
+        </ion-list>
+
+
+
+    </ion-content>
+</ion-view>

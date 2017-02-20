@@ -1,0 +1,34 @@
+<ion-view view-title="{{MLanguages.MOBILE_CHECKOUT_PAYMENT_METHOD}}">
+    <ion-nav-bar class="bar-stable">
+        <ion-nav-buttons side="left">
+            <button class="button top-btn" menu-toggle="left"><img src="img/icon-back.png"></button>
+        </ion-nav-buttons>
+      <ion-nav-buttons side="right">
+        <button class="button top-btn"></button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-content class="order-cont" >
+   <div class="item item-text-wrap" ng-show="!myCards">{{MLanguages.MOBILE_LINK_CARD}}</div>
+  <!-- <div class="item item-text-wrap" ng-show="myCards"> You have already added your credit or debit card info </div>-->
+        <ion-item class="order-kind" ng-show="myCards">
+            <div class="row">
+                <div class="col col-10">#</div>
+                <div class="col col-30">{{MLanguages.CONTROL_PANEL_CARDSAVE_CARDNO}}</div>
+                <div class="col col-30">{{MLanguages.MOBILE_CARD_TYPE}}</div>
+            </div>
+        </ion-item>
+        <ion-item ng-repeat="card in myCards | orderBy:sorterFunc:true track by card.id" ng-model="orderModel">
+            <div class="row">
+                <div class="col col-10">{{$index + 1}}</div>
+                <div class="col col-30 date-format" style="overflow: hidden">XXX-XXXX-XXXX-{{ card.customerDatalast4 }}</div>
+                <div class="col col-30 date-format" style="overflow: hidden">{{ card.customerDatabrand }}</div>
+                <div class="col col-10 view-btn-cont">
+                    <a class="button view-more" ng-click="deleteCard(card,$index)">{{MLanguages.delete_V2}}</a>
+                </div>
+            </div>
+        </ion-item>
+    </ion-content>
+     <ion-footer-bar class="color-main-bg footer-style" >
+        <div class="button find-btn font-large btn-bar-bottom color-font-white button-positive" ng-click="addMyCardinfo()">{{MLanguages.MOBILE_ADD_NEW_CARD}}</div>
+    </ion-footer-bar>
+</ion-view>

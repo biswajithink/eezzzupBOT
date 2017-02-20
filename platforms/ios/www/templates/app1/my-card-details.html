@@ -1,0 +1,73 @@
+<ion-view view-title="{{MLanguages.MOBILE_ADD_CARD}}">
+    <ion-nav-bar class="bar-stable">
+        <ion-nav-buttons side="left">
+            <button class="button top-btn" ng-click="goCard()"><img src="img/icon-back.png"></button>
+        </ion-nav-buttons>
+      <ion-nav-buttons side="right">
+        <button class="button top-btn"></button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-content class="order-cont">
+    
+    <div class="list">
+  <label class="stripelebelcardno">
+	<ul class="strip_list">
+    	<!--<li><img src="img/stripe-card-arrow.png"></li>-->
+        <li><input type="text" ng-model="myStripeRecord.creditno" ng-keypress="filterValue($event)" value="" placeholder="{{MLanguages.PAYMENT_BRAINTREE_ON_ENTER_CREDIT_CARD}}"></li>
+    </ul>
+  </label>
+  
+  <ul class="stripeul">
+  <li>
+   <ion-item >
+            <select class="select-item" ng-model="myStripeRecord.MM" style="color:#000" >
+              
+              <option ng-repeat="mm in selexpmonth" value="{{mm.value}}"  ng-selected="{{mm.name == 'MM'}}" >
+                {{mm.name}}
+              </option>
+              
+            </select>
+             </ion-item>           
+   </li>
+  <li>
+       <ion-item >
+            <select class="select-item" ng-model="myStripeRecord.YY" style="color:#000" ng-selected="YY">
+           
+              <option ng-repeat="yy in selexpyear" value="{{yy.value}}" ng-selected="{{yy.name == 'YY'}}" >
+               {{yy.name}}
+              </option>
+            </select>
+           
+    </ion-item>
+  </li>
+  <li>
+    <input type="text" placeholder="{{MLanguages.MOBILE_CVC_CARD}}" ng-model="myStripeRecord.CVC"  ng-keypress="filterValue($event)"  value="">
+  </li>
+  </ul>
+   <label class="stripelebel">
+    <input type="text" placeholder="{{MLanguages.MOBILE_ZIP_POSTAL_CODE}}" ng-model="myStripeRecord.zip" value="{{myStripeRecord.zip}}">
+  </label>
+  <button class="button button-block button-dark" ng-if="!myStripeRecord.creditno || !myStripeRecord.MM || !myStripeRecord.YY || !myStripeRecord.CVC || !myStripeRecord.zip">{{MLanguages.MOBILE_ADD_CARD}}</button>
+  <button class="button button-block color-font-white button-positive" ng-click="updateCardprofile()" ng-if="myStripeRecord.creditno && myStripeRecord.MM && myStripeRecord.YY && myStripeRecord.CVC && myStripeRecord.zip">{{MLanguages.MOBILE_ADD_CARD}}</button>
+</div>
+   
+      <!--  <ion-item class="order-kind">
+            <div class="row">
+                <div class="col col-10">#</div>
+                <div class="col col-30">{{ MLanguages.MOBILE_CHECKOUT_DATE }}</div>
+                <div class="col col-50">{{ MLanguages.MOBILE_FRONT_VISUALS_BUSINESS }}</div>
+            </div>
+        </ion-item>
+        <ion-item ng-repeat="order in myOrders | orderBy:sorterFunc:true track by order.id" ng-model="orderModel">
+            <div class="row">
+                <div class="col col-10">{{ order.id }}</div>
+                <div class="col col-30 date-format" style="overflow: hidden">{{ order.date }}</div>
+                <div class="col col-25">{{ order.data.business[0].name }}</div>
+                <div class="col col-25 view-btn-cont">
+                    <a class="button view-more" ng-click="orderViewMore(order)">{{ MLanguages.MOBILE_FRONT_BUTTON_VIEW_ORDER }}</a>
+                </div>
+            </div>
+        </ion-item>-->
+    </ion-content>
+    
+</ion-view>

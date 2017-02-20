@@ -1,0 +1,208 @@
+<ion-view>
+    <ion-nav-bar class="bar-stable bar-shadow">
+        <ion-nav-buttons side="left">
+            <button class="button top-btn" on-swipe-left="onSwipeLeft()" ng-click="backToRestaurant()"><img src="img/icon-back.png"></button>
+        </ion-nav-buttons>
+        <ion-nav-title>{{HeaderTitle}}</ion-nav-title>
+        <ion-nav-buttons side="right">
+            <button class="button top-btn mg-top-btn-right"></button>
+            <!--<img src="img/icon-timer.png"></button>-->
+        </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-content class="color-bg">
+        <div class="rest-detail-item">
+            <img ng-cache ng-src="{{HeaderUrl}}" err-src="{{dummyHeader}}" ng-if="item.isImgH == 1">
+            <img ng-src="{{dummyHeader}}" ng-if="item.isImgH == 0">
+            <div class="row logo-cont">
+                <div class="col col-40"> </div>
+                <div class="col col-20">
+                    <div class="logo-cont-sub">
+                        <img ng-cache ng-src="{{LogoUrl}}" err-src="{{dummyLogo}}" ng-if="item.isImg == 1">
+                        <img ng-src="{{dummyLogo}}" ng-if="item.isImg == 0">
+                    </div>
+                </div>
+                <div class="col col-40"> </div>
+            </div>
+        </div>
+        <div class="tab-item-cont">
+            <!--<ti-segmented-control on-select="">
+                <ti-segmented-control-button class="button-balanced" title="'Menu'" selected ng-click="onClickCategory(0)"></ti-segmented-control-button>
+                <ti-segmented-control-button class="button-balanced" title="'Info'" ng-click="onClickCategory(1)"></ti-segmented-control-button>
+                <ti-segmented-control-button class="button-balanced" title="'Reviews'" ng-click="onClickCategory(2)"></ti-segmented-control-button>
+                <ti-segmented-control-button class="button-balanced" title="'Offers'" ng-click="onClickCategory(3)"></ti-segmented-control-button>
+            </ti-segmented-control>-->
+            <!-- <div class="button-bar" focus-group="" focus-group-index="3">
+                <a class="button my-tab {{(type == menu.menu) &&  'active' || ''}}" ng-click="setType($event);onClickCategory(0)">{{ menu.menu }}</a>
+                <a class="button my-tab {{(type == menu.info) &&  'active' || ''}}" ng-click="setType($event);onClickCategory(1)">{{ menu.info }}</a>
+                <a class="button my-tab {{(type == menu.review) &&  'active' || ''}}" ng-click="setType($event);onClickCategory(2)">{{ menu.review }}</a>
+                <a class="button my-tab {{(type == menu.offer) &&  'active' || ''}}" ng-click="setType($event);onClickCategory(3)">{{ menu.offer }}</a>
+            </div> -->
+            <div class="button-bar" focus-group focus-group-index="1" fm-group="1" tabindex="0" fm-parent-group="14" ng-show=ADDONS.business_enhacements>
+                <button focus-index="1" fm-parent="1"  fm-id="1" class="button my-tab {{(type == menu.menu) &&  'active' || ''}}" ng-click="setType($event);onClickCategory(0)">{{ menu.menu }}</button>
+                <button focus-index="2" fm-parent="1"  fm-id="2" class="button my-tab {{(type == menu.info) &&  'active' || ''}}" ng-click="setType($event);onClickCategory(1)">{{ menu.info }}</button>
+                <button focus-index="3" fm-parent="1"  fm-id="3" class="button my-tab {{(type == menu.review) &&  'active' || ''}}" ng-click="setType($event);onClickCategory(2)">{{ menu.review }}</button>
+                <button focus-index="4" fm-parent="1"  fm-id="4" class="button my-tab {{(type == menu.offer) &&  'active' || ''}}" ng-click="setType($event);onClickCategory(3)" ng-if="offersList.offers.length > 0 && ADDONS.discount_offer">{{ menu.offer }}</button>
+            </div>
+        </div>
+        <!-- <div class="detail-btn-group" ng-if="restTapNum.id == 0" focus-group="" focus-group-index="2">
+            <div ng-repeat="item in resMenulist">
+                <button class="detail-item detail-item-focus" ng-click="goDetailMenu(item)">
+                    <span class="float-left mg-top-sm" ng-class="{cssArabicMenuItem: $root.arabic_rtl}">{{item.name}}</span> <div class="float-right icon-more-next"></div>
+                    <div class="bottom-line-grey"></div>
+                </button>
+            </div>
+        </div> -->
+        <div ng-if="restTapNum.id == 0" focus-group="" focus-group-index="2">
+            <ion-item class="detail-item" ng-repeat="item in resMenulist">
+                <button class="btn-bg-focus btn-bg-foucs-white" ng-click="goDetailMenu(item)">
+                <span class="float-left mg-top-sm" ng-class="{cssArabicMenuItem: $root.arabic_rtl}">{{item.name}}</span> <div class="float-right icon-more-next"></div></button>
+                <div class="bottom-line-grey"></div>
+            </ion-item>
+        </div>
+
+        <div ng-if="restTapNum.id == 1"  focus-group="" focus-group-index="3">
+            <ion-item class="text-center">
+                <h2>{{HeaderTitle}}</h2>
+                <p>{{ item.restData.info.address }} - {{ item.restData.info.city.name }}</p>
+            </ion-item>
+            <!-- Catalog part -->
+            <ion-item class="item-divider">
+                <button class="btn-bg-focus btn-bg-foucs-gray" ng-click="collapsItem(0)"></button>
+                <span ng-class="{cssArabicMenuItem: $root.arabic_rtl}" ng-click="collapsItem(0)">{{ MLanguages.FRONTMOBILE_BUSINESS }} {{ MLanguages.MENU_LIST_OPENING_TIME }}</span>
+                <div class="float-right icon-more-down" ng-click="collapsItem(0)"></div>
+
+            </ion-item>
+            <ion-item class="detail-item" ng-repeat="time in openTimes.sdays track by $index" ng-if="subCollapsNum == 0">
+                <!-- <span class="float-left mg-top-sm">Standard {{ MLanguages.MENU_V21 }} {{ MLanguages.Every_Day_V2 }} </span> -->
+                <span class="float-left mg-top-sm">{{getWeekdayName($index)}}</span>
+                <span class="float-right">{{ getFormattedTime(time.opens) }} - {{ getFormattedTime(time.closes) }}</span>
+                <!--<span class="float-right">{{ time.opens }} - {{ time.closes }}</span>-->
+                <div class="bottom-line-grey"></div>
+            </ion-item>
+            <!-- Delivery Location -->
+            <ion-item class="item-divider">
+                <button class="btn-bg-focus btn-bg-foucs-gray" ng-click="collapsItem(1)"></button>
+                <span ng-class="{cssArabicMenuItem: $root.arabic_rtl}" ng-click="collapsItem(1)">{{ MLanguages.FRONTMOBILE_BUSINESS }} {{ MLanguages.MOBILE_BUSINESS_LIST_LOCATION }}</span>
+                <div class="float-right icon-more-down" ng-click="collapsItem(1)"></div>
+            </ion-item>
+            <ion-item class="detail-item" ng-if="subCollapsNum == 1">
+                <div id="business-info-map" data-tap-disabled="true" style="height: 18em"></div>
+            </ion-item>
+            <!-- About Restaurant -->
+            <ion-item class="item-divider">
+                <button class="btn-bg-focus btn-bg-foucs-gray" ng-click="collapsItem(2)"></button>
+                <span ng-class="{cssArabicMenuItem: $root.arabic_rtl}" ng-click="collapsItem(2)">{{ MLanguages.MOBILE_MENU_LIST_ABOUT_RESTAURANT }}</span>
+                <div class="float-right icon-more-down" ng-click="collapsItem(2)"></div>
+            </ion-item>
+            <ion-item class="detail-item rest-info-des" ng-if="subCollapsNum == 2" style="padding-bottom: 0.5em">
+                <span class="float-left mg-top-sm" style="white-space: normal" ng-class="{cssArabicMenuItem: $root.arabic_rtl}">
+                    <p ng-bind-html="item.restData.aboutRestaurant | safeHtml"></p>
+                </span>
+                <!--<div class="bottom-line-grey"></div>-->
+            </ion-item>
+            <!-- Photo Gallery -->
+            <ion-item class="item-divider">
+                <button class="btn-bg-focus btn-bg-foucs-gray" ng-click="collapsItem(3)"></button>
+                <span ng-class="{cssArabicMenuItem: $root.arabic_rtl}" ng-click="collapsItem(3)">{{ MLanguages.MOBILE_MENU_LIST_PHOTO_GALLERY }}</span>
+                <div class="float-right icon-more-down" ng-click="collapsItem(3)"></div>
+            </ion-item>
+            <ion-item class="detail-item" ng-if="subCollapsNum == 3">
+                <ion-scroll direction="x" has-bouncing="true" class="h-images">
+                    <div ng-repeat="photo in item.restData.photos track by $index" style="padding-right: 5px">
+                        <img ng-cache ng-src="{{ photo.link }}" class="h-images"/>
+                        <!--<div>{{ photo.name }}</div>-->
+                    </div>
+                </ion-scroll>
+            </ion-item>
+            <!-- Video Gallery -->
+            <ion-item class="item-divider">
+                <button class="btn-bg-focus btn-bg-foucs-gray" ng-click="collapsItem(4)"></button>
+                <span ng-class="{cssArabicMenuItem: $root.arabic_rtl}" ng-click="collapsItem(4)">{{ MLanguages.MOBILE_MENU_LIST_VIDEO_GALLERY }}</span>
+                <div class="float-right icon-more-down" ng-click="collapsItem(4)"></div>
+            </ion-item>
+            <ion-item class="detail-item text-center" ng-if="subCollapsNum == 4">
+                <div ng-repeat="video in item.restData.videos track by $index">
+                    <div ng-bind-html="video.link | safeHtml" class="video-gallery"></div>
+                    <!--<div>{{ video.name }}</div>-->
+                </div>
+            </ion-item>
+        </div>
+        <div ng-if="restTapNum.id == 2">
+            <ion-item class="text-center">
+                <h2>{{ MLanguages.REVIEWSOF_V21_OF }} {{HeaderTitle}}</h2>
+                <p>{{ item.restData.info.address }} - {{ item.restData.info.city.name }}</p>
+                <!--<div class="bottom-line-grey"></div>-->
+            </ion-item>
+            <!-- Review List -->
+            <ion-item ng-if="bState.review == false" ng-class="{cssArabic: $root.arabic_rtl}">{{ MLanguages.MOBILE_CHECKOUT_NO }} {{ MLanguages.REVIEWS_V21 }}</ion-item>
+            <ion-item class="detail-item" ng-repeat="review in reviewList.reviews track by $index">
+                <span class="float-left mg-top-sm">{{ review.userName }}</span>
+                <span class="float-right">{{ review.date }}</span>
+                <div class="row row-no-padding">
+                    <!-- quality -->
+                    <div class="col col-30">{{ MLanguages.TEMPLATE_QUALITY_OF_FOOD }}</div>
+                    <div class="col col-30"><div star-rating rating-value="review.quality" max="5" ></div></div>
+                    <div class="col col-30">{{ review.quality }} {{ MLanguages.MOBILE_FRONT_OUT_OF_5 }}</div>
+                </div>
+                <div class="row row-no-padding">
+                    <!-- dealer -->
+                    <div class="col col-30">{{ MLanguages.TEMPLATE_PUNCTUALITY }}</div>
+                    <div class="col col-30"><div star-rating rating-value="review.dealer" max="5" ></div></div>
+                    <div class="col col-30">{{ review.dealer }} {{ MLanguages.MOBILE_FRONT_OUT_OF_5 }}</div>
+                </div>
+                <div class="row row-no-padding">
+                    <!-- delivery -->
+                    <div class="col col-30">{{ MLanguages.TEMPLATE_SERVICE }}</div>
+                    <div class="col col-30"><div star-rating rating-value="review.delivery" max="5" ></div></div>
+                    <div class="col col-30">{{ review.delivery }} {{ MLanguages.MOBILE_FRONT_OUT_OF_5 }}</div>
+                </div>
+                <div class="row row-no-padding">
+                    <!-- package -->
+                    <div class="col col-30">{{ MLanguages.TEMPLATE_FOOD_PACKAGING }}</div>
+                    <div class="col col-30"><div star-rating rating-value="review.package" max="5" ></div></div>
+                    <div class="col col-30">{{ review.package }} {{ MLanguages.MOBILE_FRONT_OUT_OF_5 }}</div>
+                </div>
+                <div class="bottom-line-grey" style="margin-top: 0.1em"></div>
+            </ion-item>
+        </div>
+        <div ng-if="restTapNum.id == 3 && offersList.offers.length > 0">
+            <ion-item class="text-center">
+                <h2>{{ MLanguages.OFFERSSOF_V21 }} {{HeaderTitle}}</h2>
+                <p>{{ item.restData.info.address }} - {{ item.restData.info.city.name }}</p>
+            </ion-item>
+            <!-- Offers List -->
+            <ion-item ng-if="offersList.offers.length == 0">{{ MLanguages.MOBILE_CHECKOUT_NO }} {{ MLanguages.OFFERS_V21 }}</ion-item>
+            <ion-item class="detail-item">
+                <!-- Titles -->
+                <div class="row color-bg" style="border:1px solid #c4c4c4">
+                    <div class="col col-25">{{ MLanguages.MOBILE_MENU_LIST_OFFER_NAME }}</div>
+                    <div class="col col-25">{{ MLanguages.MOBILE_MENU_LIST_OFFER_PRICE }}</div>
+                    <div class="col col-25">{{ MLanguages.MOBILE_MENU_LIST_START_DATE }}</div>
+                    <div class="col col-25">{{ MLanguages.MOBILE_MENU_LIST_END_DATE }}</div>
+                </div>
+                <!-- Contents -->
+                <div class="row" ng-repeat="offer in offersList.offers track by $index"  style="border:1px solid #c4c4c4; margin-top: 0px; border-top: none;">
+                    <div class="col col-25" style="white-space: normal">{{ offer.name }}</div>
+                    <div class="col col-25">
+                        <span ng-if="offer.type == '2'">{{c_unit}}</span>
+                        {{ offer.rate }}
+                        <span ng-if="offer.type == '1'">%</span>
+                        <br>
+                        {{ MLanguages.MOBILE_CHECKOUT_MIN }}: {{c_unit}} {{ offer.minprice }}
+                    </div>
+                    <div class="col col-25">{{ offer.startDate }}</div>
+                    <div class="col col-25">{{ offer.endDate }}</div>
+                </div>
+            </ion-item>
+        </div>
+
+    </ion-content>
+    <ion-footer-bar class="footer-style">
+        <div class="button find-btn font-large btn-bar-bottom color-font-white button-royal" ng-if="allDishCount == 0">
+            {{ MLanguages.CARTEMPTY_V21 }}
+        </div>
+        <div class="button find-btn font-large btn-bar-bottom pd-right-3 color-font-white button-positive" ng-click="onViewOrder()" ng-if="allDishCount > 0">
+            <div class="float-left btn-badge-cont">{{allDishCount}}</div>{{ MLanguages.MOBILE_FRONT_BUTTON_VIEW_ORDER }}
+        </div>
+    </ion-footer-bar>
+</ion-view>

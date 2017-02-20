@@ -1,0 +1,97 @@
+<!--<ion-nav-bar class="top-bar">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon w-4e" menu-toggle="left">
+        </button>
+    </ion-nav-buttons>
+</ion-nav-bar>-->
+
+<ion-header-bar class="top-bar">
+    <button class="button button-icon button-clear ion-navicon-round w-4e mg-top-btn" menu-toggle="left"></button>
+    <select class="select-item lang_select pull-right" ng-model="myOrder.lang.id"
+            ng-options="lang.id as lang.langText for lang in LangList | filter:lang.enabled = true"
+            default-option="{{ MLanguages.MOBILE_FRONT_SELECT_YOUR_LANGUAGE }}" ng-change="selectLanguage(myOrder.lang.id)">
+    </select>
+    <div class="drop-btn-lang"></div>
+</ion-header-bar>
+<ion-view class="form-content" name="homeContainer">
+<ion-content>
+    <div class="list search-form">
+        <ion-item class="logo_div">
+            <img src="img/hungry.png">
+        </ion-item>
+        <form ng-submit="findRest()">
+        <!--<ion-item ng-class="{'arabic_rtl': arabic_rtl}" ng-show=ADDONS.multilanguage>
+            <select class="select-item" ng-model="myOrder.lang.id"
+                    ng-options="lang.id as lang.langText for lang in LangList | filter:lang.enabled = true"
+                    default-option="{{ MLanguages.MOBILE_FRONT_SELECT_YOUR_LANGUAGE }}" ng-change="selectLanguage(myOrder.lang.id)">
+            </select>
+            <div class="drop-btn-lang"></div>
+        </ion-item>-->
+        <ion-item style="display: flex; padding-top: 0;" ng-show=ADDONS.pickup>
+            <ul class="select-item order_type order_type_ul" ng-model="myOrder.orderType">
+                <li ng-repeat="item in orderTypelist track by $index" value="{{item.value}}" ng-selected="item.selected" ng-click="selectOrderType(item)"  ng-class="{active: isActive(item)}">                    
+                    <!--<img ng-src="{{item.img}}">-->
+                     {{item.name}}
+                </li>
+            </ul>
+            <!--<select class="select-item order_type" ng-model="myOrder.orderType">
+              <option ng-repeat="item in orderTypelist" value="{{item.value}}" ng-selected="item.selected">
+                {{item.name}}
+              </option>
+            </select>
+            <div class="drop-btn"></div>-->
+        </ion-item>
+        <ion-item class="location-cont view-map" ng-show="SEARCH_BY_ADDRESS">
+            <div class="gp-container add_box map-input" ng-class="{'arabic_rtl': arabic_rtl}">
+                <input placeholder="{{ MLanguages.MOBILE_FRONT_VISUALS_ADDRESS_OR_ZIPCODE }}" ng-class="{cssArabic: $root.arabic_rtl, noncssArabic: !$root.arabic_rtl}" 
+                ng-model="myOrder.curAddress" class="font-mid input-home" ng-change="googleplace_changed()" id="rest-full-address" googleplace ng-click="onAutoCompleteAddress()" ng-focus="openMap()" />
+                <!--<input placeholder="Address or Zip Code" ng-model="myOrder.curAddress" class="font-mid" g-places-autocomplete />-->
+                <i class="icon ion-close-circled icon-clear" ng-if="myOrder.curAddress && myOrder.curAddress != ''" ng-click="cleanAddress($event)"></i>
+            </div>
+            <!--<p>{{myOrder.orderType}}</p>-->
+        </ion-item>
+        <ion-item class="location-cont" ng-show="!SEARCH_BY_ADDRESS">
+            <div class="gp-container-home-screen" style="width: 100%;">
+                <div class="city-drop">
+                    <select class="select-item" ng-model="myOrder.curCity" ng-change="selectCity(myOrder.curCity)">
+                      <option ng-repeat="items in Citylist" value="{{items.value}}" default-option="{{ MLanguages.FRONT_SELECT_CITY }}">
+                        {{items.name}}
+                      </option>
+                    </select>
+                    <div class="drop-btn-2"></div>
+                </div>
+                <div class="neigh-drop">
+                    <select class="select-item" ng-model="myOrder.curNeighbour">
+                      <option ng-repeat="item in Neighlist" value="{{item.value}}" ng-selected="item.selected">
+                        {{item.name}}
+                      </option>
+                    </select>
+                    <div class="drop-btn-2"></div>
+                </div>
+            </div>            
+        </ion-item>
+        </form>
+       <ion-item class="btn-cur-location location_link">
+            <a class="my-location" ng-click="getCurLocation()">
+                <span class="font-large-x" ng-if="MLanguages.MOBILE_FRONT_VALUES_USE_MY_CURRENT_LOCATION != ''">{{ MLanguages.MOBILE_FRONT_VALUES_USE_MY_CURRENT_LOCATION }}</span>
+                <span class="font-large-x" ng-if="MLanguages.MOBILE_FRONT_VALUES_USE_MY_CURRENT_LOCATION == ''">Use my current location</span>
+            </a>
+        </ion-item>
+        <ion-item>
+            <button class="button find-btn button-positive home_searchbtn" on-swipe-right="onSwipeRight()" ng-click="findRest(true)">
+                {{ MLanguages.NEW_MOBILE_HOME_START_FIND_RESTAURANT }}
+            </button>
+        </ion-item>      
+        <!--<ion-item>
+            <div class="button-bar">
+                <a class="button {{(type == menu.info) &&  'active' || ''}}" ng-click="setType($event)">{{ menu.info }}</a>
+                <a class="button {{(type == menu.review) &&  'active' || ''}}" ng-click="setType($event)">{{ menu.review }}</a>
+                <a class="button {{(type == menu.offer) &&  'active' || ''}}" ng-click="setType($event)">{{ menu.offer }}</a>
+            </div>
+        </ion-item>-->
+        <!--<ion-item>
+            <button class="button button-calm button-full" ng-click="onTestButton()">TEST</button>
+        </ion-item>-->
+    </div>
+</ion-content>
+</ion-view>

@@ -1,0 +1,13 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-stable bar-shadow fix-buttons">
+        <!--<button class="button-icon icon-btn-close" ng-click="offConfirm()"></button>-->
+        <button class="button top-btn" ng-click="hideModal()"><img src="img/icon-close.png"></button>
+        <ion-title>{{ MLanguages.TRACK_REAL_TIME_POSITION }}</ion-title>
+    </ion-header-bar>
+    <ion-content class="order-view-cont color-bg" scroll="false">
+        <div id="map"></div>
+    </ion-content>
+    <ion-footer-bar class="color-main-bg footer-style">
+        <div class="button find-btn font-large btn-bar-bottom color-font-white button-positive" ng-click="hideModal()" >{{ MLanguages.MOBILE_ACCEPT }}</div>
+    </ion-footer-bar>
+</ion-modal-view>

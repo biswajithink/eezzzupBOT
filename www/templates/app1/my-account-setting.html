@@ -1,0 +1,29 @@
+<ion-view view-title="{{ MLanguages.MOBILE_FRONT_SETTINGS }}">
+    <ion-nav-bar class="bar-stable bar-shadow">
+        <ion-nav-buttons side="left">
+            <button class="button top-btn" menu-toggle="left"><img src="img/icon-back.png"></button>
+            </button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+
+    <ion-content>
+        <div class="list" ng-class="{'arabic_rtl': arabic_rtl}">
+            <div class="item item-divider divider-padding">
+                {{ MLanguages.MOBILE_FRONT_NOTIFICATIONS }}
+            </div>
+            <ion-toggle ng-model="pushState.checked" ng-change="pushChanged()" ng-show="getLoginState() == true">
+                {{ pushState.curState }} {{ MLanguages.MOBILE_FRONT_PUSH_NOTIFICATION }}
+            </ion-toggle>
+			<div class="item" ng-show="getLoginState() == false">
+				<span class="positive float-right">*{{ MLanguages.FRONT_FORM_REQUIRED }} {{ MLanguages.LOGIN }}</span>
+				<span class="float-left font-large">{{ MLanguages.MOBILE_FRONT_PUSH_NOTIFICATION }}</span>
+			</div>
+            <!--<div class="item item-divider divider-padding">
+                Others
+            </div>
+            <div class="item">
+                <input class="sel-location" placeholder="Change your location">
+            </div>-->
+        </div>
+    </ion-content>
+</ion-view>

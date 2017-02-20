@@ -1,0 +1,29 @@
+<ion-view view-title="{{ MLanguages.LOGIN_LINK_MY_ORDERS }}">
+    <ion-nav-bar class="bar-stable bar-shadow">
+        <ion-nav-buttons side="left">
+            <button class="button top-btn" menu-toggle="left"><img src="img/icon-back.png"></button>
+        </ion-nav-buttons>
+      <ion-nav-buttons side="right">
+        <button class="button top-btn"></button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-content class="order-cont" ng-class="{'arabic_rtl': arabic_rtl}">
+        <ion-item class="order-kind">
+            <div class="row">
+                <div class="col col-10">#</div>
+                <div class="col col-30">{{ MLanguages.MOBILE_CHECKOUT_DATE }}</div>
+                <div class="col col-50">{{ MLanguages.MOBILE_FRONT_VISUALS_BUSINESS }}</div>
+            </div>
+        </ion-item>
+        <ion-item ng-repeat="order in myOrders | orderBy:sorterFunc:true track by order.id" ng-model="orderModel">
+            <div class="row">
+                <div class="col col-10">{{ order.id }}</div>
+                <div class="col col-30 date-format" style="overflow: hidden">{{ order.date }}</div>
+                <div class="col col-25 business-name-break">{{ order.data.business[0].name }}</div>
+                <div class="col col-25 view-btn-cont">
+                    <a class="button view-more" ng-click="orderViewMore(order)">{{ MLanguages.MOBILE_FRONT_BUTTON_VIEW_ORDER }}</a>
+                </div>
+            </div>
+        </ion-item>
+    </ion-content>
+</ion-view>

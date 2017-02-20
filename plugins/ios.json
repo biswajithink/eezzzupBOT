@@ -1,0 +1,64 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "ionic-plugin-deploy": {
+            "PACKAGE_NAME": "com.biteontime.orderingapp"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.biteontime.orderingapp"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.biteontime.orderingapp"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "com.biteontime.orderingapp"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.biteontime.orderingapp"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.biteontime.orderingapp"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.biteontime.orderingapp"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.biteontime.orderingapp"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.biteontime.orderingapp"
+        },
+        "cordova-plugin-x-socialsharing": {
+            "PACKAGE_NAME": "com.biteontime.orderingapp"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.biteontime.orderingapp"
+        },
+        "onesignal-cordova-plugin": {
+            "PACKAGE_NAME": "com.biteontime.orderingapp"
+        },
+        "cordova.plugins.diagnostic": {
+            "PACKAGE_NAME": "com.biteontime.orderingapp"
+        },
+        "cordova-plugin-sqlite-2": {
+            "PACKAGE_NAME": "com.biteontime.orderingapp"
+        },
+        "cordova-plugin-request-location-accuracy": {
+            "PACKAGE_NAME": "com.biteontime.orderingapp"
+        },
+        "cordova-custom-config": {
+            "PACKAGE_NAME": "com.biteontime.orderingapp"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.biteontime.orderingapp"
+        }
+    }
+}
