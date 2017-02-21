@@ -325,6 +325,15 @@ angular.module('orderingApp', ['ionic','orderingApp.controllers','orderingApp.se
                     }
                 }
             })
+            .state('sideMenu.support-&-info',{
+                url: '/support-&-info',
+                views: {
+                    'mainContainer' :{
+                        templateUrl: 'templates/'+ADDONS.template+'/support-&-info.html',
+                        controller: 'support&infoCtrl'
+                    }
+                }
+            })
             .state('sideMenu.address-book',{
                 url: '/address-book',
                 views: {

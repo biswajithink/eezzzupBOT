@@ -7,21 +7,22 @@
         <button class="button top-btn"></button>
       </ion-nav-buttons>
     </ion-nav-bar>
-    <ion-content class="order-cont" ng-class="{'arabic_rtl': arabic_rtl}">
-        <ion-item class="order-kind">
+    <ion-content class="order-cont order_content" ng-class="{'arabic_rtl': arabic_rtl}">
+        <ion-item class="order-kind order_content_header">
             <div class="row">
                 <div class="col col-10">#</div>
                 <div class="col col-30">{{ MLanguages.MOBILE_CHECKOUT_DATE }}</div>
-                <div class="col col-50">{{ MLanguages.MOBILE_FRONT_VISUALS_BUSINESS }}</div>
+                <div class="col col-40">{{ MLanguages.MOBILE_FRONT_VISUALS_BUSINESS }}</div>
+                <div class="col col-20"></div> 
             </div>
         </ion-item>
-        <ion-item ng-repeat="order in myOrders | orderBy:sorterFunc:true track by order.id" ng-model="orderModel">
+        <ion-item class="order_content_body" ng-repeat="order in myOrders | orderBy:sorterFunc:true track by order.id" ng-model="orderModel">
             <div class="row">
                 <div class="col col-10">{{ order.id }}</div>
-                <div class="col col-30 date-format" style="overflow: hidden">{{ order.date }}</div>
-                <div class="col col-25 business-name-break">{{ order.data.business[0].name }}</div>
-                <div class="col col-25 view-btn-cont">
-                    <a class="button view-more" ng-click="orderViewMore(order)">{{ MLanguages.MOBILE_FRONT_BUTTON_VIEW_ORDER }}</a>
+                <div class="col col-30 date-format" style="overflow: hidden">{{ order.date.split(" ")[0] | date:'dd-MM-yyyy'}} <span>{{ order.date.split(" ")[1].split(":")[0] }}:{{ order.date.split(" ")[1].split(":")[1] }}</div>
+                <div class="col col-40 business-name-break">{{ order.data.business[0].name }}</div>
+                <div class="col col-20 view-btn-cont">
+                    <a class="button view-more" ng-click="orderViewMore(order)">VIEW</a>
                 </div>
             </div>
         </ion-item>

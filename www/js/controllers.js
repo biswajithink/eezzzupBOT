@@ -3173,6 +3173,62 @@ console.log($scope.selectOrderType);
 			localStorageApp.setItem(STORE_VAL.PUSH, $scope.pushState.checked);
 		};
 	})
+	
+.controller('support&infoCtrl', function($scope, $state, $ionicHistory){
+
+	       $scope.faq = function(){
+
+            window.open(' http://www.biteontime.com/faq.html', '_system', 'location=no');
+           };
+    
+    $scope.privacy = function(){
+
+            window.open('http://www.biteontime.com/privacy.html', '_system', 'location=no');
+           };
+    $scope.terms = function(){
+
+            window.open('http://www.biteontime.com/terms_conditions.html', '_system', 'location=no');
+           };
+    $scope.registerbusiness = function(){
+
+            window.open('http://www.biteontime.com', '_system', 'location=no');
+           };
+    $scope.about= function(){
+
+            window.open('http://www.biteontime.com/about_us.html', '_system', 'location=no');
+           };
+    $scope.contactus = function(){
+
+            window.open(' http://www.biteontime.com/contact_us.html', '_system', 'location=no');
+           };
+    
+    
+    
+	   $scope.onClickBack2 = function () {
+
+                $ionicHistory.nextViewOptions({
+                    disableBack : false
+                });
+                $state.go('sideMenu.homeScreen');
+        };
+
+    $scope.chatNow = function(){
+
+            window.open(' http://lc.chat/now/7177051/', '_system', 'location=no');
+           };
+    
+        /*$scope.chatNow = function (){
+
+            window.__lc = window.__lc || {};
+            window.__lc.license = 7177051;
+            (function() {
+              var lc = document.createElement('script'); lc.type = 'text/javascript'; lc.async = true;
+              lc.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn.livechatinc.com/tracking.js';
+              var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(lc, s);
+            })();
+        };*/
+    
+    })
 
 	.controller('orderingCtrl', function($scope, $state, $ionicHistory){
 

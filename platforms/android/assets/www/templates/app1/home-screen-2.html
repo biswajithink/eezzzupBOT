@@ -30,7 +30,7 @@
         <ion-item style="display: flex; padding-top: 0;" ng-show=ADDONS.pickup>
             <ul class="select-item order_type order_type_ul" ng-model="myOrder.orderType">
                 <li ng-repeat="item in orderTypelist track by $index" value="{{item.value}}" ng-selected="item.selected" ng-click="selectOrderType(item)"  ng-class="{active: isActive(item)}">                    
-                    <!--<img ng-src="{{item.img}}">-->
+                    <img style="width:10px;" ng-src="{{item.img}}">
                      {{item.name}}
                 </li>
             </ul>

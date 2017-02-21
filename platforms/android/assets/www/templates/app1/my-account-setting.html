@@ -2,13 +2,12 @@
     <ion-nav-bar class="bar-stable bar-shadow">
         <ion-nav-buttons side="left">
             <button class="button top-btn" menu-toggle="left"><img src="img/icon-back.png"></button>
-            </button>
         </ion-nav-buttons>
     </ion-nav-bar>
 
     <ion-content>
         <div class="list" ng-class="{'arabic_rtl': arabic_rtl}">
-            <div class="item item-divider divider-padding">
+            <div class="item item-divider divider-padding" style="white-space: normal;">
                 {{ MLanguages.MOBILE_FRONT_NOTIFICATIONS }}
             </div>
             <ion-toggle ng-model="pushState.checked" ng-change="pushChanged()" ng-show="getLoginState() == true">

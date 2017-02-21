@@ -1,5 +1,10 @@
 /* Empty. Add your own CSS if you like */
 
+
+.spinner.spinner-assertive{
+	stroke:#2a7fff !important;
+	fill:#2a7fff !important;
+}
 .stripeul{
 	float:left;
 	width:100%;
@@ -497,8 +502,9 @@ ion-modal-view ion-content {
 }
 
 .sidemenu_ul a{
-    border: none;
-	/*border-color:#f23212;*/
+    /*border: none;
+	border-color:#f23212;*/
+    border-color: #ddd;
 }
 .sidemenu_ul a:first-child{
 	border-top-color:transparent;
@@ -1407,6 +1413,26 @@ resize: none;
     font-size: 16px;
     line-height: 30px;
     margin-top: 2%;
+}
+.badge_quantity{
+    background: #1d89e4;
+    min-height: auto;
+    min-width: auto;
+    display: block;
+    margin: 0 auto;
+    padding: 0px;
+    width: 35px;
+    height: 35px;
+    font-size: 16px;
+    line-height: 35px;
+    border-radius: 0.3em;
+    color: #fff;
+    text-align: center;
+}
+.dish_total{
+    text-align: right;
+    color: #000 !important;
+    font-size: 20px !important;
 }
 .order_item_cart  .order_item_cart_amount{
     text-align: right;

@@ -2,52 +2,51 @@
     <ion-nav-bar class="bar-stable">
         <ion-nav-buttons side="left">
             <button class="button top-btn" ng-click="goOrder()"><img src="img/icon-back.png"></button>
-        </ion-nav-buttons>
-        <ion-nav-title class="with-subtitle">
-            {{ MLanguages.FRONT_MAIN_EMAIL_ORDER_NO }} : {{ myOrderId }}
-        </ion-nav-title>
+        </ion-nav-buttons>        
     </ion-nav-bar>
-    <ion-content class="order-detail-cont color-bg">
-        <ion-item class="order-bg font-mid" ng-class="{'arabic_rtl': arabic_rtl}">
-        <span class="float-left">{{ MLanguages.FRONT_MAIN_EMAIL_ORDER_NO }} : {{ myOrderId }}</span>
-        <span class="float-right">{{ MLanguages.ORDERS_BOX_STATUS_HEADER }} : {{ getOrderState(myCurOrder.status) }}</span>
-        </ion-item>
-        <ion-item>
-            <div class="row font-small" ng-class="{'arabic_rtl': arabic_rtl}">
-                <div class="col col-50">{{ MLanguages.MOBILE_FRONT_FULL_NAME }}</div>
-                <div class="col col-50">{{ myOrderDetail.buyer.name }}</div>
-            </div>
-        </ion-item>
-       <!--   <ion-item>
-            <div class="row font-small">
-                <div class="col col-50">{{ MLanguages.FRONT_VISUALS_LAST_NAME }}</div>
-                <div class="col col-50">{{ myOrderDetail.buyer.lastname }}</div>
-            </div>
-        </ion-item>-->
-        <ion-item>
-            <div class="row font-small" ng-class="{'arabic_rtl': arabic_rtl}">
-                <div class="col col-50">{{ MLanguages.FRONT_VISUALS_EMAIL }}</div>
-                <div class="col col-50">{{ myOrderDetail.buyer.email }}</div>
-            </div>
-        </ion-item>
-        <ion-item class="multiline">
-            <div class="row font-small" ng-class="{'arabic_rtl': arabic_rtl}">
-                <div class="col col-50">{{ MLanguages.MOBILE_FRONT_FULL_ADDRESS }}</div>
-                <div class="col col-50">{{ myOrderDetail.buyer.address }}</div>
-            </div>
-        </ion-item>
-        <ion-item class="multiline">
-            <div class="row font-small" ng-class="{'arabic_rtl': arabic_rtl}">
-                <div class="col col-50">{{ MLanguages.MOBILE_FRONT_NOTES }}</div>
-                <div class="col col-50">{{ myOrderDetail.buyer.api }}</div>
-            </div>
-        </ion-item>
-        <ion-item>
-            <div class="row font-small" ng-class="{'arabic_rtl': arabic_rtl}">
-                <div class="col col-50">{{ MLanguages.MOBILE_FRONT_PHONE_NUMBER }}</div>
-                <div class="col col-50">{{ myOrderDetail.buyer.tel }}</div>
-            </div>
-        </ion-item>
+    <ion-content class="order-detail-cont color-bg order_detail_content">
+        <div class="order_detail_address">
+            <ion-item class="order-bg font-mid" ng-class="{'arabic_rtl': arabic_rtl}">
+                {{ MLanguages.FRONT_MAIN_EMAIL_ORDER_NO }} : {{ myOrderId }}
+                <span>{{ MLanguages.ORDERS_BOX_STATUS_HEADER }} : {{ getOrderState(myCurOrder.status) }}</span>
+            </ion-item>
+            <ion-item>
+                <div class="row font-small" ng-class="{'arabic_rtl': arabic_rtl}">
+                    <div class="col col-50 order_address_text">{{ MLanguages.MOBILE_FRONT_FULL_NAME }} :</div>
+                    <div class="col col-50">{{ myOrderDetail.buyer.name }}</div>
+                </div>
+            </ion-item>      
+        <!--   <ion-item>
+                <div class="row font-small">
+                    <div class="col col-50">{{ MLanguages.FRONT_VISUALS_LAST_NAME }}</div>
+                    <div class="col col-50">{{ myOrderDetail.buyer.lastname }}</div>
+                </div>
+            </ion-item>-->
+            <ion-item>
+                <div class="row font-small" ng-class="{'arabic_rtl': arabic_rtl}">
+                    <div class="col col-50 order_address_text">{{ MLanguages.FRONT_VISUALS_EMAIL }} :</div>
+                    <div class="col col-50">{{ myOrderDetail.buyer.email }}</div>
+                </div>
+            </ion-item>
+            <ion-item class="multiline">
+                <div class="row font-small" ng-class="{'arabic_rtl': arabic_rtl}">
+                    <div class="col col-50 order_address_text">{{ MLanguages.MOBILE_FRONT_FULL_ADDRESS }} :</div>
+                    <div class="col col-50">{{ myOrderDetail.buyer.address }}</div>
+                </div>
+            </ion-item>
+            <ion-item class="multiline">
+                <div class="row font-small" ng-class="{'arabic_rtl': arabic_rtl}">
+                    <div class="col col-50 order_address_text">{{ MLanguages.MOBILE_FRONT_NOTES }} :</div>
+                    <div class="col col-50">{{ myOrderDetail.buyer.api }}</div>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div class="row font-small" ng-class="{'arabic_rtl': arabic_rtl}">
+                    <div class="col col-50 order_address_text">{{ MLanguages.MOBILE_FRONT_PHONE_NUMBER }} :</div>
+                    <div class="col col-50">{{ myOrderDetail.buyer.tel }}</div>
+                </div>
+            </ion-item>
+        </div>
       <!--   <ion-item>
             <div class="row font-small">
                 <div class="col col-50">{{ MLanguages.LOGIN_CREATE_CITY }}</div>
@@ -66,19 +65,30 @@
                 <div class="col col-50">{{ myOrderDetail.buyer.reference }}</div>
             </div>
         </ion-item>-->
-        <p class="ht-3"></p>
-        <ion-item class="padding-5 no-border" ng-class="{'arabic_rtl': arabic_rtl}">
-            <p class="color-font-dark padding-top-5">{{ myOrderDetail.business[0].name}} <span class="color-main">{{'(Phone : ' + myOrderDetail.business[0].tel + ')'}}</span></p>
-            <p class="color-font-gray">{{ MLanguages.FRONT_MAIN_PAYMENT_METHOD }} {{ MLanguages[payMethod] }}</p>
-            <p class="color-font-gray">{{ MLanguages.FRONT_MAIN_EMAIL_DELIVERY_TYPE }}: {{ MLanguages[myOrderDetail.buyer.deliveryType.toUpperCase()]}}</p>
-            <p class="color-font-gray">{{ MLanguages.V3_ORDER_DELIVERY_DATE }}: {{ myCurOrder.date }}</p>
+        <!--<p class="ht-3"></p>-->
+        <ion-item class="padding-5 no-border order_item_detail" ng-class="{'arabic_rtl': arabic_rtl}">
+            <p class="color-font-dark padding-top-5 order_item_detail_name">{{ myOrderDetail.business[0].name}} 
+                <span class="color-main">{{'(Phone : ' + myOrderDetail.business[0].tel + ')'}}</span>
+            </p>
+            <p class="color-font-gray">{{ myCurOrder.date }}</p>            
+            <div class="order_item_detail_type">
+            <p class="color-font-gray">{{ MLanguages.FRONT_MAIN_PAYMENT_METHOD }} 
+                <span>{{ payMethod }} {{ MLanguages.MOBILE_BUSINESS_DROP_LIST_DELIVERY }}</span>
+            </p>
+            <p class="color-font-gray">{{ MLanguages.FRONT_MAIN_EMAIL_DELIVERY_TYPE }} 
+                <span>{{myOrderDetail.buyer.deliveryType}}</span>
+                
+            </p>
+            <span class="clear"></span>
+            </div>
+            <!--<p class="color-font-gray">{{ MLanguages.V3_ORDER_DELIVERY_DATE }}: {{ myCurOrder.date }}</p>-->
             <div class="h-line-grey"></div>
         </ion-item>
         <ion-item class="padding-5 no-border multiline" ng-repeat="dish in myOrderDetail.business[0].dishes track by $index" ng-if="!arabic_rtl">
             <div class="food-cont color-font-dark">
-                <div class="float-left badge-cont">{{dish.quantity}}</div>
+                <div class="float-left badge_quantity">{{dish.quantity}}</div>
                 <span class="float-left">{{dish.name}}</span>
-                <p class="color-main font-small float-right">{{cu_unit}} {{dish.total}}</p>
+                <p class="font-small float-right dish_total">{{cu_unit}} {{dish.total}}</p>
             </div>
             <p class="color-font-gray food-tail" style="white-space: normal; margin-top: 0px;" ng-init="dishOptionsView = parseOptions(dish.options)">
                 <span ng-repeat="(name, options) in dishOptionsView">
@@ -91,9 +101,9 @@
         </ion-item>
         <ion-item class="padding-5 no-border" ng-repeat="dish in myOrderDetail.business[0].dishes track by $index" ng-if="arabic_rtl" ng-class="{'arabic_rtl': arabic_rtl}">
             <div class="food-cont color-font-dark">
-                <div class="float-right badge-cont">{{dish.quantity}}</div>
+                <div class="float-right badge_quantity">{{dish.quantity}}</div>
                 <span class="float-right span-detail-order">{{dish.name}}</span>
-                <p class="color-main font-small float-left">{{dish.total}}</p>
+                <p class="font-small float-left dish_total">{{dish.total}}</p>
             </div>
             <p class="color-font-gray food-tail" style="white-space: normal; margin-top: 0px;" ng-init="dishOptionsView = parseOptions(dish.options)">
                 <span ng-repeat="(name, options) in dishOptionsView">
@@ -104,7 +114,7 @@
             <p class="color-font-gray food-tail pd-top-4"><span>{{dish.comments}}</span></p>
             <div class="h-line-grey"></div>
         </ion-item>
-        <ion-item class="padding-5 no-border" ng-class="{'arabic_rtl': arabic_rtl}">
+        <ion-item class="padding-5 no-border order_item_cart_bill" ng-class="{'arabic_rtl': arabic_rtl}">
             <div class="calc-item" ng-if="!arabic_rtl && myOrderDetail.discountactive">
                 <p class="color-font-gray float-left">{{ MLanguages.APP_DISCOUNT }}</p>
                 <p class="color-main font-small float-right">-{{cu_unit}} {{myOrderDetail.discountprice}}</p>
