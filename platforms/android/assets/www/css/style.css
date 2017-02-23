@@ -282,7 +282,8 @@ ion-modal-view ion-content {
 }
 
 .list-business .business .header {
-	padding: 15px 0 13% 0;
+	/*padding: 15px 0 13% 0;*/
+    padding: 15px 0 25% 0;
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center center;
@@ -1116,6 +1117,7 @@ resize: none;
 }
 .restsrch_itemdiv .restsrch_logo .logo-cont-sub img{
     border-radius: 100% !important;
+    height: 100%;
 }
 .restrurant_nearcount{
     text-align: center;
@@ -1189,7 +1191,8 @@ resize: none;
     position: relative;
 }
 .logo-cont-focus{
-    bottom: 16px;
+    /*bottom: 16px;*/
+    bottom: 0px;
 }
 
 .toggle input:checked + .track .handle{
@@ -1632,6 +1635,23 @@ resize: none;
     background-position: 5%;
 }
 
+
+.rest-item-detail{
+  border-style: solid;
+  border-bottom: rgba(77, 86, 201, 0.8);
+  border-bottom-width: 0.5em !important;
+}
+.rest-item-detail img {
+  width: 100%;
+  height: 100%;
+  margin-bottom: 1em; }
+
+.rest-item-detail ul {
+  padding: 0 0.8em;
+  min-height: 6.2em; }
+
+.rest-item-detail ul li {
+  min-height: 1.8em; }
 /*-------------------Media Quires--------------------------*/
 
 

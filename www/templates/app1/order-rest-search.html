@@ -13,36 +13,59 @@
     </ion-nav-bar>
     <ion-content class="color-bg">
         <!-- Note each link has the 'menu-close' attribute so the menu auto closes when clicking on one of these links -->
-        <ion-item  class="location-cont-item color-font-gray font-mid" ng-class="{'arabic_rtl': arabic_rtl}"><span>{{nearCount}} {{ MLanguages.MOBILE_FRONT_VISUALS_RESTAURANTS }} {{ MLanguages.MOBILE_FRONT_NEAR }} {{nearAddress}}</span></ion-item>
+        <ion-item  class="location-cont-item color-font-gray font-mid restrurant_nearcount" ng-class="{'arabic_rtl': arabic_rtl}"><span>{{nearCount}} {{ MLanguages.MOBILE_FRONT_VISUALS_RESTAURANTS }} {{ MLanguages.MOBILE_FRONT_NEAR }} {{nearAddress}}</span></ion-item>
         <!--<ion-item class="search-item" ng-repeat="item in resturantlist | filter : item.distance track by $id(item)">-->
 
         <div class="list-business" ng-class="{'arabic_rtl': arabic_rtl}">
             <div class="business" ng-repeat="item in resturantlist | filter : item.info.name | orderBy:'-distance':true track by $index" ng-if="getOpenClose(item.now, item.openTime) == true"  ng-click="onRestaurantItem(item)">
-                <div class="header" style="background-image: url({{item.headerUrl}});">
-                    <div class="data">
-                        <table>
-                            <tr>
-                                <td>
-                                    <div class="time-bg float-right">
-                                        {{ getFormattedTime(item.openTime.opens) }}
+                <div class="rest-item-detail font-small">
+                    <div class="restsrch_itemdiv header" style="background-image: url({{item.headerUrl}});">
+                            <div class="data">
+                                <div class="row logo-cont-focus">
+                                    <div class="col col-40 restsrch_logo logo">
+                                        <div class="logo-cont-sub">
+                                            <img ng-src="{{item.logo}}" err-src="{{dummyLogo}}" class="mg-bottom-none" ng-if="item.isImg == 1">
+                                            <img ng-src="{{dummyLogo}}" class="mg-bottom-none" ng-if="item.isImg == 0">
+                                        </div>
                                     </div>
-                                </td>
-                                <td>
-                                    <div class="logo">
-                                        <img ng-cache ng-src="{{item.logo}}" err-src="{{dummyLogo}}" class="mg-bottom-none" ng-if="item.isImg == 1">
-                                        <img ng-src="{{dummyLogo}}" class="mg-bottom-none" ng-if="item.isImg == 0">
+                                    <div class="col col-20">
+                                        <br>
                                     </div>
-                                </td>
-                                <td>
-                                    <div class="time-bg float-left">
-                                        {{ getFormattedTime(item.openTime.closes) }}
+                                    <div class="col col-40">                                    
+                                        <br>
                                     </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <h4 class="rating font-large-x color-font-black pd-left-5 business-title" ng-class="{cssArabic: $root.arabic_rtl, noncssArabic: !$root.arabic_rtl}">{{item.info.name}}</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="color-font-gray restsrch_detail">
+                                <li class="clear">
+                                    <!--<div class="cash float-left"></div>
+                                    <div class="visa float-left"></div>
+                                    <div class="debit float-left"></div>
+                                    <div class="paypal float-left"></div>-->
+                                    
+                                    <h4 class="rating font-large-x color-font-black" ng-class="{cssArabic: $root.arabic_rtl, noncssArabic: !$root.arabic_rtl}">{{item.info.name}}</h4>
+                                    <!--<div class="rating float-right">({{item.reviews}}{{MLanguages.MOBILE_MENU_LIST_RATINGS}})</div>-->
+                                    <!-- <div ng-repeat="star in rateAry[$index]">
+                                        <div class="{{star.rate}} float-right"></div>
+                                    </div> -->
+                                    <div class="time-bg"><img src="img/distence_icon.png" alt="#"> <span>{{item.distance.toFixed(2)}} {{ MLanguages.BUSINESS_LIST_OPTIONS_KM }}</span></div>
+                                    
+                                </li>
+                                <li class="clear">
+                                    <span class="rating float-left">{{ MLanguages.DELIVERY_V2 }} {{ item.deliveryCost*orderType }}</span>
+                                    <div star-rating rating-value="item.reviews" max="5" class="rating-style"></div>
+                                </li>
+                                <li class="clear">
+                                    <span class="rating float-right minimum_span">Minimum : {{ item.minimum }}</span>
+                                </li>
+                                <!--<li>
+                                    <span class="rating float-left">{{ MLanguages.MOBILE_BUSINESS_LIST_PROMOTION }}: {{item.promoDescr}} </span>
+                                    <span class="rating float-right">{{ MLanguages.DISTANCE }}: {{item.distance.toFixed(2)}} {{ MLanguages.BUSINESS_LIST_OPTIONS_KM }} </span>
+                                </li>-->
+                            </ul>
+
+                <!--<h4 class="rating font-large-x color-font-black pd-left-5 business-title" ng-class="{cssArabic: $root.arabic_rtl, noncssArabic: !$root.arabic_rtl}">{{item.info.name}}</h4>
                 <table>
                     <tr>
                         <td>{{ MLanguages.DELIVERY_V2 }} {{ item.deliveryCost*orderType | number:2 }}</td>
@@ -58,7 +81,8 @@
                         <td>{{ MLanguages.DISTANCE }}: {{ getFormattedDistance(item.distance) }}</td>
                         <td></td>
                     </tr>
-                </table>
+                </table>-->
+                </div>
             </div>
         </div>
         <div class="list-business">

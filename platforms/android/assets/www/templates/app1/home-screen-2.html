@@ -53,7 +53,7 @@
         <ion-item class="location-cont" ng-show="!SEARCH_BY_ADDRESS">
             <div class="gp-container-home-screen" style="width: 100%;">
                 <div class="city-drop">
-                    <select class="select-item" ng-model="myOrder.curCity" ng-change="selectCity(myOrder.curCity)">
+                    <select class="select-item" ng-model="myOrder.curCity" ng-change="selectCity(myOrder.curCity)" style="color: #444;">
                       <option ng-repeat="items in Citylist" value="{{items.value}}" default-option="{{ MLanguages.FRONT_SELECT_CITY }}">
                         {{items.name}}
                       </option>
@@ -61,7 +61,7 @@
                     <div class="drop-btn-2"></div>
                 </div>
                 <div class="neigh-drop">
-                    <select class="select-item" ng-model="myOrder.curNeighbour">
+                    <select class="select-item" ng-model="myOrder.curNeighbour" style="color: #444;">
                       <option ng-repeat="item in Neighlist" value="{{item.value}}" ng-selected="item.selected">
                         {{item.name}}
                       </option>
@@ -78,7 +78,7 @@
             </a>
         </ion-item>
         <ion-item>
-            <button class="button find-btn button-positive home_searchbtn" on-swipe-right="onSwipeRight()" ng-click="findRest(true)">
+            <button class="button find-btn button-positive home_searchbtn" on-swipe-right="onSwipeRight()" ng-click="findRest(!SEARCH_BY_ADDRESS)">
                 {{ MLanguages.NEW_MOBILE_HOME_START_FIND_RESTAURANT }}
             </button>
         </ion-item>      
