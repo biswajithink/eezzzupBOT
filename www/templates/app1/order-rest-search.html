@@ -20,23 +20,23 @@
             <div class="business" ng-repeat="item in resturantlist | filter : item.info.name | orderBy:'-distance':true track by $index" ng-if="getOpenClose(item.now, item.openTime) == true"  ng-click="onRestaurantItem(item)">
                 <div class="rest-item-detail font-small">
                     <div class="restsrch_itemdiv header" style="background-image: url({{item.headerUrl}});">
-                            <div class="data">
-                                <div class="row logo-cont-focus">
-                                    <div class="col col-40 restsrch_logo logo">
-                                        <div class="logo-cont-sub">
-                                            <img ng-src="{{item.logo}}" err-src="{{dummyLogo}}" class="mg-bottom-none" ng-if="item.isImg == 1">
-                                            <img ng-src="{{dummyLogo}}" class="mg-bottom-none" ng-if="item.isImg == 0">
-                                        </div>
+                        <div class="data">
+                            <div class="row logo-cont-focus">
+                                <div class="col col-40 restsrch_logo logo">
+                                    <div class="logo-cont-sub">
+                                        <img ng-src="{{item.logo}}" err-src="{{dummyLogo}}" class="mg-bottom-none" ng-if="item.isImg == 1">
+                                        <img ng-src="{{dummyLogo}}" class="mg-bottom-none" ng-if="item.isImg == 0">
                                     </div>
-                                    <div class="col col-20">
-                                        <br>
-                                    </div>
-                                    <div class="col col-40">                                    
-                                        <br>
-                                    </div>
+                                </div>
+                                <div class="col col-20">
+                                    <br>
+                                </div>
+                                <div class="col col-40">                                    
+                                    <br>
                                 </div>
                             </div>
                         </div>
+                    </div>
                         <ul class="color-font-gray restsrch_detail">
                                 <li class="clear">
                                     <!--<div class="cash float-left"></div>
@@ -87,47 +87,54 @@
         </div>
         <div class="list-business">
             <div class="business close" ng-repeat="item in resturantlist | filter : item.info.name | orderBy:'-distance':true track by $index" ng-if="getOpenClose(item.now, item.openTime) == false" ng-click="onRestaurantItem(item)">
-                <div class="header" style="background-image: url({{item.headerUrl}});">
-                    <div class="data">
-                        <table>
-                            <tr>
-                                <td>
-                                    <div class="time-bg float-right">
-                                        {{ getFormattedTime(item.openTime.opens) }}
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="logo">
-                                        <img ng-cache ng-src="{{item.logo}}" err-src="{{dummyLogo}}" class="mg-bottom-none" ng-if="item.isImg == 1">
+                <div class="rest-item-detail font-small">
+                    <div class="restsrch_itemdiv header" style="background-image: url({{item.headerUrl}});">
+                        <div class="data">
+                            <div class="row logo-cont-focus">
+                                <div class="col col-40 restsrch_logo logo">
+                                    <div class="logo-cont-sub">
+                                        <img ng-src="{{item.logo}}" err-src="{{dummyLogo}}" class="mg-bottom-none" ng-if="item.isImg == 1">
                                         <img ng-src="{{dummyLogo}}" class="mg-bottom-none" ng-if="item.isImg == 0">
                                     </div>
-                                </td>
-                                <td>
-                                    <div class="time-bg float-left">
-                                        {{ getFormattedTime(item.openTime.closes) }}
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
+                                </div>
+                                <div class="col col-20">
+                                    <br>
+                                </div>
+                                <div class="col col-40">                                    
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <h4 class="rating font-large-x color-font-black pd-left-5 business-title" ng-class="{cssArabic: $root.arabic_rtl, noncssArabic: !$root.arabic_rtl}">{{item.info.name}}</h4>
-                <table>
-                    <tr>
-                        <td>{{ MLanguages.DELIVERY_V2 }} {{ item.deliveryCost*orderType | number:2 }}</td>
-                        <td>
+                    <h4 class="rating font-large-x color-font-black pd-left-5 business-title" ng-class="{cssArabic: $root.arabic_rtl, noncssArabic: !$root.arabic_rtl}">{{item.info.name}}</h4>            
+                    <ul class="color-font-gray restsrch_detail">
+                        <li class="clear">
+                            <!--<div class="cash float-left"></div>
+                            <div class="visa float-left"></div>
+                            <div class="debit float-left"></div>
+                            <div class="paypal float-left"></div>-->
+                            
+                            <h4 class="rating font-large-x color-font-black" ng-class="{cssArabic: $root.arabic_rtl, noncssArabic: !$root.arabic_rtl}">{{item.info.name}}</h4>
+                            <!--<div class="rating float-right">({{item.reviews}}{{MLanguages.MOBILE_MENU_LIST_RATINGS}})</div>-->
+                            <!-- <div ng-repeat="star in rateAry[$index]">
+                                <div class="{{star.rate}} float-right"></div>
+                            </div> -->
+                            <div class="time-bg"><img src="img/distence_icon.png" alt="#"> <span>{{item.distance.toFixed(2)}} {{ MLanguages.BUSINESS_LIST_OPTIONS_KM }}</span></div>
+                            
+                        </li>
+                        <li class="clear">
+                            <span class="rating float-left">{{ MLanguages.DELIVERY_V2 }} {{ item.deliveryCost*orderType }}</span>
                             <div star-rating rating-value="item.reviews" max="5" class="rating-style">({{item.reviews | number:2}}{{MLanguages.MOBILE_MENU_LIST_RATINGS}})</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>{{ MLanguages.MOBILE_BUSINESS_LIST_PROMOTION }}: {{item.promoDescr}}</td>
-                        <td>{{ MLanguages.MINIMUM_ORDER }}: {{ item.minimum  | number:2}}</td>
-                    </tr>
-                    <tr>
-                        <td>{{ MLanguages.DISTANCE }}: {{ getFormattedDistance(item.distance) }}</td>
-                        <td></td>
-                    </tr>
-                </table>
+                        </li>
+                        <li class="clear">
+                            <span class="rating float-right minimum_span">Minimum : {{ item.minimum }}</span>
+                        </li>
+                        <!--<li>
+                            <span class="rating float-left">{{ MLanguages.MOBILE_BUSINESS_LIST_PROMOTION }}: {{item.promoDescr}} </span>
+                            <span class="rating float-right">{{ MLanguages.DISTANCE }}: {{item.distance.toFixed(2)}} {{ MLanguages.BUSINESS_LIST_OPTIONS_KM }} </span>
+                        </li>-->
+                    </ul>
+                </div>
             </div>
         </div>
         

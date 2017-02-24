@@ -3405,42 +3405,17 @@ console.log($scope.selectOrderType);
 		};
 
 		$rootScope.getFormattedTime = function (timeJson) {
-            if (timeJson == undefined) return "00:00";
-            var h = parseInt(timeJson.hour);
-            var m = parseInt(timeJson.minute);
-
-            if (m < 10) m = '0' + m;
-            //if(h < 24){
-            if(h < 12){
-                if (h < 10) h = '0' + h;
-                return h + ':' + m +'am';
-            }else{
-                //rh = h - 24;
-                rh = h - 12;
-                rh = ('0' + rh).slice(-2);
-
-
-                return rh + ':' + m +'pm';
-            }
-
-        };
-
-		$rootScope.getFormattedTime = function (timeJson) {
 			if (timeJson == undefined) return "00:00";
 			var h = parseInt(timeJson.hour);
 			var m = parseInt(timeJson.minute);
-			//if (h > 23) {
-				//h = h-24;
-				//m = 59;
-			//}
-			if (h > 11) {
-				h = h-12;
+			if (h > 23) {
+				h = h-24;
 				//m = 59;
 			}
 			var period = "";
 			if (!TIME_FORMAT_24) {
 				if (h > 12) {
-					h += 12;
+					h -= 12;
 					period = " PM";
 				} else if (h == 12) period = " PM";
 				else period = " AM";
@@ -3449,7 +3424,7 @@ console.log($scope.selectOrderType);
 			if (h < 10) h = '0' + h;
 			if (m < 10) m = '0' + m;
 			return h + ':' + m + period;
-		};
+		};   
 
 		$scope.getFormattedDistance = function (distance) {
 			//0.621371
@@ -3621,13 +3596,8 @@ console.log($scope.selectOrderType);
 						MyLoading.hide();
 						console.log(e.message);
 					});
-		   
-							 
-							 
-							 
-							 
 						
-						// Go to current Restaurant Detail page ---
+					// Go to current Restaurant Detail page ---
 					   
 					}else {
 						MyAlert.show($scope.MLanguages.MOBILE_ERROR+' : ' + s.message);
@@ -3676,10 +3646,17 @@ console.log($scope.selectOrderType);
 		if (ADDONS.web_template) initView();
 	})
 
-	.controller('detailRestCtrl', function($scope, $rootScope, $state, $ionicPopup, $ionicHistory, gCurRestaurant, gAllBusiness,
-										   gCurDishList, gOrder, $timeout, BusinessSvc, MyLoading, MyAlert, ADDONS, $ionicModal, 
-										   $interval, $timeout, $ionicScrollDelegate){
+	.controller('detailRestCtrl', function($scope, $rootScope, $state, $ionicPopup, $ionicHistory, gCurRestaurant, gAllBusiness, $ionicPopover, $ionicLoading,
+										   gCurDishList, gOrder, $timeout, BusinessSvc, MyLoading, MyAlert, ADDONS, $ionicModal, ProductOptionSvc, gBufferDishes, 
+										   $interval, $ionicScrollDelegate){									   
 
+			if (gOrder.getData().length == 0){
+				$scope.dishes = [];
+				$scope.allDishCount = 0;
+			}else {
+				$scope.dishes = gOrder.getData();
+				$scope.allDishCount = $scope.dishes.length;
+			}
 		//$scope.MLanguages = {};
 		$scope.$on('$ionicView.beforeEnter',function(){
 
@@ -3879,13 +3856,7 @@ console.log($scope.selectOrderType);
 				offer : false
 			};
 
-			if (gOrder.getData().length == 0){
-				$scope.dishes = [];
-				$rootScope.allDishCount = 0;
-			}else {
-				$scope.dishes = gOrder.getData();
-				$rootScope.allDishCount = $scope.dishes.length;
-			}
+			
 			$scope.get_fisrt = true;
 			$scope.li_items = [];
 			if (ADDONS.web_template) {
@@ -4134,10 +4105,18 @@ console.log($scope.selectOrderType);
 		}
 
 		if (ADDONS.web_template) initView();
-	})
+		
+
+		$ionicPopover.fromTemplateUrl('templates/popover.html', {
+        scope: $scope,
+      }).then(function(popover) {
+        $scope.popover = popover;
+      });
+
+	/*})
 
 	.controller('detailMenuCtrl', function($scope, $state, $rootScope, $ionicLoading, $ionicPopup, $ionicModal, MyLoading, MyAlert,
-										   gOrder, gCurDishList, ProductOptionSvc, $ionicScrollDelegate, gBufferDishes, ADDONS, $timeout, gCurRestaurant){
+										   gOrder, gCurDishList, ProductOptionSvc, $ionicScrollDelegate, gBufferDishes, ADDONS, $timeout, gCurRestaurant){*/
 		$scope.init = function () {
 			$scope.item = gCurRestaurant.getData();
 			$scope.HeaderTitle = gCurDishList.getData().title;

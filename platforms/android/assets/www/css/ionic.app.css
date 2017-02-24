@@ -10638,19 +10638,19 @@ input:-ms-input-placeholder {
 .icon-btn-plus {
   min-height: 1.4em !important;
   min-width: 2em !important;
-  /*background-image: url("../img/icon-plus.png");
+  background-image: url("../img/icon-plus.png");
   background-repeat: no-repeat;
   background-size: contain;
-  background-position: center;*/
+  background-position: center;
   margin: .5em 0.5em; }
 
 .icon-btn-minus {
   min-height: 1.4em !important;
   min-width: 2em !important;
-  /*background-image: url("../img/icon-minus.png");
+  background-image: url("../img/icon-minus.png");
   background-repeat: no-repeat;
   background-size: contain;
-  background-position: center;*/
+  background-position: center;
   margin: .5em 0.5em; }
 
 .icon-btn-back {
@@ -11085,7 +11085,7 @@ ul.rating span {
 }
 
 .item-radio .item-content div {
-  //line-height: 35px;
+  /*line-height: 35px;*/
   padding-top: 10px;
 }
 .item-radio .item-content div img{
@@ -11093,7 +11093,8 @@ ul.rating span {
 }
 
 .radio-item p {
-  padding-left: 1em; 
+  /*padding-left: 1em; */
+  padding-left:3.2em;
 }
 
 .radio_arabic_rtl.radio-item p {
@@ -11110,9 +11111,10 @@ ul.rating span {
   left: 0; }
 
 .item-radio input:checked + .radio-content .radio-icon {
-  /*background-image: url("../img/icon-radio-on.png");
+  background-image: url("../img/icon-radio-on.png");
   background-repeat: no-repeat;
-  background-size: contain;*/ }
+  background-size: contain; 
+  }
 
 .item-radio input + .radio-content .dynamic-radio:before {
   display: inline-block;
@@ -11140,9 +11142,9 @@ ul.rating span {
   content: ''; }
 
 .item-radio .item-content {
-  /*background-image: url("../img/icon-radio-off.png");
+  background-image: url("../img/icon-radio-off.png");
   background-repeat: no-repeat;
-  background-size: contain;*/
+  background-size: contain;
 }
 
 .bottom-cont {
@@ -11170,6 +11172,7 @@ ul.rating span {
 
 .bottom-cont div button {
   background-color: transparent;
+  font-size:14px;
 }
 
 .price {

@@ -4,102 +4,105 @@
         <ion-title class="font-large-x">{{productOptionList.name}}</ion-title>
         <button class="button top-btn" ng-click="offProductOption()"> </button>
     </ion-header-bar>
-    <ion-content class="color-bg" delegate-handle="modalContent">
+    <ion-content class="color-bg custom_bg" delegate-handle="modalContent">
         <!-- Product Images -->
         <div ng-if="selectedFood.img != ''"  id="img_content" ng-show=ADDONS.product_enhacements>
-            <ion-item class="item-divider" ng-class="{cssArabicRight: $root.arabic_rtl}">
+            <!--<ion-item class="item-divider" ng-class="{cssArabicRight: $root.arabic_rtl}">
                 <span class="divider-padding no-padding-h">{{ MLanguages.MOBILE_MENU_LIST_PHOTO_GALLERY }}</span>
-            </ion-item>
-            <ion-item class="text-center">
+            </ion-item>-->
+            <ion-item class="text-center custom_divider2 custom_proimg">
                 <img ng-cache ng-src="{{ selectedFood.img }}" on-error-src="img_content" err-src="img/dummy_food.png" style="width:80%" />
             </ion-item>
-        </div>
+        </div>        
         <!-- Product Descriptions -->
         <div ng-if="selectedFood.description != ''" ng-show=ADDONS.product_enhacements>
-            <ion-item class="item-divider" ng-class="{'arabic_rtl': arabic_rtl}">
+            <!--<ion-item class="item-divider" ng-class="{'arabic_rtl': arabic_rtl}">
                 <span class="divider-padding no-padding-h" ng-class="{cssArabic: $root.arabic_rtl}">{{ MLanguages.Description_V2 }}</span>
-            </ion-item>
-            <ion-item ng-class="{'arabic_rtl': arabic_rtl}">
+            </ion-item>-->
+            <ion-item class="custom_divider2" ng-class="{'arabic_rtl': arabic_rtl}">
                 <p style="white-space: normal"> {{ selectedFood.description }} </p>
             </ion-item>
         </div>
         <!-- Product Ingredient -->
         <div ng-if="selectedFood.ingredients.length > 0" ng-show=ADDONS.product_enhacements>
-            <ion-item class="item-divider" ng-class="{'arabic_rtl': arabic_rtl}">
+            <ion-item class="item-divider custom_divider2" ng-class="{'arabic_rtl': arabic_rtl}">
                 <span class="divider-padding no-padding-h">{{ MLanguages.Ingredients_V2 }}</span>
             </ion-item>
-            <!--<ion-item>-->
-                <ion-checkbox class="checkbox-item" style="border-left: none; border-right: none" ng-repeat="item in selectedFood.ingredients"
+            <ion-item class="ingred_item custom_divider2">
+                <ion-checkbox class="checkbox-item custom_color1 border-line-red" style="border-left: none; border-right: none" ng-repeat="item in selectedFood.ingredients"
                               ng-model="ICheckModel[''+item].checked"
                               ng-checked="ICheckModel[''+item].checked"
                               ng-change="onCheckIngredient(item)">
                     {{ item }}
                 </ion-checkbox>
-            <!--</ion-item>-->
+            </ion-item>
         </div>
         <!-- Product options -->
         <div ng-repeat="option in productOptionList.options">
             <!--<div ng-show="C_OState.optional != option.maxSel && option.conditional == 'no'">-->
             <div ng-show="C_OState.optional != option.maxSel && option.show">
-                <ion-item class="item-divider" ng-class="{'arabic_rtl': arabic_rtl}">
+                <ion-item class="item-divider custom_divider2" ng-class="{'arabic_rtl': arabic_rtl}">
                     <span class="divider-padding no-padding-h">{{option.optionText}}</span>
                     <!--<span ng-if="option.minSel >= '1'">({{ MLanguages.MOBILE_FRONT_FORMS_REQUIRED }})</span>-->
-                    <span ng-if="option.minSel >= '1' && option.maxSel >= '1'">({{ MLanguages.MOBILE_FRONT_FORMS_REQUIRED }} : {{ MLanguages.MOBILE_CHECKOUT_MIN }} {{option.minSel}} / max {{option.maxSel}})</span>
-                    <span ng-if="option.minSel >= '1' && option.maxSel == '0'">({{ MLanguages.MOBILE_FRONT_FORMS_REQUIRED }} : {{ MLanguages.MOBILE_CHECKOUT_MIN }} {{option.minSel}})</span>
+                    <span ng-if="option.minSel >= '1' && option.maxSel >= '1'">({{ MLanguages.MOBILE_FRONT_FORMS_REQUIRED }}<!-- : {{ MLanguages.MOBILE_CHECKOUT_MIN }} {{option.minSel}} / max {{option.maxSel}}-->)</span>
+                    <span ng-if="option.minSel >= '1' && option.maxSel == '0'">({{ MLanguages.MOBILE_FRONT_FORMS_REQUIRED }} <!--: {{ MLanguages.MOBILE_CHECKOUT_MIN }} {{option.minSel}}-->)</span>
                     <span ng-if="option.minSel == '0' && option.maxSel >= '1'">(max {{option.maxSel}})</span>
                 </ion-item>
-                <ion-checkbox class="checkbox-item" ng-repeat="item in option.objects"
+                <ion-checkbox class="checkbox-item custom_color1 border-line-red" ng-repeat="item in option.objects"
                               ng-model="pOptionModel['data_'+option.optionId]['value']['model_'+item.choiceId]"
                               ng-change="onCheckOption(option,item)"
-                              ng-class="{'arabic_rtl': arabic_rtl}">
-                    {{ item.choiceName }}
-                    <p class="float-right color-main" ng-if="!arabic_rtl">{{c_unit + ' ' + item.price}}</p>
-                    <p class="float-left color-main" ng-if="arabic_rtl">{{c_unit + ' ' + item.price}}</p>
+                              ng-class="{'arabic_rtl': arabic_rtl}">{{ item.choiceName }}
+                    <p class="float-right custom_color2" ng-if="!arabic_rtl">{{c_unit + ' ' + item.price}}</p>
+                    <p class="float-left custom_color2" ng-if="arabic_rtl">{{c_unit + ' ' + item.price}}</p>
                 </ion-checkbox>
             </div>
+            
             <!--<div ng-show="C_OState.optional == option.maxSel && option.conditional == 'no'" ng-init="listIndex = $index">-->
-            <div ng-show="C_OState.optional == option.maxSel && option.show" ng-init="listIndex = $index">
-                <ion-item class="item-divider" ng-class="{'arabic_rtl': arabic_rtl}">
+            <div ng-show="C_OState.optional == option.maxSel && option.show" ng-init="listIndex = $index" class="ingrd_choice">
+                <ion-item class="item-divider custom_divider2" ng-class="{'arabic_rtl': arabic_rtl}">
                     <span class="divider-padding no-padding-h">{{option.optionText}}</span>
                     <!--<span ng-if="option.minSel >= '1'">({{ MLanguages.MOBILE_FRONT_FORMS_REQUIRED }})</span>-->
-                    <span ng-if="option.minSel >= '1' && option.maxSel >= '1'">({{ MLanguages.MOBILE_FRONT_FORMS_REQUIRED }} : {{ MLanguages.MOBILE_CHECKOUT_MIN }} {{option.minSel}} / max {{option.maxSel}})</span>
-                    <span ng-if="option.minSel >= '1' && option.maxSel == '0'">({{ MLanguages.MOBILE_FRONT_FORMS_REQUIRED }} : {{ MLanguages.MOBILE_CHECKOUT_MIN }} {{option.minSel}})</span>
+                    <span ng-if="option.minSel >= '1' && option.maxSel >= '1'">({{ MLanguages.MOBILE_FRONT_FORMS_REQUIRED }}<!-- : {{ MLanguages.MOBILE_CHECKOUT_MIN }} {{option.minSel}} / max {{option.maxSel}}-->)</span>
+                    <span ng-if="option.minSel >= '1' && option.maxSel == '0'">({{ MLanguages.MOBILE_FRONT_FORMS_REQUIRED }}<!-- : {{ MLanguages.MOBILE_CHECKOUT_MIN }} {{option.minSel}}-->)</span>
                     <span ng-if="option.minSel == '0' && option.maxSel >= '1'">(max {{option.maxSel}})</span>
                 </ion-item>
-                <ion-radio class="radio-item" ng-repeat="item in option.objects"
+                <ion-radio class="radio-item border-bottom-red ingrd_choice_item" ng-repeat="item in option.objects"
                            ng-value="item"
                            name = "{{option.name}}"
                            ng-model="pOptionModel['data_'+option.optionId]['value']"
                            ng-click="onClickOptions(option,item,listIndex)"
                            ng-class="{'radio_arabic_rtl': arabic_rtl}">
-                    <span class="float-left dynamic-radio" ng-if="!arabic_rtl"></span>
-                    <span class="float-right dynamic-radio" ng-if="arabic_rtl"></span>
-                    <p class="float-left" ng-if="!arabic_rtl">{{ item.choiceName }}</p>
-                    <p class="float-right" ng-if="arabic_rtl">{{ item.choiceName }}</p>
-                    <p class="float-right color-main" ng-if="!arabic_rtl">{{c_unit + ' ' + item.price }}</p>
-                    <p class="float-left color-main" ng-if="arabic_rtl">{{c_unit + ' ' + item.price }}</p>
+                    <!--<span class="float-left dynamic-radio" ng-if="!arabic_rtl"></span>
+                    <span class="float-right dynamic-radio" ng-if="arabic_rtl"></span>-->
+                    <span class="float-left" ng-if="!arabic_rtl"></span>
+                    <span class="float-right" ng-if="arabic_rtl"></span>
+                    <p class="float-left custom_color1" ng-if="!arabic_rtl">{{ item.choiceName }}</p>
+                    <p class="float-right custom_color1" ng-if="arabic_rtl">{{ item.choiceName }}</p>
+                    <p class="float-right custom_color2" ng-if="!arabic_rtl">{{c_unit + ' ' + item.price }}</p>
+                    <p class="float-left custom_color2" ng-if="arabic_rtl">{{c_unit + ' ' + item.price }}</p>
                 </ion-radio>
             </div>
         </div>
-        <ion-item class="item-divider" ng-class="{'arabic_rtl': arabic_rtl}">
+        <ion-item class="item-divider custom_divider2" ng-class="{'arabic_rtl': arabic_rtl}">
             <span class="divider-padding no-padding-h">{{ MLanguages.MOBILE_FRONT_SPECIAL_INSTRUCTIONS }}</span>
         </ion-item>
-        <ion-item>
-            <textarea class="special-inbox" placeholder="{{ MLanguages.MOBILE_FRONT_SPECIAL_INSTRUCTIONS_ADD }}" ng-model="myDish.comments" ng-class="{cssArabic: $root.arabic_rtl}"></textarea>
+        <ion-item style="border:none;" class="comment_box">
+            <textarea class="special-inbox"  my-maxlength="70" placeholder="{{ MLanguages.MOBILE_FRONT_SPECIAL_INSTRUCTIONS_ADD }}" ng-model="myDish.comments" ng-class="{cssArabic: $root.arabic_rtl}"></textarea>
+            <p class="comment_length" style="right:6%">{{70-myDish.comments.length}}</p>
         </ion-item>
-        <ion-item class="row bottom-cont">
-            <div class="col-50 color-bg-white pd-btn" style="padding-left:5px">
-                <button class="button-icon icon-btn-minus float-left" ng-click="onMinusQuantity()">
-                    <span class="icon ion-minus icon-primary"></span>
-                </button>
-                <button class="button-icon icon-btn-plus float-left" ng-click="onPlusQuantity()">
-                    <span class="icon ion-plus icon-primary"></span>
-                </button>
-                <p class="price float-right">{{c_unit}} {{myDish.total.toFixed(2)}}</p>
+
+        <ion-item class="row bottom-cont propop_btm">
+            <div class="propop_quty">
+                <button class="icon-btn-minus float-left" ng-click="onMinusQuantity()"></button>
+                <span class="btn-badge-cont">{{myDish.quantity}}</span>
+                <button class="icon-btn-plus" ng-click="onPlusQuantity()"></button>    
             </div>
-            <div class="col-50 item-btn color-main-bg" ng-click="">
-                <a class="button pd-right-2" ng-click="onAddToCart(productOptionList)" ng-if="gEditState == false"><div class="float-left btn-badge-cont">{{myDish.quantity}}</div>{{ MLanguages.MOBILE_FRONT_BUTTON_ADD }}</a>
-                <a class="button pd-right-2" ng-click="onAddToCart(productOptionList)" ng-if="gEditState == true"><div class="float-left btn-badge-cont">{{myDish.quantity}}</div>{{ MLanguages.MOBILE_FOURTH_PAGE_OK }}</a>
+             <div class="propop_add item-btn" ng-click="">
+                    <a class="button pd-right-2" ng-click="onAddToCart(productOptionList)" ng-if="gEditState == false">{{ MLanguages.MOBILE_FRONT_BUTTON_ADD }}</a>
+                    <a class="button pd-right-2" ng-click="onAddToCart(productOptionList)" ng-if="gEditState == true"><div class="float-left btn-badge-cont">{{myDish.quantity}}</div>{{ MLanguages.MOBILE_FOURTH_PAGE_OK }}</a>
+            </div>
+            <div class="propop_price">
+                <p class="price float-right custom_color2" style="color:#fff !important    ;">{{c_unit}} {{myDish.total.toFixed(2)}}</p>
             </div>
         </ion-item>
     </ion-content>
