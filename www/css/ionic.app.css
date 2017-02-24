@@ -10769,7 +10769,9 @@ ul.rating span {
 
 .rest-detail-item img {
   width: 100%;
-  height: 100%; }
+  /*height: 100%; */
+  height:140px;
+  }
 
 .rest-item img {
   width: 100%;

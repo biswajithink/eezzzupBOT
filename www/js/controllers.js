@@ -3408,8 +3408,12 @@ console.log($scope.selectOrderType);
 			if (timeJson == undefined) return "00:00";
 			var h = parseInt(timeJson.hour);
 			var m = parseInt(timeJson.minute);
-			if (h > 23) {
+			/*if (h > 23) {
 				h = h-24;
+				//m = 59;
+			}*/
+			if (h > 11) {
+				h = h-12;
 				//m = 59;
 			}
 			var period = "";
@@ -3424,7 +3428,7 @@ console.log($scope.selectOrderType);
 			if (h < 10) h = '0' + h;
 			if (m < 10) m = '0' + m;
 			return h + ':' + m + period;
-		};
+		};   
 
 		$scope.getFormattedDistance = function (distance) {
 			//0.621371
@@ -3651,14 +3655,67 @@ console.log($scope.selectOrderType);
 		if (ADDONS.web_template) initView();
 	})
 
-	.controller('detailRestCtrl', function($scope, $rootScope, $state, $ionicPopup, $ionicHistory, gCurRestaurant, gAllBusiness,
+	.controller('detailRestCtrl', function($scope, $rootScope, $state, $ionicPopup, $ionicHistory, gCurRestaurant, gAllBusiness, $ionicPopover,
 										   gCurDishList, gOrder, $timeout, BusinessSvc, MyLoading, MyAlert, ADDONS, $ionicModal, 
 										   $interval, $timeout, $ionicScrollDelegate){
 
 		//$scope.MLanguages = {};
 		$scope.$on('$ionicView.beforeEnter',function(){
-			initView();
+
+			//initView();
+
+			$scope.item = gCurRestaurant.getData();
+            $scope.HeaderTitle = $scope.item.name;
+            $scope.HeaderUrl = $scope.item.header;
+            $scope.LogoUrl = $scope.item.logo;
+
+            $scope.resMenulist = [];
+            $scope.resMenulist = $scope.item.info.categories;
+            
+            $scope.createSubMenus();
+                
+            console.log($scope.resMenulist);
+            $scope.openTimes = JSON.parse($scope.item.restData.schedule);
+
+            $scope.dummyHeader = 'img/dummy_header.png';
+            $scope.dummyLogo = 'img/dummy_logo.png';
+
+            $rootScope.gEditState = false;         // EditState for Dish
+
+            // Getting Tap Data
+            if (typeof $scope.reviewList == 'undefined' || typeof $scope.offersList == 'undefined'){
+                $scope.getInfoData();
+            }
+
+            $scope.bState = {
+                review : false,
+                offer : false
+            };
 		});
+
+		$scope.createSubMenus =function(){
+            var allFood = $scope.item.info.dishes;
+            for(i=0;i<$scope.resMenulist.length;i++){              
+                var curDishList = [];
+                for (var j = 0, len = allFood.length; j < len; j++){
+                    if( $scope.resMenulist[i].id == allFood[j].category ){
+                        curDishList.push(allFood[j]);
+                    }
+                }
+                $scope.resMenulist[i].submenu = curDishList;     
+                $scope.resMenulist[i].active = true;
+            }  
+        };
+ 
+		$scope.toggleMenu = function(i){
+            if($scope.resMenulist[i].active){
+                $scope.resMenulist[i].active = false;
+            }else{
+                $scope.resMenulist[i].active = true;
+            }
+            
+        };
+		
 
 		function initView() {
 			$scope.WEB_ADDONS = WEB_ADDONS;
@@ -4056,6 +4113,14 @@ console.log($scope.selectOrderType);
 		}
 
 		if (ADDONS.web_template) initView();
+		
+
+		$ionicPopover.fromTemplateUrl('templates/popover.html', {
+        scope: $scope,
+      }).then(function(popover) {
+        $scope.popover = popover;
+      });
+
 	})
 
 	.controller('detailMenuCtrl', function($scope, $state, $rootScope, $ionicLoading, $ionicPopup, $ionicModal, MyLoading, MyAlert,

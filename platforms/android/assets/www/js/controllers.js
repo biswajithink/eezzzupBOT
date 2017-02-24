@@ -3405,17 +3405,42 @@ console.log($scope.selectOrderType);
 		};
 
 		$rootScope.getFormattedTime = function (timeJson) {
+            if (timeJson == undefined) return "00:00";
+            var h = parseInt(timeJson.hour);
+            var m = parseInt(timeJson.minute);
+
+            if (m < 10) m = '0' + m;
+            //if(h < 24){
+            if(h < 12){
+                if (h < 10) h = '0' + h;
+                return h + ':' + m +'am';
+            }else{
+                //rh = h - 24;
+                rh = h - 12;
+                rh = ('0' + rh).slice(-2);
+
+
+                return rh + ':' + m +'pm';
+            }
+
+        };
+
+		$rootScope.getFormattedTime = function (timeJson) {
 			if (timeJson == undefined) return "00:00";
 			var h = parseInt(timeJson.hour);
 			var m = parseInt(timeJson.minute);
-			if (h > 23) {
-				h = h-24;
+			//if (h > 23) {
+				//h = h-24;
+				//m = 59;
+			//}
+			if (h > 11) {
+				h = h-12;
 				//m = 59;
 			}
 			var period = "";
 			if (!TIME_FORMAT_24) {
 				if (h > 12) {
-					h -= 12;
+					h += 12;
 					period = " PM";
 				} else if (h == 12) period = " PM";
 				else period = " AM";
@@ -3657,8 +3682,61 @@ console.log($scope.selectOrderType);
 
 		//$scope.MLanguages = {};
 		$scope.$on('$ionicView.beforeEnter',function(){
-			initView();
+
+			//initView();
+
+			$scope.item = gCurRestaurant.getData();
+            $scope.HeaderTitle = $scope.item.name;
+            $scope.HeaderUrl = $scope.item.header;
+            $scope.LogoUrl = $scope.item.logo;
+
+            $scope.resMenulist = [];
+            $scope.resMenulist = $scope.item.info.categories;
+            
+            $scope.createSubMenus();
+                
+            console.log($scope.resMenulist);
+            $scope.openTimes = JSON.parse($scope.item.restData.schedule);
+
+            $scope.dummyHeader = 'img/dummy_header.png';
+            $scope.dummyLogo = 'img/dummy_logo.png';
+
+            $rootScope.gEditState = false;         // EditState for Dish
+
+            // Getting Tap Data
+            if (typeof $scope.reviewList == 'undefined' || typeof $scope.offersList == 'undefined'){
+                $scope.getInfoData();
+            }
+
+            $scope.bState = {
+                review : false,
+                offer : false
+            };
 		});
+
+		$scope.createSubMenus =function(){
+            var allFood = $scope.item.info.dishes;
+            for(i=0;i<$scope.resMenulist.length;i++){              
+                var curDishList = [];
+                for (var j = 0, len = allFood.length; j < len; j++){
+                    if( $scope.resMenulist[i].id == allFood[j].category ){
+                        curDishList.push(allFood[j]);
+                    }
+                }
+                $scope.resMenulist[i].submenu = curDishList;     
+                $scope.resMenulist[i].active = true;
+            }  
+        };
+ 
+		$scope.toggleMenu = function(i){
+            if($scope.resMenulist[i].active){
+                $scope.resMenulist[i].active = false;
+            }else{
+                $scope.resMenulist[i].active = true;
+            }
+            
+        };
+		
 
 		function initView() {
 			$scope.WEB_ADDONS = WEB_ADDONS;
