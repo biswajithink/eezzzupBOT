@@ -1080,7 +1080,7 @@ resize: none;
 }
 .customer_deliitem .border-b .color-font-placeholder{
 	text-align: left;
-	display: block;
+	display:  inline-block;
 	color: #000 !important;
 }
 .checkout_total{
@@ -1471,10 +1471,11 @@ resize: none;
 .cat_item{
     background: #1a3a51;
     width: 40px;
-    min-height: 36px;
+    min-height: 36px !important;
     height: 36px;
     min-width: auto;
     margin-top: 0.55em;
+    border-radius:0.3em !important;
 }
 .cat_item span{
     height: 3px;
@@ -1659,7 +1660,17 @@ resize: none;
   min-height: 6.2em; }
 
 .rest-item-detail ul li {
-  min-height: 1.8em; }
+  min-height: 1.8em; 
+  }
+.dish_icons{
+    float: right;
+}
+.dish_icons p.color-main.font-small.float-right{
+    margin-left: 10px;
+}
+.item-radio .item-content .row div{
+    padding-top: 0px;
+}
 /*-------------------Media Quires--------------------------*/
 
 

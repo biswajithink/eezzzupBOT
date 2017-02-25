@@ -3648,15 +3648,9 @@ console.log($scope.selectOrderType);
 
 	.controller('detailRestCtrl', function($scope, $rootScope, $state, $ionicPopup, $ionicHistory, gCurRestaurant, gAllBusiness, $ionicPopover, $ionicLoading,
 										   gCurDishList, gOrder, $timeout, BusinessSvc, MyLoading, MyAlert, ADDONS, $ionicModal, ProductOptionSvc, gBufferDishes, 
-										   $interval, $ionicScrollDelegate){									   
+										   $interval, $ionicScrollDelegate, $location){									   
 
-			if (gOrder.getData().length == 0){
-				$scope.dishes = [];
-				$scope.allDishCount = 0;
-			}else {
-				$scope.dishes = gOrder.getData();
-				$scope.allDishCount = $scope.dishes.length;
-			}
+			
 		//$scope.MLanguages = {};
 		$scope.$on('$ionicView.beforeEnter',function(){
 
@@ -3713,7 +3707,16 @@ console.log($scope.selectOrderType);
             }
             
         };
-		
+
+		$scope.scrollTo = function(x){
+            console.log(x,$location.hash());
+            $scope.popover.hide();
+            if($location.hash()!='anchor' + x){
+                $location.hash('anchor' + x);
+            }else{
+                $ionicScrollDelegate.anchorScroll();
+            }
+        }
 
 		function initView() {
 			$scope.WEB_ADDONS = WEB_ADDONS;
@@ -6151,7 +6154,8 @@ console.log($scope.selectOrderType);
 					$rootScope.editDishNum = i;
 				}
 			}
-			if (!ADDONS.web_template) $state.go('ordering.detailMenu');
+			//if (!ADDONS.web_template) $state.go('ordering.detailMenu');
+			if (!ADDONS.web_template) $state.go('detailRest');
 			else $rootScope.initEditDish();
 		};
 
@@ -6967,7 +6971,7 @@ console.log($scope.selectOrderType);
 
 			$scope.paymentModel = {
 				val : 'none',
-				model : $scope.MLanguages.PLEASE_SELECT
+				model : "Please Select" //$scope.MLanguages.PLEASE_SELECT
 			};
 			$scope.stripepaymentModel = {
 				val : 'none',
@@ -7634,6 +7638,11 @@ console.log($scope.selectOrderType);
 				return;
 			}
 
+			if ($scope.getdeliveryType == 'delivery' && $scope.order_buyer.address == undefined){
+                $scope.fieldDetect($scope.MLanguages.MOBILE_FILL_REQUIRED_FIELDS);
+                return;
+            }
+
 			$scope.show($ionicLoading);
 
 			// Update Buyer Infomations for order data
@@ -7834,6 +7843,24 @@ console.log($scope.selectOrderType);
 				});
 			}
 		};
+
+
+
+		$scope.onAutoCompleteAddress = function() {
+            setTimeout(function() {
+                if (typeof document.getElementsByClassName('backdrop')[0] != 'undefined' &&
+                    typeof document.getElementsByClassName('pac-container')[0] != 'undefined'){
+                    for (var i = 0; i < document.getElementsByClassName('pac-container').length; i++){
+                        document.getElementsByClassName('pac-container')[i].setAttribute('data-tap-disabled', true);
+                    }
+                    for (i = 0; i < document.getElementsByClassName('backdrop').length; i++){
+                        document.getElementsByClassName('backdrop')[i].setAttribute('data-tap-disabled', true);
+                    }
+                }
+            }, 100);
+
+        }
+
 
 		$scope.onAutoCompleteAddress = function() {
 			setTimeout(function() {

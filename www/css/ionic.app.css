@@ -10754,6 +10754,9 @@ ul.rating span {
   font-size: 23px;
   vertical-align: top;
 }
+.detail-item ul.rating span.ion-star:before{
+  content:'';
+}
 
 .rest-item {
   display: table;
@@ -11295,20 +11298,20 @@ ul.rating {
 .rating .filled {
   min-height: 1.2em;
   min-width: 1.2em;
-  //background-image: url("../img/star-act.png");
-  color: #f45353;
+  background-image: url("../img/star-act.png");
+  /*color: #f45353;*/
   background-repeat: no-repeat;
   background-size: contain;
-  //margin: 0.15em;
+  margin: 0.15em;
 }
 
 .rating .unfilled {
   min-height: 1.2em;
   min-width: 1.2em;
-  //background-image: url("../img/star-dis.png");
+  background-image: url("../img/star-dis.png");
   background-repeat: no-repeat;
   background-size: contain;
-  //margin: 0.15em;
+  margin: 0.15em;
 }
 
 .g-btn-cont {

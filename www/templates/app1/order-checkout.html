@@ -8,30 +8,36 @@
             <button class="button top-edit" ng-click="onClickCancel()" >{{ MLanguages.SMS_BUSSINESS_CANCEL_BUTTON }}</button>
         </ion-nav-buttons>
     </ion-nav-bar>
-    <ion-content class="order-view-cont color-bg" ng-class="{'arabic_rtl': arabic_rtl}">
+    <ion-content class="order-view-cont color-bg custom_bg" ng-class="{'arabic_rtl': arabic_rtl}">
         <ion-item>
             <p class="font-large-x font-center">{{curBusiness.name}}</p>
             <div class="h-line-grey"></div>
         </ion-item>
 
         <ion-item class="no-border" ng-repeat="dish in curMyDishes track by $index" ng-class="{'arabic_rtl': arabic_rtl}">
-            <div class="food-cont color-font-dark" ng-if="!arabic_rtl">
-                <div class="float-left badge-cont">{{dish.quantity}}</div>
-                <span class="float-left span-detail-order"> {{dish.name}}</span>
-                <i class="ion-edit icon-button btn-edit" ng-click="onClickEdit(dish)" ng-show=ADDONS.cart_enhacements></i>
-                <i class="ion-android-cancel icon-button btn-delete" ng-click="onClickRemove(dish)" ng-show=ADDONS.cart_enhacements></i>
-                <p class="color-main font-small float-right">{{ c_unit }} {{(dish.total).toFixed(2)}}</p>
+            <div class="food-cont color-font-dark " ng-if="!arabic_rtl">
+                <div class="float-left badge-cont add_btn_cont">{{dish.quantity}}</div>
+                <span class="float-left span-detail-order custom_color1"> {{dish.name}}</span>
+                <div class="dish_icons">
+                    <i class="ion-edit icon-button btn-edit" ng-click="onClickEdit(dish)" ng-show=ADDONS.cart_enhacements></i>
+                    <i class="ion-android-cancel icon-button btn-delete" ng-click="onClickRemove(dish)" ng-show=ADDONS.cart_enhacements></i>
+                    <p class="color-main font-small float-right custom_color2">{{ c_unit }} {{(dish.total).toFixed(2)}}</p>
+                </div>
             </div>
             <div class="food-cont color-font-dark" ng-if="arabic_rtl">
-                <div class="float-right badge-cont">{{dish.quantity}}</div>
-                <span class="float-right span-detail-order"> {{dish.name}}</span>
-                <i class="ion-edit icon-button btn-edit" ng-click="onClickEdit(dish)" ng-show=ADDONS.cart_enhacements></i>
-                <i class="ion-android-cancel icon-button btn-delete" ng-click="onClickRemove(dish)" ng-show=ADDONS.cart_enhacements></i>
-                <p class="color-main font-small float-left">{{ c_unit }} {{(dish.total).toFixed(2)}}</p>
+                <div class="float-right badge-cont add_btn_cont">{{dish.quantity}}</div>
+                <span class="float-right span-detail-order custom_color1"> {{dish.name}}</span>
+                <div class="dish_icons">
+                    <i class="ion-edit icon-button btn-edit" ng-click="onClickEdit(dish)" ng-show=ADDONS.cart_enhacements></i>
+                    <i class="ion-android-cancel icon-button btn-delete" ng-click="onClickRemove(dish)" ng-show=ADDONS.cart_enhacements></i>
+                    <p class="color-main font-small float-left custom_color2">{{ c_unit }} {{(dish.total).toFixed(2)}}</p>
+                </div>
             </div>
             <!--<p class="color-font-gray food-tail" style="white-space: normal">
                 <span>{{getFormattedOptions(dish.options)}}</span>
             </p>-->
+
+           
             <p class="color-font-gray food-tail" style="white-space: normal" ng-init="dishOptionsView = parseOptions(dish.options)">
                 <span ng-repeat="(name, options) in dishOptionsView">
                     <strong>{{name}}</strong><br>
@@ -39,8 +45,8 @@
                 </span>
             </p>
             <p class="color-font-gray food-tail pd-top-4 multiline">
-                <span style="font-weight: 500" ng-if="dish.comments != ''">{{dish.comments}}</span>
-                <span style="font-weight: 500" ng-if="dish.comments == ''"></span>
+                <span style="font-weight: 500; margin-top:6px; display: inline-block;" ng-if="dish.comments != ''">{{dish.comments}}</span>
+                <span style="font-weight: 500; margin-top:6px; display: inline-block;" ng-if="dish.comments == ''"></span>
             </p>
             <div class="h-line-grey"></div>
         </ion-item>
@@ -60,61 +66,61 @@
         </ion-item>
         <ion-item class="no-border" ng-if="!arabic_rtl">
             <div class="food-cont color-font-dark h-30">
-                <p class="float-left font-mid">{{ MLanguages.MOBILE_CHECKOUT_DELIVERY_FEE }}</p>
-                <p class="color-main font-small float-right">{{ c_unit }} {{ deliveryFee  | number:2}}</p>
+                <p class="float-left font-mid custom_color1">{{ MLanguages.MOBILE_CHECKOUT_DELIVERY_FEE }}</p>
+                <p class="color-main font-small float-right custom_color2">{{ c_unit }} {{ deliveryFee  | number:2}}</p>
             </div>
             <!--<input type="text" placeholder="{{ MLanguages.ORDER_COMMENTS }}" class="outline-txt-box" ng-model="delivery.comments" />-->
             <div class="h-line-grey"></div>
         </ion-item>
         <ion-item class="no-border" ng-if="arabic_rtl">
             <div class="food-cont color-font-dark h-30">
-                <p class="float-right font-mid">{{ MLanguages.MOBILE_CHECKOUT_DELIVERY_FEE }}</p>
-                <p class="color-main font-small float-left">{{ c_unit }} {{ deliveryFee  | number:2}}</p>
+                <p class="float-right font-mid custom_color1">{{ MLanguages.MOBILE_CHECKOUT_DELIVERY_FEE }}</p>
+                <p class="color-main font-small float-left custom_color2">{{ c_unit }} {{ deliveryFee  | number:2}}</p>
             </div>
             <input type="text" placeholder="{{ MLanguages.ORDER_COMMENTS }}" class="outline-txt-box" ng-model="delivery.comments" />
             <div class="h-line-grey"></div>
         </ion-item>
         <ion-item class="no-border" ng-if="!arabic_rtl">
             <div class="food-cont color-font-dark">
-                <p class="float-left font-mid">{{ MLanguages.Tax_V2 }} ({{ curBusinessInfo.tax }}%)</p>
-                <p class="color-main font-small float-right">{{ c_unit }} {{ taxPrice.toFixed(2) }}</p>
+                <p class="float-left font-mid custom_color1">{{ MLanguages.Tax_V2 }} ({{ curBusinessInfo.tax }}%)</p>
+                <p class="color-main font-small float-right custom_color2">{{ c_unit }} {{ taxPrice.toFixed(2) }}</p>
             </div>
             <p class="color-font-gray check-detail">{{ taxType }}</p>
             <div class="h-line-grey"></div>
         </ion-item>
         <ion-item class="no-border" ng-if="arabic_rtl">
             <div class="food-cont color-font-dark">
-                <p class="float-right font-mid">{{ MLanguages.Tax_V2 }} ({{ curBusinessInfo.tax }}%)</p>
-                <p class="color-main font-small float-left">{{ c_unit }} {{ taxPrice.toFixed(2) }}</p>
+                <p class="float-right font-mid custom_color1">{{ MLanguages.Tax_V2 }} ({{ curBusinessInfo.tax }}%)</p>
+                <p class="color-main font-small float-left custom_color2">{{ c_unit }} {{ taxPrice.toFixed(2) }}</p>
             </div>
             <p class="color-font-gray check-detail">{{ taxType }}</p>
             <div class="h-line-grey"></div>
         </ion-item>
         <ion-item class="no-border" ng-if="!arabic_rtl">
             <div class="food-cont color-font-dark item-single">
-                <p class="float-left font-mid">{{ MLanguages.SERVICE_FEE_V2 }} ({{ curBusinessInfo.serviceFee }}%)</p>
-                <p class="color-main font-small float-right">{{ c_unit }} {{(serviceFee).toFixed(2)}}</p>
+                <p class="float-left font-mid custom_color1">{{ MLanguages.SERVICE_FEE_V2 }} ({{ curBusinessInfo.serviceFee }}%)</p>
+                <p class="color-main font-small float-right custom_color2">{{ c_unit }} {{(serviceFee).toFixed(2)}}</p>
             </div>
             <div class="h-line-grey"></div>
         </ion-item>
         <ion-item class="no-border" ng-if="arabic_rtl">
             <div class="food-cont color-font-dark item-single">
-                <p class="float-right font-mid">{{ MLanguages.SERVICE_FEE_V2 }} ({{ curBusinessInfo.serviceFee }}%)</p>
-                <p class="color-main font-small float-left">{{ c_unit }} {{(serviceFee).toFixed(2)}}</p>
+                <p class="float-right font-mid custom_color1">{{ MLanguages.SERVICE_FEE_V2 }} ({{ curBusinessInfo.serviceFee }}%)</p>
+                <p class="color-main font-small float-left custom_color2">{{ c_unit }} {{(serviceFee).toFixed(2)}}</p>
             </div>
             <div class="h-line-grey"></div>
         </ion-item>
         <ion-item class="no-border total-item" ng-if="!arabic_rtl">
-            <p class="font-large color-font-dark float-left">{{ MLanguages.TRACKORDER_TOTAL_VALUE }}</p>
-            <p class="font-small color-main float-right">{{ c_unit }} {{((calcTotalPrice)-discount).toFixed(2)}}</p>
+            <p class="font-large color-font-dark float-left custom_color1">{{ MLanguages.TRACKORDER_TOTAL_VALUE }}</p>
+            <p class="font-small color-main float-right custom_color2">{{ c_unit }} {{((calcTotalPrice)-discount).toFixed(2)}}</p>
         </ion-item>
         <ion-item class="no-border total-item" ng-if="arabic_rtl">
-            <p class="font-large color-font-dark float-right">{{ MLanguages.TRACKORDER_TOTAL_VALUE }}</p>
-            <p class="font-small color-main float-left">{{ c_unit }} {{((calcTotalPrice)-discount).toFixed(2)}}</p>
+            <p class="font-large color-font-dark float-right custom_color1">{{ MLanguages.TRACKORDER_TOTAL_VALUE }}</p>
+            <p class="font-small color-main float-left custom_color2">{{ c_unit }} {{((calcTotalPrice)-discount).toFixed(2)}}</p>
         </ion-item>
     </ion-content>
     <ion-footer-bar class="footer-style">
-        <div class="button find-btn font-large btn-bar-bottom color-font-white button-positive" ng-click="onFinalCheckOut()" ng-if="subTotal >= minimumPrice && citems > 0">{{ MLanguages.MOBILE_CHECKOUT_ORDER_NOW }}</div>
+        <div class="button find-btn font-large btn-bar-bottom color-font-white button-positive add_btn_box" ng-click="onFinalCheckOut()" ng-if="subTotal >= minimumPrice && citems > 0">{{ MLanguages.MOBILE_CHECKOUT_ORDER_NOW }}</div>
         <div class="button find-btn font-large btn-bar-bottom color-font-white button-royal" ng-if="citems <= 0">{{ MLanguages.MOBILE_CHECKOUT_ORDER_NOW }}</div>
         <div class="button find-btn font-large btn-bar-bottom color-font-white button-royal" ng-if="subTotal < minimumPrice && citems > 0">{{ MLanguages.SHOPPING_FOURTH_MINIMUM_VALUE }} {{ minimumPrice.toFixed(2) }}</div>
     </ion-footer-bar>

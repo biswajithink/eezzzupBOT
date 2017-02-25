@@ -169,25 +169,25 @@
                     <!-- quality -->
                     <div class="col col-30 custom_color1 text_bold">{{ MLanguages.TEMPLATE_QUALITY_OF_FOOD }}</div>
                     <div class="col col-30"><div star-rating rating-value="review.quality" max="5" ></div></div>
-                    <div class="col col-30">{{ review.quality }} {{ MLanguages.MOBILE_FRONT_OUT_OF_5 }}</div>
+                    <div class="col col-30" style="text-align:center;">{{ review.quality }} {{ MLanguages.MOBILE_FRONT_OUT_OF_5 }}</div>
                 </div>
                 <div class="row row-no-padding">
                     <!-- dealer -->
                     <div class="col col-30 custom_color1 text_bold">On Time</div>
                     <div class="col col-30"><div star-rating rating-value="review.dealer" max="5" ></div></div>
-                    <div class="col col-30">{{ review.dealer }} {{ MLanguages.MOBILE_FRONT_OUT_OF_5 }}</div>
+                    <div class="col col-30" style="text-align:center;">{{ review.dealer }} {{ MLanguages.MOBILE_FRONT_OUT_OF_5 }}</div>
                 </div>
                 <div class="row row-no-padding">
                     <!-- delivery -->
                     <div class="col col-30 custom_color1 text_bold">{{ MLanguages.TEMPLATE_SERVICE }}</div>
                     <div class="col col-30"><div star-rating rating-value="review.delivery" max="5" ></div></div>
-                    <div class="col col-30">{{ review.delivery }} {{ MLanguages.MOBILE_FRONT_OUT_OF_5 }}</div>
+                    <div class="col col-30" style="text-align:center;">{{ review.delivery }} {{ MLanguages.MOBILE_FRONT_OUT_OF_5 }}</div>
                 </div>
                 <div class="row row-no-padding">
                     <!-- package -->
                     <div class="col col-30 custom_color1 text_bold">Packaging</div>
                     <div class="col col-30"><div star-rating rating-value="review.package" max="5" ></div></div>
-                    <div class="col col-30">{{ review.package }} {{ MLanguages.MOBILE_FRONT_OUT_OF_5 }}</div>
+                    <div class="col col-30" style="text-align:center;">{{ review.package }} {{ MLanguages.MOBILE_FRONT_OUT_OF_5 }}</div>
                 </div>
                 <div class="bottom-line-grey" style="margin-top: 0.1em"></div>
             </ion-item>
@@ -227,10 +227,10 @@
 
     </ion-content>
     <ion-footer-bar class="footer-style color-main-bg">
-        <div class="button find-btn font-large btn-bar-bottom color-font-white add_btn_box" ng-if="allDishCount == 0">
+        <!--<div class="button find-btn font-large btn-bar-bottom color-font-white add_btn_box" ng-if="allDishCount == 0">
             {{ MLanguages.CARTEMPTY_V21 }}
-        </div>
-        <div class="button find-btn font-large btn-bar-bottom pd-right-3 color-font-white button-positive add_btn_box" ng-click="onViewOrder()" ng-if="allDishCount > 0">
+        </div>-->
+        <div class="button find-btn font-large btn-bar-bottom pd-right-3 color-font-white button-positive add_btn_box" ng-click="onViewOrder()">
             <div class="float-left btn-badge-cont add_btn_cont">{{allDishCount}}</div>{{ MLanguages.MOBILE_FRONT_BUTTON_VIEW_ORDER }}
         </div>
         <div class="button cat_item" ng-click="popover.show($event)">
