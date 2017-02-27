@@ -28,18 +28,28 @@
             <div class="drop-btn-lang"></div>
         </ion-item>-->
         <ion-item style="display: flex; padding-top: 0;" ng-show=ADDONS.pickup>
-            <!--<ul class="select-item order_type order_type_ul" ng-model="myOrder.orderType">
+           <!--<ul class="select-item order_type order_type_ul">
                 <li ng-repeat="item in orderTypelist track by $index" value="{{item.value}}" ng-selected="item.selected" ng-click="selectOrderType(item)"  ng-class="{active: isActive(item)}">                    
                     <img style="width:10px;" ng-src="{{item.img}}">
                      {{item.name}}
                 </li>
             </ul>-->
-            <select class="select-item order_type" ng-model="myOrder.orderType">
+           <ul class="select-item order_type order_type_ul">
+                <li ng-click="selectOrderType('pickup')"  ng-class="{active: isActive('pickup')}">                    
+                    <img style="width:20px; margin: 0px" src="img/pickup_icon.png">
+                     Pickup
+                </li>
+                <li ng-click="selectOrderType('delivery')" ng-class="{active: isActive('delivery')}">                    
+                    <img style="width:20px; margin: 0px" src="img/delivery_icon.png">
+                     Delivery
+                </li>
+            </ul>
+            <!--<select class="select-item order_type" ng-model="myOrder.orderType">
               <option ng-repeat="item in orderTypelist" value="{{item.value}}" ng-selected="item.selected">
                 {{item.name}}
               </option>
             </select>
-            <div class="drop-btn"></div>
+            <div class="drop-btn"></div>-->
         </ion-item>
         <ion-item class="location-cont view-map" ng-show="SEARCH_BY_ADDRESS">
             <div class="gp-container add_box map-input" ng-class="{'arabic_rtl': arabic_rtl}">

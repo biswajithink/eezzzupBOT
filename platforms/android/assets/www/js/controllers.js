@@ -174,21 +174,40 @@ angular.module('orderingApp.controllers',['ngOpenFB','google.places','ti-segment
 		}
 
 		$rootScope.orderTypelist = [
-			{name:"Delivery", value:'delivery', selected:'selected', img:"../img/delivery_icon.png"},
-			{name:"Pickup", value:'pickup', selected:'', img:"../img/pickup_icon.png"}/*,
+			{name:"Delivery", value:'delivery', selected:''},
+			{name:"Pickup", value:'pickup', selected:'selected'}/*,
 			 {name:"Reservation", value:'reservation', selected:''}*/
 			 
 		];
-		$scope.isActive = false;
+		//$scope.isActive = false;
+		/*
+		
 		$scope.selectOrderType = function(item){
 			//alert("hi");
 			$scope.selected = item; 
+			$scope.myOrder.orderType = item.value;
+
+			console.log(item.value);
 			
 			//console.log($rootScope.selectOrderType);
 		}
 		$scope.isActive = function(item) {
 	       return $scope.selected === item;
 		};
+		*/
+		$scope.selectOrderType = function(itemType){
+			
+			$scope.myOrder.orderType = itemType;
+			console.log($scope.myOrder.orderType);
+		}
+		$scope.isActive = function(itemType) {
+			 if($scope.myOrder.orderType == itemType){
+				 return true;
+			 }else{
+				 return false;
+			 }
+		};
+
 console.log($scope.selectOrderType);
 
 		/*$rootScope.getLanguage(function (err, list, dictionary) {
@@ -871,7 +890,7 @@ console.log($scope.selectOrderType);
 
 		$scope.gPlace;          // geoPlace Variable AutoComplete
 		$scope.myOrder = {
-			orderType : 'delivery',
+			orderType : 'pickup',
 			curAddress : '',
 			curNeighbour : '',
 			curAddress : '',
@@ -911,12 +930,25 @@ console.log($scope.selectOrderType);
 			$scope.myOrder.lang = $scope.LangList[0];
 		}
 		initLanguageSelection();
-
+		
 		$scope.orderTypelist = [
-			{name:"Delivery", value:'delivery', selected:'selected'},
-			{name:"Pickup", value:'pickup', selected:''}/*,
+			{name:"Delivery", value:'delivery', selected:''},
+			{name:"Pickup", value:'pickup', selected:'selected'}/*,
 			 {name:"Reservation", value:'reservation', selected:''}*/
 		];
+
+		$scope.selectOrderType = function(itemType){
+			
+			$scope.myOrder.orderType = itemType;
+			console.log($scope.myOrder.orderType);
+		}
+		$scope.isActive = function(itemType) {
+			 if($scope.myOrder.orderType == itemType){
+				 return true;
+			 }else{
+				 return false;
+			 }
+		};
 
 		// Get Language List
 		if (typeof $rootScope.MLanguages.MOBILE_FRONT_LOAD_LOADING == 'undefined') {
@@ -970,8 +1002,8 @@ console.log($scope.selectOrderType);
 				//$rootScope.MLanguages = dictionary;
 
 				$scope.orderTypelist = [
-					{name:$rootScope.MLanguages.MOBILE_FRONT_VISUALS_DELIVERY, value:'delivery', selected:'selected'},
-					{name:$rootScope.MLanguages.MOBILE_FRONT_VISUALS_PICKUP, value:'pickup', selected:''}/*,
+					{name:$rootScope.MLanguages.MOBILE_FRONT_VISUALS_DELIVERY, value:'delivery', selected:''},
+					{name:$rootScope.MLanguages.MOBILE_FRONT_VISUALS_PICKUP, value:'pickup', selected:'selected'}/*,
 					 {name:$rootScope.MLanguages.MOBILE_FRONT_VISUALS_RESERVATION, value:'reservation', selected:''}*/
 				];
 
@@ -1217,8 +1249,8 @@ console.log($scope.selectOrderType);
 							$rootScope.MLanguages = s.result.languages;*/
 
 							$scope.orderTypelist = [
-								{name:$rootScope.MLanguages.MOBILE_FRONT_VISUALS_DELIVERY, value:'delivery', selected:'selected'},
-								{name:$rootScope.MLanguages.MOBILE_FRONT_VISUALS_PICKUP, value:'pickup', selected:''}
+								{name:$rootScope.MLanguages.MOBILE_FRONT_VISUALS_DELIVERY, value:'delivery', selected:''},
+								{name:$rootScope.MLanguages.MOBILE_FRONT_VISUALS_PICKUP, value:'pickup', selected:'selected'}
 							];
 
 							AllCityFech.getAllCity.getCity({
@@ -1878,6 +1910,8 @@ console.log($scope.selectOrderType);
 		}
 
 		$scope.findRest = function (flag) {
+
+			console.log($scope.myOrder.orderType);
 			$scope.hideModal();
 			/*if (ADDONS.single_business && $scope.myOrder.orderType == 'pickup') {
 				return $scope.goRest();
@@ -1935,7 +1969,7 @@ console.log($scope.selectOrderType);
 
 		};
 
-		$scope.delivery = function () {
+	/*	$scope.delivery = function () {
 			console.log("Delivery");
 			$scope.myOrder.orderType = 'delivery';
 			$scope.openMap();
@@ -1944,7 +1978,7 @@ console.log($scope.selectOrderType);
 		$scope.pickup = function () {
 			$scope.myOrder.orderType = 'pickup';
 			$scope.openMap();
-		}
+		}*/
 
 		$scope.findRestaurant = function(splited_address){
 
