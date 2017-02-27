@@ -63,7 +63,7 @@
             <textarea class="special-inbox" rows="2" placeholder="Where did you find about us" ng-model="finalCheckout.where_find_us"></textarea>
         </ion-item>-->
         <ion-item class="no-border text-center pd-none-t customer_detailitem" ng-class="{'arabic_rtl': arabic_rtl}" ng-if="curBusiness.discountoffer!=true && ADDONS.discount_code && infoFields['Discount Coupon'].status">
-            <input type="text" class="w-100 in-box-style-base" placeholder="{{ MLanguages.MOBILE_CHECKOUT_DISCOUNT_COUPON }}" ng-model="order_buyer.coupon" ng-change="discountcodeCheck()" ng-readonly="order_buyer.couponstatus">
+            <input type="text" class="w-100 in-box-style-base" placeholder="{{ MLanguages.MOBILE_CHECKOUT_DISCOUNT_COUPON }} *" ng-model="order_buyer.coupon" ng-change="discountcodeCheck()" ng-readonly="order_buyer.couponstatus">
         </ion-item>
         <ion-item class="item-divider custom_divider2" ng-class="{'arabic_rtl': arabic_rtl}">
             <span class="divider-padding no-padding-h">{{ MLanguages.MOBILE_CHECKOUT_ORDER_DETAILS }}</span>

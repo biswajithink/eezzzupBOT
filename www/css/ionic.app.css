@@ -10937,7 +10937,7 @@ ul.rating span {
 }
 
 .business-name-break {
-  word-break: break-all;
+  /*word-break: break-all;*/
   white-space: initial;
   font-size: 12px; }
 

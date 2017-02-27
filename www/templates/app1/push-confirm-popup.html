@@ -1,7 +1,7 @@
-<ion-modal-view>
+<!--<ion-modal-view>
     <ion-header-bar class="bar-stable bar-shadow fix-buttons">
         <button class="button-icon icon-btn-close" ng-click="offConfirm()"></button>
-        <!--<ion-title class="font-mid">Checkout</ion-title>-->
+        <!--<ion-title class="font-mid">Checkout</ion-title>--
     </ion-header-bar>
     <ion-content class="order-view-cont color-bg pd-top-10">
         <ion-item class="font-center no-bg no-border">
@@ -17,4 +17,29 @@
         </ion-item>
 
     </ion-content>
-</ion-modal-view>
+</ion-modal-view>-->
+
+<div class="card order_condiv" ng-if="ADDONS.checkout_enhacements">
+    <button class="button top-btn" ng-click="offConfirm()"><img src="img/icon-close.png"></button>
+    <ion-list>
+        <ion-item>
+            <img style="width:85px; margin-bottom: 0px;" src="img/ok.png" alt="ok">
+        </ion-item>
+        <ion-item>
+            <h2>Order No: {{placedOrderId}}</h2>
+            <p>Accepted Successfully</p>
+        </ion-item>
+        <ion-item>
+            <span>Check My Order tab to check your order status.</span>
+            <button class="button assertive gohome_btn" ng-click="offConfirm()"> OK </button>
+        </ion-item>
+        <ion-item class="share_text">
+            <p>Share Your Order</p>
+        </ion-item>
+        <ion-item class="text-center share-cont fo_sobtn" ng-show=ADDONS.share_order>
+            <button class="button button-calm ion-social-facebook share-btn fb" ng-click="onSocialShare(1)"></button>
+            <!--<button class="button button-calm ion-social-twitter share-btn tw" ng-click="onSocialShare(2)"></button>-->
+            <button class="button button-calm ion-android-share-alt share-btn sh" ng-click="onSocialShare(3)"></button>
+        </ion-item>        
+    </ion-list>    
+</div>

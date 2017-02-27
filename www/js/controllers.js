@@ -2397,7 +2397,7 @@ console.log($scope.selectOrderType);
 		};*/
 
 		$rootScope.getFormattedTime = function (timeJson) {
-			if (timeJson == undefined) return "00:00";
+			/*if (timeJson == undefined) return "00:00";
 			var h = parseInt(timeJson.hour);
 			var m = parseInt(timeJson.minute);
 			if (h > 23) {
@@ -2415,7 +2415,25 @@ console.log($scope.selectOrderType);
 			}
 			if (h < 10) h = '0' + h;
 			if (m < 10) m = '0' + m;
-			return h + ':' + m + period;
+			return h + ':' + m + period;*/
+
+			if (timeJson == undefined) return "00:00";
+            var h = parseInt(timeJson.hour);
+            var m = parseInt(timeJson.minute);
+
+            if (m < 10) m = '0' + m;
+            //if(h < 24){
+            if(h < 12){
+                if (h < 10) h = '0' + h;
+                return h + ':' + m +'am';
+            }else{
+                //rh = h - 24;
+                rh = h - 12;
+                rh = ('0' + rh).slice(-2);
+
+
+                return rh + ':' + m +'pm';
+            }
 		};
 		
 		BusinessSvc.getPaymentmethod.charge({
@@ -3405,7 +3423,7 @@ console.log($scope.selectOrderType);
 		};
 
 		$rootScope.getFormattedTime = function (timeJson) {
-			if (timeJson == undefined) return "00:00";
+			/*if (timeJson == undefined) return "00:00";
 			var h = parseInt(timeJson.hour);
 			var m = parseInt(timeJson.minute);
 			if (h > 23) {
@@ -3423,7 +3441,25 @@ console.log($scope.selectOrderType);
 			}
 			if (h < 10) h = '0' + h;
 			if (m < 10) m = '0' + m;
-			return h + ':' + m + period;
+			return h + ':' + m + period;*/
+
+			if (timeJson == undefined) return "00:00";
+            var h = parseInt(timeJson.hour);
+            var m = parseInt(timeJson.minute);
+
+            if (m < 10) m = '0' + m;
+            //if(h < 24){
+            if(h < 12){
+                if (h < 10) h = '0' + h;
+                return h + ':' + m +'am';
+            }else{
+                //rh = h - 24;
+                rh = h - 12;
+                rh = ('0' + rh).slice(-2);
+
+
+                return rh + ':' + m +'pm';
+            }
 		};   
 
 		$scope.getFormattedDistance = function (distance) {
@@ -7173,7 +7209,7 @@ console.log($scope.selectOrderType);
 		// Order Confirm Part ------------------------
 		$scope.onConfirm = function(){
 			if (!ADDONS.web_template) {
-				$ionicModal.fromTemplateUrl('templates/'+ADDONS.template+'/order-confirm-popup.html', {
+				/*$ionicModal.fromTemplateUrl('templates/'+ADDONS.template+'/order-confirm-popup.html', {
 					scope: $scope,
 					animation: 'slide-in-up'
 				}).then(function(modal) {
@@ -7182,7 +7218,22 @@ console.log($scope.selectOrderType);
 						$scope.hide();
 					});
 					$scope.curOrderType = gNearService.getData().orderType;
+				});*/
+				$scope.data={};
+					var myPopup = $ionicPopup.show({
+					templateUrl:'templates/'+ADDONS.template+'/order-confirm-popup.html',     
+					scope: $scope,     
+					cssClass:'placeOrderPopup'
 				});
+				myPopup.then(function(res) {
+					console.log('Tapped!', res);
+				});
+				$scope.offConfirm = function(){
+					myPopup.close();   
+					$ionicHistory.clearHistory();
+						$ionicHistory.clearCache().then(function(){ $state.go('sideMenu.homeScreen')});
+				}
+				
 			} else {
 				$rootScope.confirmData = {
 					curBusinessData: $scope.curBusinessData,
@@ -7202,11 +7253,12 @@ console.log($scope.selectOrderType);
 			}
 			//$scope.offCheckOut();
 		};
-		$scope.offConfirm = function(sw){
+		
+		/*$scope.offConfirm = function(sw){
 			$scope.modal1.hide();
 			$scope.modal1.remove();
 			if (!ADDONS.web_template && !sw) $scope.onGoToHome();
-		};
+		};*/
 		$scope.onGoToHome = function(){
 			$ionicHistory.clearHistory();
 			$ionicHistory.clearCache().then(function(){ $state.go(app_states.homeScreen)});
@@ -7627,12 +7679,12 @@ console.log($scope.selectOrderType);
 			}
 
 			if ($scope.orderTotal == null) return;
-			/*if ($scope.order_buyer.name == '' || $scope.order_buyer.email == '' ||
+			if ($scope.order_buyer.name == '' || $scope.order_buyer.email == '' ||
 				$scope.order_buyer.address == '' || $scope.order_buyer.tel == '') {
 				$scope.fieldDetect($scope.MLanguages.MOBILE_FILL_REQUIRED_FIELDS);
 				return;
 
-			}*/
+			}
 			if ($scope.paymentModel.val == 'none'){
 				$scope.fieldDetect($scope.MLanguages.BUSINESS_PAYMENT_VALIDATION);
 				return;

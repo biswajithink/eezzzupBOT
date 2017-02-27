@@ -756,6 +756,7 @@ resize: none;
 }
 .propop_btm .propop_add a.activated, .propop_btm .propop_add a.active{
     background: none;
+    color:#fff;
 }
 .propop_btm .propop_price{
     width: 30%;
@@ -1182,6 +1183,7 @@ resize: none;
 .payment_card .item-content{
     background-size: 24px;
     background-position: 10px;
+    padding: 16px 1em 16px 16px !important;
 }
 .payment_card input:checked + .radio-content .radio-icon{
     background-size: 24px;

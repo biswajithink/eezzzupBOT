@@ -172,17 +172,17 @@
                     <div class="col col-30" style="text-align:center;">{{ review.quality }} {{ MLanguages.MOBILE_FRONT_OUT_OF_5 }}</div>
                 </div>
                 <div class="row row-no-padding">
-                    <!-- dealer -->
-                    <div class="col col-30 custom_color1 text_bold">On Time</div>
-                    <div class="col col-30"><div star-rating rating-value="review.dealer" max="5" ></div></div>
-                    <div class="col col-30" style="text-align:center;">{{ review.dealer }} {{ MLanguages.MOBILE_FRONT_OUT_OF_5 }}</div>
-                </div>
-                <div class="row row-no-padding">
                     <!-- delivery -->
                     <div class="col col-30 custom_color1 text_bold">{{ MLanguages.TEMPLATE_SERVICE }}</div>
                     <div class="col col-30"><div star-rating rating-value="review.delivery" max="5" ></div></div>
                     <div class="col col-30" style="text-align:center;">{{ review.delivery }} {{ MLanguages.MOBILE_FRONT_OUT_OF_5 }}</div>
                 </div>
+                <div class="row row-no-padding">
+                    <!-- dealer -->
+                    <div class="col col-30 custom_color1 text_bold">On Time</div>
+                    <div class="col col-30"><div star-rating rating-value="review.dealer" max="5" ></div></div>
+                    <div class="col col-30" style="text-align:center;">{{ review.dealer }} {{ MLanguages.MOBILE_FRONT_OUT_OF_5 }}</div>
+                </div>                
                 <div class="row row-no-padding">
                     <!-- package -->
                     <div class="col col-30 custom_color1 text_bold">Packaging</div>
@@ -227,13 +227,13 @@
 
     </ion-content>
     <ion-footer-bar class="footer-style color-main-bg">
-        <!--<div class="button find-btn font-large btn-bar-bottom color-font-white add_btn_box" ng-if="allDishCount == 0">
+        <div class="button find-btn font-large btn-bar-bottom color-font-white add_btn_box" ng-if="allDishCount == 0">
             {{ MLanguages.CARTEMPTY_V21 }}
-        </div>-->
-        <div class="button find-btn font-large btn-bar-bottom pd-right-3 color-font-white button-positive add_btn_box" ng-click="onViewOrder()">
+        </div>
+        <div class="button find-btn font-large btn-bar-bottom pd-right-3 color-font-white button-positive add_btn_box" ng-click="onViewOrder()" ng-if="!allDishCount == 0">
             <div class="float-left btn-badge-cont add_btn_cont">{{allDishCount}}</div>{{ MLanguages.MOBILE_FRONT_BUTTON_VIEW_ORDER }}
         </div>
-        <div class="button cat_item" ng-click="popover.show($event)">
+        <div class="button cat_item" ng-click="popover.show($event)" ng-if="!allDishCount == 0">
             <span></span>
             <span></span>
             <span></span>

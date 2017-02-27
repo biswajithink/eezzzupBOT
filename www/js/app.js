@@ -180,6 +180,24 @@ angular.module('orderingApp', ['ionic','orderingApp.controllers','orderingApp.se
                         $rootScope.modal.hide();
                         $state.go('sideMenu.homeScreen');
                     }
+
+                    $scope.data={};
+                    var myPopup = $ionicPopup.show({
+                    templateUrl:'templates/order-confirm-popup.html',     
+                    scope: $scope,     
+                    cssClass:'placeOrderPopup'
+                    });
+                    myPopup.then(function(res) {
+                        console.log('Tapped!', res);
+                    });
+                    $scope.offConfirm = function(){
+                        myPopup.close();   
+                        $ionicHistory.clearHistory();
+                            $ionicHistory.clearCache().then(function(){ $state.go('sideMenu.homeScreen')});
+                    }
+                    $scope.closeConfirm = function(){
+                        myPopup.close();
+                    }
                 } else {
                     OrderSvc.getOrderByUser.getOrder({
                         userId : gUserData.getData().id
