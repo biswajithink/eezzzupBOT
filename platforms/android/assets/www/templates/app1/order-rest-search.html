@@ -53,14 +53,14 @@
                                     
                                 </li>
                                 <li class="clear">
-                                    <span class="rating float-left">{{ MLanguages.DELIVERY_V2 }} {{ item.deliveryCost*orderType }}</span>
-                                    <!--<div star-rating rating-value="item.reviews" max="5" class="rating-style">({{item.reviews | number:2}}{{MLanguages.MOBILE_MENU_LIST_RATINGS}})</div>-->
-                                    <div star-rating rating-value="item.reviews" max="5" class="rating-style"></div>
-                                </li>
-                                <li class="clear">
+                                    <span class="rating float-left">{{ MLanguages.DELIVERY_V2 }} {{ item.deliveryCost*orderType }}</span>                                    
+                                    <!--<div star-rating rating-value="item.reviews" max="5" class="rating-style"></div>-->
                                     <span class="rating float-right minimum_span">Minimum : {{ item.minimum }}</span>
                                 </li>
-                                <!--<li>
+                                <!--<li class="clear">
+                                    <span class="rating float-right minimum_span">Minimum : {{ item.minimum }}</span>
+                                </li>-->
+                                <!--<li>    
                                     <span class="rating float-left">{{ MLanguages.MOBILE_BUSINESS_LIST_PROMOTION }}: {{item.promoDescr}} </span>
                                     <span class="rating float-right">{{ MLanguages.DISTANCE }}: {{item.distance.toFixed(2)}} {{ MLanguages.BUSINESS_LIST_OPTIONS_KM }} </span>
                                 </li>-->

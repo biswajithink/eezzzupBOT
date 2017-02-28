@@ -815,6 +815,7 @@ console.log($scope.selectOrderType);
 			//localStorageApp.setItem('LangId','1');
 
 			initView();
+			document.getElementById('MenuButton').classList.remove('hide');
 		});
 
 		function initView() {
@@ -3261,7 +3262,8 @@ console.log($scope.selectOrderType);
                 $ionicHistory.nextViewOptions({
                     disableBack : false
                 });
-                $state.go('sideMenu.homeScreen');
+                //$state.go('sideMenu.homeScreen');
+				$state.go('sideMenu.homeScreen');
         };
 
     $scope.chatNow = function(){
@@ -6796,6 +6798,7 @@ console.log($scope.item);
 		$scope.DRIVER_TIP = DRIVER_TIP;
 		$scope.infoFields = {};
 
+
 		$scope.show = function() {
 			$ionicLoading.show({
 				template: '<p>'+$scope.MLanguages.MOBILE_ORDERING+'</p><ion-spinner icon="lines" class="spinner-assertive"></ion-spinner>'
@@ -6803,9 +6806,9 @@ console.log($scope.item);
 		};
 
 		$scope.hide = function(){
-			$ionicLoading.hide();
-		};
-
+			$ionicLoading.hide();			
+		}; 
+		
 		$scope.userState = USER_STATE;
 		$scope.user_login = gUserData.getData().id != undefined && gUserData.getData().id != -1;
 		console.log($scope.user_login);
@@ -7084,7 +7087,7 @@ console.log($scope.item);
 
 			//$scope.curStreet = $scope.curBusinessInfo.street + ', ' + gNearService.getData().nearAddress;
 			$scope.curStreet = gNearService.getData().nearAddress;
-			$scope.order_buyer.address = $scope.curStreet;
+			//$scope.order_buyer.address = $scope.curStreet;
 			$scope.taxPrice = parseFloat($scope.curBusiness.tax);
 
 			$scope.driverTipsList = [
@@ -7864,6 +7867,8 @@ console.log($scope.item);
 			gCurRestaurant.setData({});
 			gAllBusiness.setData([]);
 			gBufferDishes.setData(ary);
+			
+			$ionicLoading.hide();
 		}
 
 		$scope.paypalconfirmpayment = function(){

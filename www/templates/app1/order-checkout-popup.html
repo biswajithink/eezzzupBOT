@@ -38,7 +38,7 @@
         <!--<ion-item class="no-border text-center pd-none-t" ng-class="{'arabic_rtl': arabic_rtl}" ng-if="infoFields['Full Address'].status">-->
             <ion-item class="no-border text-center pd-none-t customer_detailitem" ng-class="{'arabic_rtl': arabic_rtl}" ng-if="getdeliveryType == 'delivery'">
                 <span class="input-label" style="color:#7f7f7f">Full Address*</span>
-            <input type="text" class="w-100 in-box-style-base chk_input chk_input3" ng-model="order_buyer.address" googleplace ng-click="onAutoCompleteAddress()">
+            <input type="text" class="w-100 in-box-style-base chk_input chk_input3" placeholder="" ng-model="order_buyer.address" googleplace ng-click="onAutoCompleteAddress()">
         </ion-item>
         <!--<ion-item class="no-border text-center pd-none-t" ng-class="{'arabic_rtl': arabic_rtl}" ng-if="infoFields['Zipcode'].status">
             <input type="text" class="w-100 in-box-style-base" placeholder="{{ MLanguages.MOBILE_ZIP_POSTAL_CODE }}" ng-model="order_buyer.zip">

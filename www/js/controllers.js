@@ -7087,7 +7087,7 @@ console.log($scope.item);
 
 			//$scope.curStreet = $scope.curBusinessInfo.street + ', ' + gNearService.getData().nearAddress;
 			$scope.curStreet = gNearService.getData().nearAddress;
-			$scope.order_buyer.address = $scope.curStreet;
+			//$scope.order_buyer.address = $scope.curStreet;
 			$scope.taxPrice = parseFloat($scope.curBusiness.tax);
 
 			$scope.driverTipsList = [
