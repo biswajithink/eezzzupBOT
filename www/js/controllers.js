@@ -815,6 +815,7 @@ console.log($scope.selectOrderType);
 			//localStorageApp.setItem('LangId','1');
 
 			initView();
+			document.getElementById('MenuButton').classList.remove('hide');
 		});
 
 		function initView() {
@@ -3261,7 +3262,8 @@ console.log($scope.selectOrderType);
                 $ionicHistory.nextViewOptions({
                     disableBack : false
                 });
-                $state.go('sideMenu.homeScreen');
+                //$state.go('sideMenu.homeScreen');
+				$state.go('sideMenu.homeScreen');
         };
 
     $scope.chatNow = function(){
@@ -3718,7 +3720,7 @@ console.log($scope.selectOrderType);
 
 	.controller('detailRestCtrl', function($scope, $rootScope, $state, $ionicPopup, $ionicHistory, gCurRestaurant, gAllBusiness, $ionicPopover, $ionicLoading,
 										   gCurDishList, gOrder, $timeout, BusinessSvc, MyLoading, MyAlert, ADDONS, $ionicModal, ProductOptionSvc, gBufferDishes, 
-										   $interval, $ionicScrollDelegate, $location){									   
+										   $interval, $ionicScrollDelegate, $location,$anchorScroll){									   
 
 			
 		//$scope.MLanguages = {};
@@ -3730,6 +3732,8 @@ console.log($scope.selectOrderType);
             $scope.HeaderTitle = $scope.item.name;
             $scope.HeaderUrl = $scope.item.header;
             $scope.LogoUrl = $scope.item.logo;
+
+console.log($scope.item);
 
             $scope.resMenulist = [];
             $scope.resMenulist = $scope.item.info.categories;
@@ -4086,7 +4090,8 @@ console.log($scope.selectOrderType);
 			buffObj.info = curDishList;
 			gCurDishList.setData(buffObj);
 
-			$state.go('ordering.detailMenu');
+			//$state.go('ordering.detailMenu');
+			$state.go('mobileDetailRest');
 		};
 
 		$scope.backToRestaurant = function () {
@@ -5375,7 +5380,8 @@ console.log($scope.selectOrderType);
 			buffObj.info = curDishList;
 			gCurDishList.setData(buffObj);
 
-			$state.go('ordering.detailMenu');
+			//$state.go('ordering.detailMenu');
+			$state.go('mobileDetailRest');
 		};
 
 		$scope.backToRestaurant = function () {
@@ -6792,6 +6798,7 @@ console.log($scope.selectOrderType);
 		$scope.DRIVER_TIP = DRIVER_TIP;
 		$scope.infoFields = {};
 
+
 		$scope.show = function() {
 			$ionicLoading.show({
 				template: '<p>'+$scope.MLanguages.MOBILE_ORDERING+'</p><ion-spinner icon="lines" class="spinner-assertive"></ion-spinner>'
@@ -6799,9 +6806,9 @@ console.log($scope.selectOrderType);
 		};
 
 		$scope.hide = function(){
-			$ionicLoading.hide();
-		};
-
+			$ionicLoading.hide();			
+		}; 
+		
 		$scope.userState = USER_STATE;
 		$scope.user_login = gUserData.getData().id != undefined && gUserData.getData().id != -1;
 		console.log($scope.user_login);
@@ -7860,6 +7867,8 @@ console.log($scope.selectOrderType);
 			gCurRestaurant.setData({});
 			gAllBusiness.setData([]);
 			gBufferDishes.setData(ary);
+			
+			$ionicLoading.hide();
 		}
 
 		$scope.paypalconfirmpayment = function(){

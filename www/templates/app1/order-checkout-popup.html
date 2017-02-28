@@ -45,7 +45,7 @@
         </ion-item>-->
         <ion-item class="no-border text-center pd-none-t customer_detailitem" ng-class="{'arabic_rtl': arabic_rtl}" ng-if="infoFields['Phone'].status">
             <span class="input-label" style="color:#7f7f7f">Phone Number*</span>
-            <input type="number" class="w-100 in-box-style-base chk_input chk_input2" style="resize:none !important;" ng-model="order_buyer.tel">
+            <input type="tel" class="w-100 in-box-style-base chk_input chk_input2" ng-model="order_buyer.tel">
         </ion-item>
     <!--    <ion-item class="no-border text-center pd-none-t" ng-class="{'arabic_rtl': arabic_rtl}" ng-if="infoFields['Receive SMS'].status">
             <input type="text" class="w-100 in-box-style-base" placeholder="Receive SMS" ng-model="order_buyer.receive_sms">

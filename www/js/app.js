@@ -433,7 +433,7 @@ angular.module('orderingApp', ['ionic','orderingApp.controllers','orderingApp.se
                 controller: 'searchCtrl'
             })
             .state('mobileDetailRest',{
-                //url: '/detail-rest',
+                url: '/detail-rest',
                 templateUrl: 'templates/'+ADDONS.template+'/order-rest-menu.html',
                 controller: 'detailRestCtrl'
             })
@@ -443,7 +443,8 @@ angular.module('orderingApp', ['ionic','orderingApp.controllers','orderingApp.se
                 templateUrl: 'templates/'+ADDONS.template+'/order-rest-menu.html',
                 controller: 'detailRestCtrl'
             })
-            /*.state('ordering.detailMenu',{
+            /*
+            .state('ordering.detailMenu',{
                 cache : false,
                 //url: '/detail-menu',
                 views: {
@@ -452,8 +453,8 @@ angular.module('orderingApp', ['ionic','orderingApp.controllers','orderingApp.se
                         controller: 'detailMenuCtrl'
                     }
                 }
-            })*/
-
+            })
+*/
             .state('ordering.checkOut',{
                 //url: '/order-checkout',
                 views: {

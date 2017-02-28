@@ -3718,7 +3718,7 @@ console.log($scope.selectOrderType);
 
 	.controller('detailRestCtrl', function($scope, $rootScope, $state, $ionicPopup, $ionicHistory, gCurRestaurant, gAllBusiness, $ionicPopover, $ionicLoading,
 										   gCurDishList, gOrder, $timeout, BusinessSvc, MyLoading, MyAlert, ADDONS, $ionicModal, ProductOptionSvc, gBufferDishes, 
-										   $interval, $ionicScrollDelegate, $location){									   
+										   $interval, $ionicScrollDelegate, $location,$anchorScroll){									   
 
 			
 		//$scope.MLanguages = {};
@@ -3730,6 +3730,8 @@ console.log($scope.selectOrderType);
             $scope.HeaderTitle = $scope.item.name;
             $scope.HeaderUrl = $scope.item.header;
             $scope.LogoUrl = $scope.item.logo;
+
+console.log($scope.item);
 
             $scope.resMenulist = [];
             $scope.resMenulist = $scope.item.info.categories;
@@ -4086,7 +4088,8 @@ console.log($scope.selectOrderType);
 			buffObj.info = curDishList;
 			gCurDishList.setData(buffObj);
 
-			$state.go('ordering.detailMenu');
+			//$state.go('ordering.detailMenu');
+			$state.go('mobileDetailRest');
 		};
 
 		$scope.backToRestaurant = function () {
@@ -5375,7 +5378,8 @@ console.log($scope.selectOrderType);
 			buffObj.info = curDishList;
 			gCurDishList.setData(buffObj);
 
-			$state.go('ordering.detailMenu');
+			//$state.go('ordering.detailMenu');
+			$state.go('mobileDetailRest');
 		};
 
 		$scope.backToRestaurant = function () {

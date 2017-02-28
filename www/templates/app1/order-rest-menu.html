@@ -3,7 +3,7 @@
         <ion-nav-buttons side="left">
             <button class="button top-btn" on-swipe-left="onSwipeLeft()" ng-click="backToRestaurant()"><img src="img/icon-back.png"></button>
         </ion-nav-buttons>
-        <ion-nav-title>{{HeaderTitle}}</ion-nav-title>
+        <ion-nav-title>{{item.name}}</ion-nav-title>
         <ion-nav-buttons side="right">
             <button class="button top-btn mg-top-btn-right"></button>
             <!--<img src="img/icon-timer.png"></button>-->
@@ -89,7 +89,7 @@
 
         <div ng-if="restTapNum.id == 1"  focus-group="" focus-group-index="3">
             <ion-item class="text-center">
-                <h2>{{HeaderTitle}}</h2>
+                <h2>{{item.name}}</h2>
                 <!--<p>{{ item.restData.info.address }} - {{ item.restData.info.city.name }}</p>-->
             </ion-item>
             <!-- Catalog part -->

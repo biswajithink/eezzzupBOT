@@ -7,10 +7,11 @@
         <button class="button top-btn"></button>
       </ion-nav-buttons>
     </ion-nav-bar>
-    <ion-content class="profile-cont">
+    <ion-content class="profile-cont custom_bg">
         <div data-tap-disabled="true">
             <div id="profile-map" data-tap-disabled="true" class="map-view"></div>
         </div>
+        
      <!--    <div class="row">
             <div class="col col-35"> </div>
             <div class="col col-30">
@@ -19,8 +20,9 @@
             </div>
             <div class="col col-35"> </div>
         </div>-->
-        <ion-item class="no-border no-bg pd-none-b">
-            <input type="text" class="w-100 in-box-style" placeholder="{{ MLanguages.MOBILE_FRONT_FULL_NAME }}" ng-model="updateUser.name" ng-class="{'arabic_rtl': arabic_rtl}">
+        <ion-item class="no-border no-bg pd-none-b customer_detailitem">
+            <span class="input-label" style="color:#7f7f7f;">Name*</span>
+            <input type="text" class="w-100 in-box-style-base chk_input chk_input2" ng-model="updateUser.name" ng-class="{'arabic_rtl': arabic_rtl}">
         </ion-item>
         <!--<ion-item class="no-border no-bg pd-none-b">
             <input type="text" class="w-100 in-box-style" placeholder="Last Name" ng-model="updateUser.lastname">
@@ -28,14 +30,16 @@
         <ion-item class="no-border no-bg pd-none-b">
             <input type="text" class="w-100 in-box-style" placeholder="Last Name2" ng-model="updateUser.lastname2">
         </ion-item>-->
-        <ion-item class="no-border no-bg pd-none-b">
-            <input type="email" class="w-100 in-box-style" placeholder="{{ MLanguages.MOBILE_FRONT_EMAIL }}" ng-model="updateUser.email" ng-class="{'arabic_rtl': arabic_rtl}">
+        <ion-item class="no-border text-center pd-none-t customer_detailitem">
+            <span class="input-label" style="color:#7f7f7f">Email Address*</span>
+            <input type="email" class="w-100 in-box-style-base chk_input chk_input2" ng-model="updateUser.email" ng-class="{'arabic_rtl': arabic_rtl}">
         </ion-item>
-        <ion-item class="no-border no-bg pd-none-b" ng-if="fbUserState != 'FB_USER'">
+        <!--<ion-item class="no-border no-bg pd-none-b" ng-if="fbUserState != 'FB_USER'">
             <input type="password" class="w-100 in-box-style" placeholder="{{ MLanguages.MOBILE_FRONT_PASSWORD }}" ng-model="updateUser.password" ng-class="{'arabic_rtl': arabic_rtl}">
-        </ion-item>
-        <ion-item class="no-border no-bg pd-none-b">
-            <input type="text" class="w-100 in-box-style" placeholder="{{ MLanguages.MOBILE_FRONT_FULL_ADDRESS }}" ng-model="updateUser.address" googleplace ng-click="onAutoCompleteAddress()" ng-class="{'arabic_rtl': arabic_rtl}">
+        </ion-item>-->
+        <ion-item class="no-border text-center pd-none-t customer_detailitem">
+            <span class="input-label" style="color:#7f7f7f">Full Address*</span>
+            <input type="text" class="w-100 in-box-style-base chk_input chk_input3" ng-model="updateUser.address" googleplace ng-click="onAutoCompleteAddress()" ng-class="{'arabic_rtl': arabic_rtl}">
         </ion-item>
         <!--<ion-item class="no-border no-bg pd-none-b">
             <input type="text" class="w-100 in-box-style" placeholder="Colony" ng-model="updateUser.colony">
@@ -49,8 +53,9 @@
         <ion-item class="no-border no-bg pd-none-b">
             <input type="text" class="w-100 in-box-style" placeholder="City" ng-model="updateUser.city">
         </ion-item>-->
-        <ion-item class="no-border no-bg pd-none-b">
-            <input type="tel" class="w-100 in-box-style" placeholder="{{ MLanguages.MOBILE_FRONT_PHONE_NUMBER }}" ng-model="updateUser.tel" ng-class="{'arabic_rtl': arabic_rtl}">
+        <ion-item class="no-border text-center pd-none-t customer_detailitem">
+            <span class="input-label" style="color:#7f7f7f">Phone Number*</span>
+            <input type="tel" class="w-100 in-box-style-base chk_input chk_input2" ng-model="updateUser.tel" ng-class="{'arabic_rtl': arabic_rtl}">
         </ion-item>
         <!--<ion-item class="no-border no-bg pd-none-b">
             <input type="text" class="w-100 in-box-style" placeholder="Cel" ng-model="updateUser.cel">

@@ -6,7 +6,7 @@
 </ion-nav-bar>-->
 
 <ion-header-bar class="top-bar">
-    <button class="button button-icon button-clear ion-navicon-round w-4e mg-top-btn" menu-toggle="left"></button>
+    <button class="button button-icon button-clear ion-navicon-round w-4e mg-top-btn" id="MenuButton" menu-toggle="left"></button>
     <select class="select-item lang_select pull-right" ng-model="myOrder.lang.id"
             ng-options="lang.id as lang.langText for lang in LangList | filter:lang.enabled = true"
             default-option="{{ MLanguages.MOBILE_FRONT_SELECT_YOUR_LANGUAGE }}" ng-change="selectLanguage(myOrder.lang.id)">
