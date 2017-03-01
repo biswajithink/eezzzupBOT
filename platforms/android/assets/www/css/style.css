@@ -451,7 +451,7 @@ ion-modal-view ion-content {
 	border-radius:5px;
 }
 .order_type_ul li{
-	display:inline-block;
+	float: left;
 	width:50%;
 	text-align:center;
 	line-height:40px;
@@ -467,6 +467,12 @@ ion-modal-view ion-content {
 	height:95%;
 	background: #ddd;
 	width:1px;
+}
+.order_type_ul li:first-child{
+    border-bottom-left-radius:4px
+}
+.order_type_ul li:last-child{
+    border-bottom-right-radius:4px
 }
 .order_type_ul li.active{
 	color:#000 !important;

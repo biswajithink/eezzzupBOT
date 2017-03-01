@@ -7680,7 +7680,7 @@ console.log($scope.item);
 				return;
 			}
 
-			if (($scope.order_buyer.address == undefined || $scope.order_buyer.address == '') && $scope.infoFields['Full Address'].status && $scope.infoFields['Full Address'].required) {
+			if (($scope.order_buyer.address == undefined || $scope.order_buyer.address == '') && $scope.getdeliveryType == 'delivery' && $scope.infoFields['Full Address'].status && $scope.infoFields['Full Address'].required) {
 				MyAlert.show($scope.MLanguages.ADDRESS_IS_REQUIRED);
 				return;
 			}
@@ -7731,10 +7731,10 @@ console.log($scope.item);
 				return;
 			}
 
-			if ($scope.getdeliveryType == 'delivery' && $scope.order_buyer.address == undefined){
+			/*if ($scope.getdeliveryType == 'delivery' && $scope.order_buyer.address == undefined){
                 $scope.fieldDetect($scope.MLanguages.MOBILE_FILL_REQUIRED_FIELDS);
                 return;
-            }
+            }*/
 
 			$scope.show($ionicLoading);
 

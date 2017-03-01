@@ -37,7 +37,7 @@
         </ion-item>
         <!--<ion-item class="no-border text-center pd-none-t" ng-class="{'arabic_rtl': arabic_rtl}" ng-if="infoFields['Full Address'].status">-->
             <ion-item class="no-border text-center pd-none-t customer_detailitem" ng-class="{'arabic_rtl': arabic_rtl}" ng-if="getdeliveryType == 'delivery'">
-                <span class="input-label" style="color:#7f7f7f">Full Address*</span>
+                <span class="input-label" style="color:#7f7f7f; border-bottom: 1px solid #2a7fff; padding-bottom: 2px; margin-bottom: 10px;">Full Address*</span>
             <input type="text" class="w-100 in-box-style-base chk_input chk_input3" placeholder="" ng-model="order_buyer.address" googleplace ng-click="onAutoCompleteAddress()">
         </ion-item>
         <!--<ion-item class="no-border text-center pd-none-t" ng-class="{'arabic_rtl': arabic_rtl}" ng-if="infoFields['Zipcode'].status">
@@ -65,7 +65,7 @@
         <ion-item class="no-border text-center pd-none-t customer_detailitem" ng-class="{'arabic_rtl': arabic_rtl}" ng-if="curBusiness.discountoffer!=true && ADDONS.discount_code && infoFields['Discount Coupon'].status">
             <input type="text" class="w-100 in-box-style-base" placeholder="{{ MLanguages.MOBILE_CHECKOUT_DISCOUNT_COUPON }} *" ng-model="order_buyer.coupon" ng-change="discountcodeCheck()" ng-readonly="order_buyer.couponstatus">
         </ion-item>
-        <ion-item class="item-divider custom_divider2" ng-class="{'arabic_rtl': arabic_rtl}">
+        <ion-item class="item-divider custom_divider2" style="background: #f5f5f5;" ng-class="{'arabic_rtl': arabic_rtl}">
             <span class="divider-padding no-padding-h">{{ MLanguages.MOBILE_CHECKOUT_ORDER_DETAILS }}</span>
         </ion-item>
         <ion-item class="detail-item customer_detailitem" ng-click="" ng-if="!arabic_rtl">
@@ -106,7 +106,7 @@
             </div>
         </ion-item>
 
-        <ion-item class="item-divider custom_divider2">
+        <ion-item class="item-divider custom_divider2" style="background: #f5f5f5;">
             <span class="divider-padding no-padding-h">{{ MLanguages.MOBILE_FRONT_ORDER_SUMMERY }}</span>
         </ion-item>
         <ion-item class="pd-top-4 no-border pd-none-b"
