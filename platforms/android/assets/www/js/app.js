@@ -552,17 +552,23 @@ angular.module('orderingApp', ['ionic','orderingApp.controllers','orderingApp.se
 
     .constant('shopSettings',{
 
-        payPalSandboxId :'Aar8HZzvc5NztVWodTBpOiOod9wWrBDrJUjyvRr4WsxcCD28xYig7oecfYsqxQUDu5QHptPpSALirxZD',
+        //payPalSandboxId :'Aar8HZzvc5NztVWodTBpOiOod9wWrBDrJUjyvRr4WsxcCD28xYig7oecfYsqxQUDu5QHptPpSALirxZD',
+        payPalSandboxId :'AYm-lSHMp7nvRnauOYWlWC1iUXqVZQ6rnihaqcBbTJozNr67JK3z5ZdgXTkp67Xi0k0Ud5x1YTU8de2w',
 
-        payPalProductionId : 'production id here',
+        //payPalProductionId : 'production id here',
+        payPalProductionId : '',
 
-        payPalEnv: 'PayPalEnvironmentSandbox', // for testing production for production
+        //payPalEnv: 'PayPalEnvironmentSandbox', // for testing production for production
+        payPalEnv: '', // for testing production for production
 
-        payPalShopName : 'OrderingCo.Shop',
+        //payPalShopName : 'OrderingCo.Shop',
+        payPalShopName : '',
 
-        payPalMerchantPrivacyPolicyURL : 'url to policy',
+        //payPalMerchantPrivacyPolicyURL : 'url to policy',
+        payPalMerchantPrivacyPolicyURL : '',
 
-        payPalMerchantUserAgreementURL : 'url to user agreement'
+        //payPalMerchantUserAgreementURL : 'url to user agreement'
+        payPalMerchantUserAgreementURL : ''
 
     })
 	

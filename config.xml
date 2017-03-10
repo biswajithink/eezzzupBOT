@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" id="com.biteontime.orderingapp" version="3.1.1">
-  <name>B.O.T. Ordering</name>
+  <name>Bite On Time Ordering</name>
   <description>Ordering app by Ordering Online System is great!</description>
   <author email="sergio@orderingonlinesystem.com" href="http://www.orderingonlinesystem.com/">
          Sergio Khoury

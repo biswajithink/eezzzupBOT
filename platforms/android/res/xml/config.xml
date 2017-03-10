@@ -48,7 +48,7 @@
         <param name="android-package" value="cordova.plugins.Diagnostic" />
         <param name="onload" value="true" />
     </feature>
-    <name>B.O.T. Ordering</name>
+    <name>Bite On Time Ordering</name>
     <description>Ordering app by Ordering Online System is great!</description>
     <author email="sergio@orderingonlinesystem.com" href="http://www.orderingonlinesystem.com/">
          Sergio Khoury

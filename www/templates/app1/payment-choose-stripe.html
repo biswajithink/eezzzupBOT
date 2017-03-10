@@ -11,16 +11,16 @@
             <div class="col col-35"> </div>
         </div>-->
         <ion-item class="item-divider">
-            <span class="divider-padding no-padding-h positive">{{ MLanguages.MOBILE_CHOOSE_CARD }} ({{ MLanguages.FRONT_FORM_REQUIRED }})</span>
+            <span class="divider-padding no-padding-h positive">Please choose card ({{ MLanguages.FRONT_FORM_REQUIRED }})</span>
         </ion-item>
-        <ion-radio class="radio-item" ng-repeat="item in stipe_customer_history"
+        <ion-radio class="radio-item card_radio" ng-repeat="item in stipe_customer_history"
                    ng-value="item.id"
                    name = "{{item.id}}"
                    ng-model="stripepaymentModel.model"
                    ng-checked="{{item.default_source}}"
                    ng-click="stripeonClickMethod(item)">
-            <span class="float-left dynamic-radio" ng-if="!arabic_rtl"></span>
-            <span class="float-right dynamic-radio" ng-if="arabic_rtl"></span>
+            <span class="float-left" ng-if="!arabic_rtl"></span>
+            <span class="float-right" ng-if="arabic_rtl"></span>
             <p class="col col-80 font-small-x">XXXX-XXXX-XXXX-{{ item.customerDatalast4 }}({{ item.customerDatabrand }})</p>
             <!--<div class="row min-h-5">
                 <div class="col col-15"> </div>
@@ -28,10 +28,10 @@
             </div>-->
         </ion-radio>
         <ion-item class="no-border no-bg no-padding-h mg-top-nor">
-            <button class="button button-positive w-100" ng-click="setStripeOption()">{{ MLanguages.CONTROL_PANEL_DISCOUNT_OFFER_COLUMN5 }}</button>
+            <button class="button button-positive w-100 home_searchbtn" ng-click="setStripeOption()">{{ MLanguages.CONTROL_PANEL_DISCOUNT_OFFER_COLUMN5 }}</button>
         </ion-item>
         <ion-item class="no-border no-bg no-padding-h mg-top-nor">
-            <button class="button button-calm w-100" ng-click="addNewCardChkout()">{{ MLanguages.MOBILE_ADD_CARD }}</button>
+            <button class="button button-calm w-100 home_searchbtn" ng-click="addNewCardChkout()">{{ MLanguages.MOBILE_ADD_CARD }}</button>
         </ion-item> 
     </ion-content>
 </ion-modal-view>

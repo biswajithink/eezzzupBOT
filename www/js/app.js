@@ -552,7 +552,8 @@ angular.module('orderingApp', ['ionic','orderingApp.controllers','orderingApp.se
 
     .constant('shopSettings',{
 
-        payPalSandboxId :'Aar8HZzvc5NztVWodTBpOiOod9wWrBDrJUjyvRr4WsxcCD28xYig7oecfYsqxQUDu5QHptPpSALirxZD',
+        //payPalSandboxId :'Aar8HZzvc5NztVWodTBpOiOod9wWrBDrJUjyvRr4WsxcCD28xYig7oecfYsqxQUDu5QHptPpSALirxZD',
+        payPalSandboxId :'AYm-lSHMp7nvRnauOYWlWC1iUXqVZQ6rnihaqcBbTJozNr67JK3z5ZdgXTkp67Xi0k0Ud5x1YTU8de2w',  // For testing 
 
         payPalProductionId : 'production id here',
 

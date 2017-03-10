@@ -4429,7 +4429,7 @@ console.log($scope.item);
 			for (; i < len; i++) {
 				var buff = {
 					id : 'ICM_' + i,
-					checked : true
+					checked : false
 				};
 				$scope.ICheckModel['' + items[i]] = buff;
 			}
@@ -6294,6 +6294,63 @@ console.log($scope.item);
 									  gAllBusiness, gNearService, gBusinessData, gDeliveryComment, gCurRestaurant, gOrder,
 									  gUserData, gStates, PushNotificationSvc,
 									  ngFB) {
+
+				$scope.data = {};
+				$scope.openPopPass = function() {
+
+
+					$ionicPopup.show({
+						template: '<input type="text" ng-model="data.email">',
+						title: 'Please type you Email Id',
+						scope: $scope,
+						buttons: [
+						{ text: 'Cancel' },
+						{
+							text: '<b>Submit</b>',
+							type: 'button-positive',
+							onTap: function(e) {
+							if (!$scope.data.email) {
+								e.preventDefault();
+							} else {
+								$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
+									$http({
+										method: 'POST',
+										url: 'https://biteontime.com.au/panel/lib/front-main.php',
+										data: $.param({
+											f:'RecoverPassword',
+											email: $scope.data.email
+										}),
+										headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+									}).success(function (data, status, headers, config) {
+
+									if(data.substr(0, 2)=='ok'){
+										$ionicPopup.alert({
+											title: 'Alert',
+											template: 'Reset password instructions sent on mail.'
+										});
+										}else{
+
+											$ionicPopup.alert({
+											title: 'Alert',
+											template: 'Email does not match our database.'
+										});
+										}
+
+									}).error(function (data, status, headers, config) {
+										$ionicPopup.alert({
+											title: 'Alert',
+											template: 'Server Unreachable.'
+										});
+									});
+
+									$scope.data = {};
+							}
+							}
+						}
+						]
+					});
+
+				};										  
 		
 		$scope.ADDONS = ADDONS;
 		$scope.show = function() {
@@ -7091,9 +7148,9 @@ console.log($scope.item);
 			$scope.taxPrice = parseFloat($scope.curBusiness.tax);
 
 			$scope.driverTipsList = [
-                { text: DRIVER_TIPS.tip_1+"%", value:($scope.totalPrice * (DRIVER_TIPS.tip_1/100)).toFixed(2)},
-                { text: DRIVER_TIPS.tip_2+"%", value:($scope.totalPrice * (DRIVER_TIPS.tip_2/100)).toFixed(2)},
-                { text: DRIVER_TIPS.tip_3+"%", value:($scope.totalPrice * (DRIVER_TIPS.tip_3/100)).toFixed(2)},
+                { text: "0%", value:($scope.totalPrice * (0/100)).toFixed(2)},
+                { text: "5%", value:($scope.totalPrice * (5/100)).toFixed(2)},
+                { text: "10%", value:($scope.totalPrice * (10/100)).toFixed(2)},
                 { text: DRIVER_TIPS.tip_4+"%", value:($scope.totalPrice * (DRIVER_TIPS.tip_4/100)).toFixed(2)},
                 { text: DRIVER_TIPS.tip_5+"%", value:($scope.totalPrice * (DRIVER_TIPS.tip_5/100)).toFixed(2)}
             ];
@@ -7323,9 +7380,13 @@ console.log($scope.item);
 				//$scope.hide();
 				if(s.status == false || s.status == "false" ) {
 					MyAlert.show('\<center\>'+$scope.MLanguages.MOBILE_NOT_PAID_CORRECTLY+'\<\/center\>');	
+					console.log($scope.MLanguages.MOBILE_NOT_PAID_CORRECTLY);
+					MyLoading.hide();
+					$scope.modal2.show();
 				} else {
 					if(s.register.failure_message != "-1" ){
-						MyAlert.show('\<center\>'+$scope.MLanguages.MOBILE_NOT_PAID_CORRECTLY+'\<\/center\>');	
+						MyAlert.show('\<center\>'+$scope.MLanguages.MOBILE_NOT_PAID_CORRECTLY+'\<\/center\>');
+						console.log($scope.MLanguages.MOBILE_NOT_PAID_CORRECTLY);	
 					}
 					ConfirmSvc.getInfo({
 						orderId    : $scope.placedOrderId,
@@ -7588,7 +7649,7 @@ console.log($scope.item);
 				//alert($scope.stripepaymentModelRec.default_source);
 			}
 		};
-
+//pay with cash
 		$scope.offPaymentPopup = function(){
 			if ($scope.paymentModel.val === 'none') {
 				MyAlert.show($scope.MLanguages.BUSINESS_PAYMENT_VALIDATION+'!');
@@ -7871,6 +7932,7 @@ console.log($scope.item);
 			$ionicLoading.hide();
 		}
 
+/* paypal */
 		$scope.paypalconfirmpayment = function(){
 			if ($scope.windowclosePaypal.closed){
 				//$scope.hide(); 

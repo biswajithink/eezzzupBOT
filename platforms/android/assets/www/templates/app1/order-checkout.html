@@ -1,7 +1,7 @@
 <ion-view>
     <ion-nav-bar class="bar-stable bar-shadow">
         <ion-nav-buttons side="left">
-            <button class="button top-btn" ui-sref="ordering.detailRest"><img src="img/icon-back.png"></button>
+            <button class="button top-btn" ui-sref="mobileDetailRest"><img src="img/icon-back.png"></button>
         </ion-nav-buttons>
         <ion-nav-title>{{ MLanguages.Order_details_V2 }}</ion-nav-title>
         <ion-nav-buttons side="right">
@@ -20,7 +20,7 @@
                 <span class="float-left span-detail-order custom_color1"> {{dish.name}}</span>
                 <div class="dish_icons">
                     <i class="ion-edit icon-button btn-edit" ng-click="onClickEdit(dish)" ng-show=ADDONS.cart_enhacements></i>
-                    <i class="ion-android-cancel icon-button btn-delete" ng-click="onClickRemove(dish)" ng-show=ADDONS.cart_enhacements></i>
+                    <i class="ion-android-cancel icon-button order-detail-btn-delete order_cancelbtn" ng-click="onClickRemove(dish)" ng-show=ADDONS.cart_enhacements></i>
                     <p class="color-main font-small float-right custom_color2">{{ c_unit }} {{(dish.total).toFixed(2)}}</p>
                 </div>
             </div>
@@ -29,10 +29,10 @@
                 <span class="float-right span-detail-order custom_color1"> {{dish.name}}</span>
                 <div class="dish_icons">
                     <i class="ion-edit icon-button btn-edit" ng-click="onClickEdit(dish)" ng-show=ADDONS.cart_enhacements></i>
-                    <i class="ion-android-cancel icon-button btn-delete" ng-click="onClickRemove(dish)" ng-show=ADDONS.cart_enhacements></i>
+                    <i class="ion-android-cancel icon-button order-detail-btn-delete order_cancelbtn" ng-click="onClickRemove(dish)" ng-show=ADDONS.cart_enhacements></i>
                     <p class="color-main font-small float-left custom_color2">{{ c_unit }} {{(dish.total).toFixed(2)}}</p>
                 </div>
-            </div>
+            </div>            
             <!--<p class="color-font-gray food-tail" style="white-space: normal">
                 <span>{{getFormattedOptions(dish.options)}}</span>
             </p>-->

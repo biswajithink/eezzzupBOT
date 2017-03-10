@@ -684,8 +684,8 @@ resize: none;
 }
 .border-line-red .checkbox input:after, .border-line-red .checkbox-icon:after{
     /*top: 18%;*/
-    top: 27%;
-    left: 28%;
+    top: 8px;
+    left: 8px;
     display: table;
     width: 13px;
     height: 7px;
@@ -1299,6 +1299,10 @@ resize: none;
     color: #fff;
     line-height: 42px;
     text-transform: uppercase;
+    text-align: center;
+}
+.order_content_body{
+    text-align: center;
 }
 .order_content_body .row{
     line-height: 25px;
@@ -1309,6 +1313,7 @@ resize: none;
 .order_content_body .date-format{
     font-weight: 600;
     line-height: 20px;
+    white-space: initial;
 }
 .order_content_body .date-format span{
     display: block;
@@ -1651,7 +1656,10 @@ resize: none;
     background-size: 30px;
     background-position: 5%;
 }
-
+.card_radio p{
+    line-height: 24px !important;
+    white-space: normal;
+}
 
 .rest-item-detail{
   border-style: solid;
@@ -1673,11 +1681,27 @@ resize: none;
 .dish_icons{
     float: right;
 }
+.dish_icons i{
+    display: inline-block;
+    height: 25px !important;
+    vertical-align: middle;
+}
+.dish_icons i:nth-child(2){
+    top: 0px;
+}
 .dish_icons p.color-main.font-small.float-right{
     margin-left: 10px;
+    line-height: 25px;
 }
 .item-radio .item-content .row div{
     padding-top: 0px;
+}
+
+.trading_hour{
+    padding-top: 1em;
+}
+.trading_hour:last-child{
+    margin-bottom: 15px;
 }
 /*-------------------Media Quires--------------------------*/
 
