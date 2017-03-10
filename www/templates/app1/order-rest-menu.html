@@ -93,7 +93,7 @@
                 <!--<p>{{ item.restData.info.address }} - {{ item.restData.info.city.name }}</p>-->
             </ion-item>
             <!-- Catalog part -->
-            <ion-item class="item-divider info_item_hour">
+            <ion-item class="item-divider info_item_hour" overflow-scroll="true">
                 <button class="btn-bg-focus btn-bg-foucs-gray" ng-click="collapsItem(0)"></button>
                 <span class="custom_color1" ng-class="{cssArabicMenuItem: $root.arabic_rtl}" ng-click="collapsItem(0)"><img src="img/info_clock.png" class="info_img" alt="#"> <!--{{ MLanguages.FRONTMOBILE_BUSINESS }}--> {{ MLanguages.MENU_LIST_OPENING_TIME }}</span>
                 <div class="float-right icon-more-down" ng-click="collapsItem(0)"></div>
