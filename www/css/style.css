@@ -509,9 +509,9 @@ ion-modal-view ion-content {
 }
 
 .sidemenu_ul a{
-    /*border: none;
-	border-color:#f23212;*/
-    border-color: #ddd;
+    border: none;
+	/*border-color:#f23212;
+    border-color: #ddd;*/
 }
 .sidemenu_ul a:first-child{
 	border-top-color:transparent;
@@ -1703,6 +1703,11 @@ resize: none;
 .trading_hour:last-child{
     margin-bottom: 15px;
 }
+
+
+.order-detail-btn-delete{top: 0;}
+
+
 /*-------------------Media Quires--------------------------*/
 
 

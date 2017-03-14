@@ -6289,7 +6289,7 @@ console.log($scope.item);
 		}
 	})
 
-	.controller('signUpCtrl',function($scope, $state, $rootScope, $ionicLoading, $ionicHistory, $ionicModal, $ionicPopup,
+	.controller('signUpCtrl',function($scope, $state, $rootScope, $ionicLoading, $ionicHistory, $http, $ionicModal, $ionicPopup,
 									  UserSvc, CheckoutInfoSvc, MyLoading, MyAlert,
 									  gAllBusiness, gNearService, gBusinessData, gDeliveryComment, gCurRestaurant, gOrder,
 									  gUserData, gStates, PushNotificationSvc,
@@ -6301,7 +6301,7 @@ console.log($scope.item);
 
 					$ionicPopup.show({
 						template: '<input type="text" ng-model="data.email">',
-						title: 'Please type you Email Id',
+						title: 'Please type your Email',
 						scope: $scope,
 						buttons: [
 						{ text: 'Cancel' },
